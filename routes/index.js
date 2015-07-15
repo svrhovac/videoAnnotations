@@ -34,7 +34,7 @@ router.get('/videos', function(req, res){
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.sendfile('../html/index.html');
+  res.sendfile('../public/index.html');
 });
 
 module.exports = router;
