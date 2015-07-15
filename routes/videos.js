@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var db = require(mainConfig.paths.db.mongodb);
+var mongojs = require("mongojs");
 
 router.get('/videos', function(req, res){
 
@@ -10,6 +11,7 @@ router.get('/videos', function(req, res){
 
   var callback = function(err, videos){
       res.json(videos);
+
   };
 
   req.checkQuery('skip', 'Skip must be positive integer or 0').notEmpty().isInt({min: 0});
@@ -27,12 +29,26 @@ router.get('/videos', function(req, res){
 
   }
 
-  db.video.find({}).skip(skip).limit(limit, callback);
+  db.video.find({},{path: 0, description: 0}).skip(skip).limit(limit, callback);
 
 
 });
+router.param('videoId', function(req, res, next, id){
 
-//Komentar za probu gita
+  db.video.findOne({_id : mongojs.ObjectId(id)}, function(err, video){
+    if(err) return next(err);
+    if(!video) return next(new Error('Can not find video'));
+    req.video = video;
+    return next();
+
+  });
+});
+
+router.get('/videos/:videoId', function(req, res){
+     res.json(req.video);
+
+});
+
 
 
 module.exports = router;
