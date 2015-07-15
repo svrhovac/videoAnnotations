@@ -8,7 +8,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
 
-var routes = require('./routes/index');
+var videoRoutes = require(mainConfig.paths.routes.videos);
+
+var indexRoutes = require(mainConfig.paths.routes.index);
 
 var app = express();
 
@@ -23,8 +25,8 @@ app.use(expressValidator());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-
+app.use(videoRoutes);
+app.use(indexRoutes);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
