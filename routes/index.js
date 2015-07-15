@@ -32,6 +32,8 @@ router.get('/videos', function(req, res){
 
 });
 
+//Komentar za probu gita
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.sendfile('../html/index.html');
