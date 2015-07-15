@@ -1,0 +1,10 @@
+[
+{"name": "prvi video", "author": "marko", "duration": "3:45", "path": "video1.mp4"},
+{"name": "drugi video", "author": "zarko", "duration": "2:25", "path": "video2.mp4"},
+{"name": "treci video", "author": "tarko", "duration": "2:25", "path": "video3.mp4"},
+{"name": "cetvr video", "author": "neko", "duration": "2:25", "path": "video4.mp4"},
+{"name": "pet video", "author": "zeko", "duration": "2:25", "path": "video5.mp4"},
+{"name": "ses video", "author": "deko", "duration": "2:25", "path": "video6.mp4"},
+{"name": "sem video", "author": "leko", "duration": "2:25", "path": "video7.mp4"},
+{"name": "osam video", "author": "beko", "duration": "2:25", "path": "video8.mp4"}
+]
