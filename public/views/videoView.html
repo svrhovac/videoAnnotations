@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>Video Gallery</title>
+
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <script src="js/mmn.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    
+    </head>
+  
+  
+    <body>
+    
+        <div class="container">
+
+            <div class="row row-offcanvas row-offcanvas-right">
+
+                <div class="col-xs-12 col-sm-12">
+                    <p class="pull-right visible-xs">
+                      <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+                    </p>
+                    
+                    <div class="row" >
+                        <div id="vid" class="col-xs-9 col-xs-12" >
+			    <video src="{{video.path}}" controls="controls" style="width:100%"></video>
+			 
+                            <div class=" col-xs-7" style="font-size:40px; padding:0">
+                                {{video.title}}
+                            </div>
+
+                            <button style="float:right; margin-top:5px; border-radius:0px" type="button" class="btn btn-default col-xs-1" ng-click="nextVideo()">next</button>
+                            <div style="float:right; width:25px; height:1px"></div>
+                            <button style="float:right; margin-top:5px; border-radius:0px " type="button" class="btn btn-default col-xs-1 " ng-click="prevVideo()">prev</button>
+
+                            <br>
+                            <div class="col-xs-9">
+                                <p> {{video.author}} </p>
+                            </div>
+                            <div class="col-xs-9">
+                                <p> {{video.description}} </p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xs-12 col-sm-3 sidebar-offcanvas" id="sidebar"
+                                    style="overflow-y: scroll; height:800px; display:block; border:solid;
+                                    background-color:#F8F8F8 ; border-color:#F8F8F8">
+                            
+                            <div class="list-group" >
+                                <!-- 0vdje pocinje paragraf u koji se unsoi angularjs zza listu-->
+				<div class="col-sm-12" ng-repeat="myVideo in getVidList()">
+                                    <div class="btn btn-default" style="margin-bottom:30px; width:100%" ng-click="setCurrentVideo($index)">
+                                      <h3>{{myVideo.title}}</h3>
+                                      <p>{{myVideo.author}}</p>
+                                      <p>{{myVideo.duration}} </p>
+                                    </div>
+				</div>
+                            </div>
+                            
+                        </div><!--/.sidebar-offcanvas-->
+                    </div><!--/row-->
+                </div><!--/.col-xs-12.col-sm-9-->
+            </div><!--/row-->
+
+            <hr>
+
+        </div><!--/.container-->
+        
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap.min.js"></script>
+        
+    </body>
+    
+</html>
