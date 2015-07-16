@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-	<script src="js/angular.js"></script>
-    <script src="mmn.js"></script>
-	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  	// Svi pozivi za .js fajlove trebaju da budu na dnu HTML strane.
+  	// Da li neko zna zašto?
+  	
+	
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -124,8 +125,19 @@
       </footer>
 
     </div><!--/.container-->
+    
+    <script src="js/angular.js"></script>
+    <script src="mmn.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    // Kad se pozivaju .js fajlovi treba voditi računa da je njihov redoslijed logičan,
+    // nije logično pozvati mmn.js prije jQuery biblioteke koja obezbijeđuje potrebne funkcije za mmn.js.
+    
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    // Na jednoj strani ste pozvali dvije različite jQuery biblioteke.
+    // Ovo je trošenje nepotrebno trošenje resursa i otvara mogućnost stvaranja situacija koje je vrlo teško debagovati.
+    // Ove dvije biblioteke mogu biti u konfliktu.
+    
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
 	<script>
@@ -165,4 +177,6 @@
 	</script>
   </body>
   <s>
+ // Nepoznat mi je HTML tag <s>!??! 
+ // Pored toge nije ispravno ni zatvoren i napravili ste XML dokument koji nije validan.
 </html>
