@@ -17,7 +17,7 @@ $routeProvider.
 		templateUrl: '/views/annotationView.html',
         controller: 'addAnnotationController'
 	}).
-	when('//video/:id/editAnnotation/:id_anno',{
+	when('/video/:id/editAnnotation/:id_anno',{
 		templateUrl: '/views/editAnnotationView.html',
         controller: 'editAnnotationController'
 	}).
