@@ -1,14 +1,15 @@
-spa.controller("videoController", function($scope, $location, $http, $routeParams, videoServis){
+spa.controller("videoController", function($scope, $location, $http, $routeParams, videoService){
     
 	$scope.idVideo = $routeParams.id;
 	
-	videoServis.getVideoProperty($scope.idVideo).success(function(data){
+	videoService.getVideos().success(function(data){
+		$scope.vidList = data;
+	});
+	
+	videoService.getVideoProperty($scope.idVideo).success(function(data){
 		$scope.video=data;
 		console.log($scope.video);
 	});
-	
-	$scope.vidList = videoServis.getVidList();
-	console.log($scope.vidList);
 	
 	$scope.setCurrentVideo = function(){
 		

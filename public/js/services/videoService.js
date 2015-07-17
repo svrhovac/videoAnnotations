@@ -1,28 +1,18 @@
-spa.service("videoServis", ['$http', function($http){
+spa.service("videoService", ['$http', function($http){
     this.serviceObject = {};
 	this.vidList=[];
 	
 	
    this.currentVideo = {};
    
-   this.setServiceObject = function(sObj){
-       this.vidList = sObj.vidList;
-       this.currentVideo = sObj.currentVideo;
-       return this.serviceObject;
-   };
-   
-   this.setVidList = function(data){
-	   this.vidList = data;
-   };
-   
-   this.getVidList = function(){
-       return this.vidList;
-   };
-   
-   this.setCurrentVideo = function(vid){
-	   this.currentVideo = vid;
-	    
-   };
+   this.getVideos = function(){
+	    return $http.get("/videos").success(function(data){
+			return data;
+		}).
+		error(function(data){
+			console.log("greska!!!");
+		});
+    };
    
    this.getVideoProperty = function(pin){
        //return this.currentVideo;

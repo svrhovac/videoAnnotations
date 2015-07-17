@@ -1,17 +1,14 @@
-spa.controller("mainController", function($scope, $location, $http, $routeParams, videoServis){
-    $scope.vidList = [];
-	$http.get('/videos').success(function(data){
-		videoServis.setVidList(data);
-	}).
-	error(function(data){
-		console.log("Connection with server interrupted!!!");
+spa.controller("mainController", function($scope, $location, $http, $routeParams, videoService){
+    
+	videoService.getVideos().success(function(data){
+		$scope.vidList = data;
 	});
     
     $scope.getVideo = function(pin){
-	   var request="/videos/" + videoServis.vidList[pin]._id;
+	   var request="/videos/" + videoService.vidList[pin]._id;
 	   
 	   $http.get(request).success(function(data){
-			videoServis.setCurrentVideo(data);
+			videoService.setCurrentVideo(data);
 		}).
 		error(function(data){
 			console.log("Connection with server interrupted!!!");
@@ -19,38 +16,6 @@ spa.controller("mainController", function($scope, $location, $http, $routeParams
     };
 	
 	$scope.getId = function(){
-		return videoServis.getId();
+		return videoService.getId();
 	};
-	
-    $scope.goToView2 = function(pin){
-        return vidList[pin]._id;
-        console.log(pin);
-        //$location.path("/view2.html");
-    };
-    
-    $scope.getVidList = function(){
-		
-		$scope.vidList = videoServis.getVidList();
-        return $scope.vidList;
-    };
-    
-    $scope.setCurrentVideo = function(pin){
-        videoServis.currentVideo=$scope.getVideo(pin);
-    };
-    
-    /*$scope.getCurrentVideo = function(){
-        return videoServis.getCurrentVideo();
-    };
-    
-    $scope.nextVideo = function(){
-        videoServis.goToNextVideo();
-    };
-    
-    $scope.prevVideo = function(){
-        videoServis.goToPrevVideo();
-    };
-    */
-    $scope.pom = function(pom){
-        console.log(pom);
-    };
 });

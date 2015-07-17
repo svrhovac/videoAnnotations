@@ -52,12 +52,12 @@
                             
                             <div class="list-group" >
                                 <!-- 0vdje pocinje paragraf u koji se unsoi angularjs zza listu-->
-				<div class="col-sm-12" ng-repeat="myVideo in getVidList()">
-                                    <div class="btn btn-default" style="margin-bottom:30px; width:100%" ng-click="setCurrentVideo($index)">
+				<div class="col-sm-12" ng-repeat="myVideo in vidList">
+                                    <a href="#/video/{{vidList[$index]._id}}"><div class="btn btn-default" style="margin-bottom:30px; width:100%">
                                       <h3>{{myVideo.title}}</h3>
                                       <p>{{myVideo.author}}</p>
                                       <p>{{myVideo.duration}} </p>
-                                    </div>
+                                    </div></a>
 				</div>
                             </div>
                             

@@ -6,19 +6,19 @@ spa.config(['$routeProvider',
 function($routeProvider) {
 $routeProvider.
     when('/', {
-        templateUrl: '/view/mainView.html',
+        templateUrl: '/views/mainView.html',
         controller: 'mainController'
     }).
     when('/video/:id', {
-        templateUrl: '/view/videoView.html',
+        templateUrl: '/views/videoView.html',
         controller: 'videoController'
     }).
 	when('/video/:id/addAnnotation',{
-		templateUrl: '/view/addAnnotationView.html',
+		templateUrl: '/views/addAnnotationView.html',
         controller: 'addAnnotationController'
 	}).
 	when('//video/:id/editAnnotation/:id_anno',{
-		templateUrl: '/view/editAnnotationView.html',
+		templateUrl: '/views/editAnnotationView.html',
         controller: 'editAnnotationController'
 	}).
     otherwise({
