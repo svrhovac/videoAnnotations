@@ -50,9 +50,12 @@ router.param('videoId', function(req, res, next, id){
 
 router.get('/videos/:videoId', function(req, res){
     res.json(req.video);
+    //countView and lastViewDate updated every time we get a request for the specific video
     db.video.update({_id : mongojs.ObjectId(req.params.videoId)},{$inc : {countView : 1},$set: { lastViewDate : new Date()}});
 
 });
+
+
 
 
 
