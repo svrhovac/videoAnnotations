@@ -42,7 +42,6 @@ router.get('/videos/:videoId', function(req, res){
      res.json(req.video);
 
 });
-router.post('/videos/annotation/:videoId')
 
 
 module.exports = router;

@@ -56,4 +56,7 @@ router.post('/annotation/:videoId/add', function(req, res, next){
     res.send("Annotions succesfully inserted");
   });
 });
+
+
+
 module.exports = router;
