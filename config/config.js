@@ -5,7 +5,9 @@ module.exports = {
     },
     routes : {
       videos: __dirname + "/../routes/videos",
-      index: __dirname + "/../routes/index"
+      index: __dirname + "/../routes/index",
+      tags: __dirname + "/../routes/tags",
+      owners: __dirname + "/../routes/owners"
     }
 
   }

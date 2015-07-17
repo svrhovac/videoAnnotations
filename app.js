@@ -9,8 +9,11 @@ var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
 
 var videoRoutes = require(mainConfig.paths.routes.videos);
-
+var tagRoutes = require(mainConfig.paths.routes.tags);
+var ownerRoutes = require(mainConfig.paths.routes.owners);
 var indexRoutes = require(mainConfig.paths.routes.index);
+
+
 
 var app = express();
 
@@ -26,7 +29,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(videoRoutes);
+app.use(tagRoutes);
+app.use(ownerRoutes);
 app.use(indexRoutes);
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

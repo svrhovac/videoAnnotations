@@ -18,6 +18,8 @@ router.get('/videos', function(req, res){
   req.checkQuery('limit', 'Limit must be positive integer or 0').notEmpty().isInt({min: 0});
   var error = req.validationErrors();
 
+
+
   //if skip and limit are defined, and there are errors, then return error
   if(req.query.skip || req.query.limit) {
     if(error) {
@@ -29,7 +31,7 @@ router.get('/videos', function(req, res){
 
   }
 
-  db.video.find({},{path: 0, description: 0}).skip(skip).limit(limit, callback);
+  db.video.find({},{path: 0, description: 0, countView : 0, lastViewDate : 0 }).skip(skip).limit(limit, callback);
 
 
 });
@@ -39,15 +41,19 @@ router.param('videoId', function(req, res, next, id){
     if(err) return next(err);
     if(!video) return next(new Error('Can not find video'));
     req.video = video;
+
     return next();
 
   });
+
 });
 
 router.get('/videos/:videoId', function(req, res){
-     res.json(req.video);
+    res.json(req.video);
+    db.video.update({_id : mongojs.ObjectId(req.params.videoId)},{$inc : {countView : 1},$set: { lastViewDate : new Date()}});
 
 });
+
 
 
 
