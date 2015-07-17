@@ -60,9 +60,6 @@ app.use(function(req, res, next) {
 // will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
-    for(var o in err) {
-      console.log(o);
-    }
     if(err.stack) console.log(err.stack);
     var msg = (err.constructor === Array) ? err[0].msg : err.message ;
     res.status(err.status || 500).send(msg);
