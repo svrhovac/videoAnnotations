@@ -1,32 +1,35 @@
 spa.service("videoService", ['$http', function($http){
-    this.serviceObject = {};
+	this.serviceObject = {};
 	this.vidList=[];
-	
-	
+
    this.currentVideo = {};
    
+   this.
+   
    this.getVideos = function(){
-	    return $http.get("/videos").success(function(data){
+		return $http.get("/videos").success(function(data){
 			return data;
 		}).
 		error(function(data){
 			console.log("greska!!!");
 		});
-    };
+	};
    
    this.getVideoProperty = function(pin){
-       //return this.currentVideo;
+	   //return this.currentVideo;
 	   console.log(pin);
 	   console.log(this.vidList);
-	    var request="/videos/" + pin;
+		var request="/videos/" + pin;
 	   
-	    return $http.get(request).success(function(data){
+		return $http.get(request).success(function(data){
 			return data;
 		}).
 		error(function(data){
 			console.log("greska!!!");
 		});
-    };
+	};
+	
+	
    
    this.goToNextVideo = function(){
        var pos=this.vidList.indexOf(this.currentVideo);
