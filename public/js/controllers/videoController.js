@@ -1,5 +1,5 @@
 spa.controller("videoController", function($scope, $location, $http, $routeParams, videoService){
-    $scope.showListStatus = false;
+    $scope.showListStatus = true;
 	$scope.idVideo = $routeParams.id;
 	
 	videoService.getVideos().success(function(data){
