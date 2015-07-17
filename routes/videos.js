@@ -2,7 +2,10 @@ var express = require('express');
 var router = express.Router();
 
 var db = require(mainConfig.paths.db.mongodb);
-var mongojs = require("mongojs");
+var commonParams = require("./commonParams");
+
+
+router.param("videoId", commonParams.videoIdParam);
 
 router.get('/videos', function(req, res){
 
@@ -24,8 +27,8 @@ router.get('/videos', function(req, res){
       return next(error);
     }
 
-   skip = req.query.skip;
-   limit = req.query.limit;
+   skip = parseInt(req.query.skip);
+   limit = parseInt(req.query.limit);
 
   }
 
@@ -33,22 +36,13 @@ router.get('/videos', function(req, res){
 
 
 });
-router.param('videoId', function(req, res, next, id){
 
-  db.video.findOne({_id : mongojs.ObjectId(id)}, function(err, video){
-    if(err) return next(err);
-    if(!video) return next(new Error('Can not find video'));
-    req.video = video;
-    return next();
-
-  });
-});
 
 router.get('/videos/:videoId', function(req, res){
      res.json(req.video);
 
 });
-
+router.post('/videos/annotation/:videoId')
 
 
 module.exports = router;
