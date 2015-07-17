@@ -13,8 +13,8 @@ $routeProvider.
         templateUrl: '/views/videoView.html',
         controller: 'videoController'
     }).
-	when('/video/:id/addAnnotation',{
-		templateUrl: '/views/addAnnotationView.html',
+	when('/video/:id/annotation',{
+		templateUrl: '/views/annotationView.html',
         controller: 'addAnnotationController'
 	}).
 	when('//video/:id/editAnnotation/:id_anno',{
