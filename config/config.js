@@ -8,7 +8,7 @@ module.exports = {
       index: __dirname + "/../routes/index",
       commonParams: __dirname + "/../routes/commonParams",
       annotation: __dirname + "/../routes/annotation"
-
+      
     }
 
   }
