@@ -8,12 +8,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
 var videoRoutes = require(mainConfig.paths.routes.videos);
-<<<<<<< HEAD
+
 var tagRoutes = require(mainConfig.paths.routes.tags);
 var ownerRoutes = require(mainConfig.paths.routes.owners);
-=======
+
 var annotationRoutes = require(mainConfig.paths.routes.annotation);
->>>>>>> 419099073418e949b76f161794d21a463841f1be
+
 var indexRoutes = require(mainConfig.paths.routes.index);
 
 
