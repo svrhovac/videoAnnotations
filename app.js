@@ -31,23 +31,64 @@ app.use(expressValidator({
  customValidators: {
     isArray: function(value) {
         return Array.isArray(value);
+    },
+    isArrayPlusParse : function(value, resultHolder) {
+      if( value.constructor === Array ) {
+        resultHolder.result = value;
+        return true;
+      }
+
+      try {
+        var arr = JSON.parse(value);
+        if(arr.constructor === Array){
+          resultHolder.result = arr;
+          return true;
+        }
+      } catch(err) {
+        return false;
+      }
     }
  },
  customSanitizers: {
    toArray: function(value) {
-       try {
-         var parsed = JSON.parse(value);
-         if ( parsed.constructor === Array ) {
-           return parsed;
-         } else {
+         if(value.constructor && value.constructor === Array) {
+           return value;
+         }
+         try {
+           var arr = JSON.parse(value);
+           if(arr.constructor === Array){
+             return true;
+           }
+         } catch(err) {
            return false;
          }
-       } catch(err) {
-         return false;
-       }
+         return
    }
  }
 }));
+
+/* to add some tweaks to express-validator */
+
+app.use(function(req, res, next) {
+
+  var origValidationErrors = req.validationErrors;
+  var tweakedValidationErrors = function() {
+
+    var errors = origValidationErrors.call(this);
+
+    if (errors) {
+      errors.vaErrorType = 'validation';
+    }
+
+    return errors;
+
+  };
+  req.validationErrors = tweakedValidationErrors;
+  next();
+
+});
+
+
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(annotationRoutes);
@@ -58,6 +99,7 @@ app.use(ownerRoutes);
 app.use(indexRoutes);
 
 
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -66,26 +108,36 @@ app.use(function(req, res, next) {
 });
 
 // error handlers
+app.use(function(err, req, res, next){
+
+  if (err.vaErrorType) {
+    var status = err.status || 400;
+    res.status(status);
+
+    if(err.vaErrorType === 'validation') {
+      var msgs = [];
+      for (var i = 0; i < err.length; i++) {
+        msgs.push(err[i].msg);
+      }
+      return res.json(msgs);
+    }
+
+  }
+
+  next(err);
+
+});
 
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
-    if(err.stack) console.log(err.stack);
-    var msg = (err.constructor === Array) ? err[0].msg : err.message ;
-    res.status(err.status || 500).send(msg);
+    if(err && err.stack) {
+      console.log(err.stack);
+    }
+    var status = err ? err.status || 500 : 500;
+    res.sendStatus(status);
   });
 }
-
-// production error handler
-// no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
-});
-
 
 module.exports = app;
