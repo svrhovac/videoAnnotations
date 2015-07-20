@@ -124,7 +124,7 @@ router.put('/annotation/:videoId/edit/:annotationId', function(req, res, next){
         $elemMatch : {
           id: db.ObjectId(ann.id)
         }
-      } 
+      }
     },
     update:{
       $set : updt
@@ -140,6 +140,5 @@ router.put('/annotation/:videoId/edit/:annotationId', function(req, res, next){
       }
     });
 });
-
 
 module.exports = router;

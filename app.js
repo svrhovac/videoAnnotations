@@ -8,8 +8,15 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
 var videoRoutes = require(mainConfig.paths.routes.videos);
+
+var tagRoutes = require(mainConfig.paths.routes.tags);
+var ownerRoutes = require(mainConfig.paths.routes.owners);
+
 var annotationRoutes = require(mainConfig.paths.routes.annotation);
+
 var indexRoutes = require(mainConfig.paths.routes.index);
+
+
 
 var app = express();
 
@@ -46,7 +53,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(annotationRoutes);
 
 app.use(videoRoutes);
+app.use(tagRoutes);
+app.use(ownerRoutes);
 app.use(indexRoutes);
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
