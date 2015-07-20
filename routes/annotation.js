@@ -56,7 +56,14 @@ router.post('/annotation/:videoId/add', function(req, res, next){
       annotations: value
     }
   }, function(err, video){
-    res.send("Annotions succesfully inserted");
+    if(err){
+      res.sendStatus(500);
+    } else {
+      if(data != null && data.nModified > 0) {
+        res.send(true);
+      }
+      res.sendStatus(422); // Unprocessable Entity
+    }
   });
 });
 
@@ -131,12 +138,13 @@ router.put('/annotation/:videoId/edit/:annotationId', function(req, res, next){
     },
     new: true
     }, function(err, data){
-
       if(err){
-        res.send(false);
-      }
-      else {
-        res.send(true);
+        res.sendStatus(500);
+      } else {
+        if(data != null && data.nModified > 0) {
+          res.send(true);
+        }
+        res.sendStatus(422); // Unprocessable Entity
       }
     });
 });
@@ -149,10 +157,12 @@ router.delete('/annotation/:videoIdNoLoad/remove/:annotationIdNoLoad', function(
     $pull : { id : db.ObjectId(req.params.annotationIdNoLoad)}
   }, function(err, data){
     if(err){
-      res.send(false);
-    }
-    else {
-      res.send(true);
+      res.sendStatus(500);
+    } else {
+      if(data != null && data.nModified > 0) {
+        res.send(true);
+      }
+      res.sendStatus(422); // Unprocessable Entity
     }
   });
 
