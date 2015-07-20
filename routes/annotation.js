@@ -133,12 +133,30 @@ router.put('/annotation/:videoId/edit/:annotationId', function(req, res, next){
     }, function(err, data){
 
       if(err){
-        res.json("Not inserted");
+        res.send(false);
       }
       else {
-        res.json("Sucessfully inserted");
+        res.send(true);
       }
     });
 });
+
+router.delete('/annotation/:videoIdNoLoad/remove/:annotationIdNoLoad', function(req, res, next){
+  db.video.update({
+    _id : db.ObjectId(req.params.videoIdNoLoad)
+  },
+  {
+    $pull : { id : db.ObjectId(req.params.annotationIdNoLoad)}
+  }, function(err, data){
+    if(err){
+      res.send(false);
+    }
+    else {
+      res.send(true);
+    }
+  });
+
+});
+
 
 module.exports = router;
