@@ -13,6 +13,10 @@ $routeProvider.
         templateUrl: 'views/videoView.html',
         controller: 'videoController'
     }).
+	when('/statistic',{
+        templateUrl: 'views/statisticView.html',
+        controller: 'statisticController'
+    }).
     otherwise({
         redirectTo: '/'
     });
