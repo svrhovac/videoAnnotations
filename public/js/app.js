@@ -18,6 +18,6 @@ $routeProvider.
         controller: 'statisticController'
     }).
     otherwise({
-        redirectTo: 'views/mainView.html'
+        redirectTo: '/'
     });
 }]);
