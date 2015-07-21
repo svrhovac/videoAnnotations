@@ -6,9 +6,10 @@ module.exports = {
     routes : {
       videos: __dirname + "/../routes/videos",
       index: __dirname + "/../routes/index",
+      tags: __dirname + "/../routes/tags",
+      owners: __dirname + "/../routes/owners",
       commonParams: __dirname + "/../routes/commonParams",
       annotation: __dirname + "/../routes/annotation"
-
     }
 
   }

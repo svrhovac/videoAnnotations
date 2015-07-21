@@ -13,15 +13,7 @@ $routeProvider.
         templateUrl: 'views/videoView.html',
         controller: 'videoController'
     }).
-	when('/video/:id/annotation',{
-		templateUrl: 'views/annotationView.html',
-        controller: 'addAnnotationController'
-	}).
-	when('/video/:id/editAnnotation/:id_anno',{
-		templateUrl: 'views/editAnnotationView.html',
-        controller: 'editAnnotationController'
-	}).
-	when('/statistic/:id')
+	when('/statistic/:id').
     otherwise({
         redirectTo: '/views/statisticView.html'
     });

@@ -223,11 +223,13 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 		}
 
 		if(annoID < 0){
+			videoService.addNewAnnotationToServer(newAnnotation, $scope.video._id);
 			//call server saljem newAnnotation i video._id
 			//ako server success
 			$scope.video.annotations.push(newAnnotation);
 		}
 		else{
+			videoService.addAnnotationToServer(newAnnotation, $scope.video._id);
 			//call server saljem newAnnotation i video._id
 		}
 
@@ -340,10 +342,10 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 
 	   $location.path("/video/"+$scope.vidList[pos]._id);
 
-	    /*videoService.getVideoProperty($scope.vidList[pos]._id).success(function(data){
+	    videoService.getVideoProperty($scope.vidList[pos]._id).success(function(data){
 			//$location.path("/video/"+data._id);
 			$location.path("/video/"+data._id);
-			});*/
+			});
 	/*=======================================================*/
    };
    $scope.prevVideo = function(){
@@ -358,12 +360,12 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
        else
            pos--;
 	   
-	   /*=======================================================*/
-	   $location.path("/video/"+$scope.vidList[pos]._id);
+	    /*=======================================================*/
+	    //$location.path("/video/"+$scope.vidList[pos]._id);
 
-	   /*videoService.getVideoProperty($scope.vidList[pos]._id).success(function(data){
+	    videoService.getVideoProperty($scope.vidList[pos]._id).success(function(data){
 			$location.path("/video/"+data._id);
-		});*/
+		});
 		/*=======================================================*/
    };
 });
