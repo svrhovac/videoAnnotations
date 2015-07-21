@@ -7,7 +7,7 @@ var db = require(mainConfig.paths.db.mongodb);
 
 
 
-router.get('/owners/:videoId', function(req, res){
+router.get('/owners/:videoId', function(req, res, next){
 
       //  res.json(req.video);
         var id = req.params.videoId;
