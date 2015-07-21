@@ -1,1 +1,16 @@
-<h1>Nesyo</h1>
+<div class="row nesto">
+	<div id="statistika" class="col-sm-7 col-xs-11 ">
+		<h2>Broj pregleda: {{stat.countView}}</h2>
+		<h2>Datum zadnjeg gledanja: {{stat.lastViewDate}}</h2>
+		<h2>Broj anotacija: {{stat.numberOfAnnotation}}</h2>
+	</div>
+	<div style="border-style: solid; border:10px" id="listaVidea" class="col-sm-4 col-xs-11 ">
+		<div ng-repeat="sVid in sVideos">
+			<div  class="btn btn-default col-xs-12" ng-click="getStatistics(sVid)">
+				<h3 style="overflow:hidden"> {{sVid.title}}</h3>
+				<p> {{sVid.author}} </p>
+				<p> {{sVid.duration}} </p>
+			</div>
+		</div>
+	</div>
+</div>
