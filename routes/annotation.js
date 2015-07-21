@@ -10,6 +10,7 @@ router.param("annotationId", commonParams.annotationIdParam);
 
 router.post('/annotation/:videoId/add', function(req, res, next){
   var video = req.video;
+  req.checkBody('text','Annotation text is mandatory').notEmpty();
   req.checkBody('startTime','Start time must be greater or equals to 0').notEmpty().isInt({min: 0, max: video.duration});
   var error = req.validationErrors();
   if (error) {
