@@ -60,7 +60,6 @@ router.post('/annotation/:videoId/add', function(req, res, next){
 });
 
 router.put('/annotation/:videoId/edit/:annotationId', function(req, res, next){
-  console.log(JSON.stringify(req.body));
   var video = req.video;
   var ann = req.annotation;
   var updt = {};
@@ -109,9 +108,6 @@ router.put('/annotation/:videoId/edit/:annotationId', function(req, res, next){
 
   updt['annotations.$.dateModified'] = new Date();
 
-  console.log(JSON.stringify(updt));
-
-
   db.video.findAndModify({
     query: {
       _id : video._id,
@@ -147,7 +143,6 @@ router.delete('/annotation/:videoIdNoLoad/remove/:annotationIdNoLoad', function(
   {
     $pull : { annotations : { id : annoId } }
   }, function(err, data){
-    return res.json(data);
     if(err){
       res.sendStatus(500);
     } else {

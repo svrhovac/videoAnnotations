@@ -13,8 +13,6 @@ myexports.isParsableObjectIdArrayValidatorConvertor = function(value, resultHold
         return false;
       }
     } catch(err) {
-      console.log("1");
-      console.log(err.message);
       return false;
     }
   }
@@ -27,7 +25,6 @@ myexports.isParsableObjectIdArrayValidatorConvertor = function(value, resultHold
     }
 
   } catch(ex) {
-    console.log(ex.message);
     return false;
   }
 
