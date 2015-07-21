@@ -1,13 +1,18 @@
-body {
- margin:0;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
-}
-
-	.crnifuter{
+	 body{
+            position:absolute;
+            width:100%;
+            height:83%;
+			font-family: 'Raleway', sans-serif;
+            
+        }
+        #main-window{
+            position:relative;
+            top:0;
+            left:0;
+            height: 100%;
+            width: 100%;
+        }
+		.crnifuter{
 			background-color: black;
 			position: relative; 
 			bottom: 0; 
@@ -16,7 +21,7 @@ a {
 			height:auto;
 		
 		}
-
+	
 	@media (max-width: 1000px){
   		left-side{
 		    position:relative;
@@ -282,3 +287,21 @@ a {
 height:100px;
 width:auto;
 }
+
+.crnifuter{
+			background-color: black;
+			position: relative; 
+			bottom: 0; 
+			left:0;
+			overflow:auto;
+			height:auto;
+		
+		}
+
+.homevideo{
+		
+		border-bottom: 22px solid #e65454;
+		border-radius: 0px;
+		margin-bottom:30px; 
+		width:100%;
+	}
