@@ -2,53 +2,46 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Video Gallery</title>
     
-    <style>
-        #full{
-            min-height: 100%;
-        }
-    </style>
-    
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    
-    
+	<link href="css/video.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Raleway:500' rel='stylesheet' type='text/css'>
 
     </head>
     
     <body>
         
-        <div id="navbar" class="collapse navbar-collapse" style="background:black">
-           <ul class="nav navbar-nav">
-            <li class="active"><a href="#/">Home</a></li></ul> 
-            <br />
-        </div><!-- /.nav-collapse -->
+        <nav class="navbar navbar-default navcss">
+      <div class="container">
+          <a href="#/"> <img src="images/logo.png"/></a>
+
+      </div>
+    </nav>
 
     <br />
     
-    <div id="full"  ng-app="app" ng-controller="mainController">
-        <div ng-include="'addedit.html'">
-            
-        </div>
+    <div id="main-window" ng-app="app" ng-controller="mainController" ng-view>
+
     </div>
-    
-    <footer style="position: relative; bottom: 0">
-        <p>&copy; EDIT 2015</p>
-    </footer>
+	
+    <!--<footer  class="crnifuter" >
+		
+         <div style="float:right; margin: 0 0 10px 10px;"> <img style="height:60px;" src="images/emailing-baner_600.jpg"></div></img>
+    </footer>-->
       
 	<script src="js/libs/angular/angular.js"></script>
     <script src="js/libs/angular/angular-route.js"></script>
-	
-	<!--<script src="https://code.angularjs.org/1.4.2/angular.js"></script>
-	<script src="https://code.angularjs.org/1.4.2/angular-route.js"></script>-->
 	
 	<script src="js/app.js"></script>
 	<script src="js/services/videoService.js"></script>
     <script src="js/controllers/mainController.js"></script>
 	<script src="js/controllers/videoController.js"></script>
+	
+	
 	
     </body>
 </html>
