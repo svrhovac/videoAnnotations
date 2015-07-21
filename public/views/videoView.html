@@ -53,8 +53,8 @@
 
 <div class="right-side">
     <div class="vid-anno-switch">
-        <button id="anno-view"  ng-click="showListStatus=true">Annotations</button>
-        <button id="vid-view"   ng-click="showListStatus=false;showAnno=false">Videos</button>
+        <button id="anno-view"  ng-click="showListStatus=true; changeBackground(true)">Annotations</button>
+        <button id="vid-view"   ng-click="showListStatus=false;showAnno=false; changeBackground(false)">Videos</button>
     </div>
 
     <div class="list-container ng-hide" ng-show="showListStatus">
