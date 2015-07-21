@@ -274,28 +274,28 @@ spa.service("videoService", ['$http', function($http){
 ];
 
     this.getVideos = function(){
-	    /*return $http.get("/videos").success(function(data){
-			return this.vidList = data;
-		}).
-		error(function(data){
-			console.log("greska!!!");
-		});*/
+	     return $http.get("/videos").success(function(data){
+			     return this.vidList = data;
+		   }).
+		    error(function(data){
+			   console.log("greska!!!");
+		      });
 		//console.log(this.vidList)
-		return this.vidList;
+		//return this.vidList;
 
     };
 
     this.getVideoProperty = function(id){
 		idTrenutnog = id; //MILAN
-	    /*var request="/videos/" + id;
+	    var request="/videos/" + id;
 	   
 	    return $http.get(request).success(function(data){
 			return data;
 		}).
 		error(function(data){
 			console.log("greska!!!");
-		});*/
-		console.log("looking for video property");
+		});
+		/*console.log("looking for video property");
 		console.log(this.vidList);
 		for(i=0; i<this.vidList.length-1; i++){console.log("i: "+i);console.log(this.vidList[i]);
 			if(this.vidList[i]._id == id){console.log("if");
@@ -304,7 +304,7 @@ spa.service("videoService", ['$http', function($http){
 			}
 			else if(i == this.vidList.length-1)
 				console.log("couldnt find video property with id: " + id);
-		}
+		}*/
 	
     };
 	
@@ -332,7 +332,7 @@ spa.service("videoService", ['$http', function($http){
 			});
     };
 	
-	this.sendAnnoToServer = function(anno){ //MILAN za snimanje postojece
+	this.sendAnnotationToServer = function(anno,vidID){ //MILAN za snimanje postojece
 	  
 	  
 	  var pom;

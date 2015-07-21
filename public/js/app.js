@@ -13,8 +13,7 @@ $routeProvider.
         templateUrl: 'views/videoView.html',
         controller: 'videoController'
     }).
-	when('/statistic/:id').
     otherwise({
-        redirectTo: '/views/statisticView.html'
+        redirectTo: '/'
     });
 }]);
