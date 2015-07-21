@@ -20,20 +20,14 @@ router.post('/annotation/:videoId/add', function(req, res, next){
   req.checkBody('endTime','Start time must be less than end time').notEmpty().isInt({min: startTime+1, max: video.duration});
 
   var tagsArrayHolder = {};
-  req.checkBody('tags', 'Tags must be array').isArrayPlusParse(tagsArrayHolder);
+  req.checkBody('tags', 'Tags must be ObjectId array').isParsableObjectIdArray(tagsArrayHolder);
   var error = req.validationErrors();
 
   if (error) {
     return next(error);
   }
 
-  var tags = tagsArrayHolder.result;
-
-  var tagsArray = [];
-  for( var i = 0; i < tags.length; i++ ){
-    var id = db.ObjectId(tags[i]);
-    tagsArray.push(id);
-  }
+  var tagsArray = tagsArrayHolder.result;
 
   var text = req.body.text;
   var endTime = parseInt(req.body.endTime);
@@ -97,19 +91,15 @@ router.put('/annotation/:videoId/edit/:annotationId', function(req, res, next){
   /* validate tags if exists */
   if (req.body.tags !== void 0) {
     var tagsArrayHolder = {};
-    req.checkBody('tags', 'Tags must be array').isArrayPlusParse(tagsArrayHolder);
+    req.checkBody('tags', 'Tags must be ObjectId array').isParsableObjectIdArray(tagsArrayHolder);
     var error = req.validationErrors();
 
     if (error) {
       return next(error);
     }
 
-    var tags = tagsArrayHolder.result;
-    var tagsArray = [];
-    for( var i = 0; i < tags.length; i++ ){
-      var id = db.ObjectId(tags[i]);
-      tagsArray.push(id);
-    }
+    var tagsArray = tagsArrayHolder.result;
+
     updt['annotations.$.tags'] = tagsArray;
   }
 
@@ -121,12 +111,13 @@ router.put('/annotation/:videoId/edit/:annotationId', function(req, res, next){
 
   console.log(JSON.stringify(updt));
 
+
   db.video.findAndModify({
     query: {
-      '_id' : db.ObjectId(video._id),
+      _id : video._id,
       annotations: {
         $elemMatch : {
-          id: db.ObjectId(ann.id)
+          id: ann.id
         }
       }
     },
