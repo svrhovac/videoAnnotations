@@ -223,13 +223,14 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 		}
 
 		if(annoID < 0){
-			videoService.addNewAnnotationToServer(newAnnotation, $scope.video._id);
+			videoService.sendNewAnnoToServer(newAnnotation, $scope.video._id)
+
 			//call server saljem newAnnotation i video._id
 			//ako server success
 			$scope.video.annotations.push(newAnnotation);
 		}
 		else{
-			videoService.addAnnotationToServer(newAnnotation, $scope.video._id);
+			videoService.sendAnnotationToServer(newAnnotation, $scope.video._id);
 			//call server saljem newAnnotation i video._id
 		}
 
@@ -367,5 +368,16 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 			$location.path("/video/"+data._id);
 		});
 		/*=======================================================*/
+   };
+
+   $scope.changeBackground = function(x){
+   		if(x){
+   			document.getElementById("anno-view").style.background = "#ffadad";
+   			document.getElementById("vid-view").style.background = "#e65454";
+   		}
+   		else{
+   			document.getElementById("vid-view").style.background = "#FFADAD";
+   			document.getElementById("anno-view").style.background = "#e65454";
+   		}
    };
 });

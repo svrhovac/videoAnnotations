@@ -312,15 +312,17 @@ spa.service("videoService", ['$http', function($http){
 		return this.vidList;
 	};
 
-    this.sendNewAnnoToServer = function(anno){ //MILAN za stnimanje nove
+    this.sendNewAnnoToServer = function(anno,vidID){ //MILAN za stnimanje nove
       var pom;
-	  var postBody = {"text":anno.text,"startTime":anno.startTime,"endTime":anno.endTime,"tags":["55a7b270f5fe9d10b6f3b75d"]}
-	  $http({
+	  var postBody = {"text":anno.text,"startTime":anno.startTime,"endTime":anno.endTime,"tags":anno.tags}
+    console.log(postBody);
+	  /*$http({
 		  method: 'POST',
-		  url:'/annotation/'+ idTrenutnog +'/add',
-		  data:encodeURIComponent(postBody),
+		  url:'/annotation/'+ vidID +'/add',
+		  data:JSON.stringify(postBody),
 		  headers: {'Content-Type': 'application/json'}
-	  }).
+	  })*/
+    $http.post('/annotation/'+ vidID +'/add', postBody).
 		success(function(data, status, headers, config) {
 			//anno.id = data.id; //neznam da li se prosledjuje parametar fji preko pokazivaca
 			// this callback will be called asynchronously
@@ -337,7 +339,7 @@ spa.service("videoService", ['$http', function($http){
 	  
 	  var pom;
 	  var postBody = {"text":anno.text,"startTime":anno.startTime,"endTime":anno.endTime,"tags":anno.tags}
-	  $http.put('http://192.168.137.14:3000/annotation/'+idTrenutnog+'/edit/'+anno.id, postBody)
+	  $http.put('http://localhost:3000/annotation/'+vidID+'/edit/'+anno.id, postBody)
 	  .success(function(data, status, headers, config) {
 			console.log(data);
 			// this callback will be called asynchronously
@@ -365,7 +367,16 @@ spa.service("videoService", ['$http', function($http){
 			});*/
     };
 
-    this.deleteAnnoFromServer = function(a,vidID){
-
+    this.deleteAnnoFromServer = function(anno,vidID){
+        $http.delete('http://localhost:3000/annotation/'+vidID+'/remove/'+anno.id)
+        .success(function(data, status, headers, config) {
+        console.log(data);
+      // this callback will be called asynchronously
+      // when the response is available
+    }).error(function(data, status, headers, config) {
+      // called asynchronously if an error occurs
+      // or server returns response with an error status.
+      console.log("neuspjesno otislo otislo!!!!!");
+      });
     };
 }]);

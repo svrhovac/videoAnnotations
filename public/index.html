@@ -5,33 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Video Gallery</title>
-    
+    <title>Video Annotations</title>
+
+    <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/video.css" rel="stylesheet">
-	<link href='http://fonts.googleapis.com/css?family=Raleway:500' rel='stylesheet' type='text/css'>
-
-    </head>
-    
-    <body>
-        
-        <nav class="navbar navbar-default navcss">
+    <link rel="stylesheet" type="text/css" href="css/mystyle.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  <div class="row"><!-- Start of ROW -->
+        <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top nav-color">
       <div class="container">
-          <a href="#/"> <img src="images/logo.png"/></a>
-
+        <a href="#/"><img src="images/logo.png"></a>
+        <!-- <ul class="nav navbar-nav inline-block">
+          <li><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul> -->
       </div>
-    </nav>
+    </nav> <!-- end of nav -->
 
-    <br />
     
-    <div id="main-window" ng-app="app" ng-controller="mainController" ng-view>
-
-    </div>
-	
-    <!--<footer  class="crnifuter" >
-		
-         <div style="float:right; margin: 0 0 10px 10px;"> <img style="height:60px;" src="images/emailing-baner_600.jpg"></div></img>
-    </footer>-->
+    <div class="contentz" id="main-window" ng-app="app" ng-controller="mainController" ng-view>  
       
 	<script src="js/libs/angular/angular.js"></script>
     <script src="js/libs/angular/angular-route.js"></script>
