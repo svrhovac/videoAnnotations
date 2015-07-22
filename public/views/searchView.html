@@ -1,0 +1,56 @@
+<div class="row">
+	<div style="border-style: solid; border:10px" id="listaVidea" class="col-sm-5 ">
+		<table class="table table-bordered">
+		<caption><h3>Videos</h3></caption>
+			<thead>
+			  <tr>
+				<th ng-click="naziv()">
+					<a href="" ng-click="order('title')">Naziv videa</a>
+					<span  ng-show="predicate === 'title'"></span>
+				</th>
+				<th>
+					<a href="" ng-click="order('author')">Autor</a>
+					<span  ng-show="predicate === 'author'"></span>
+				</th>
+				<th>
+					<a href="" ng-click="order('duration')">Trajanje</a>
+					<span  ng-show="predicate === 'duration'"></span>
+				</th>
+			</thead>
+			<tbody>
+				<tr ng-click="getStatistics(dataT)" ng-repeat="dataT in tableData | orderBy:predicate:reverse " >
+					<td>{{dataT.title}}</td>
+					<td>{{dataT.author}}</td>
+					<td>{{dataT.duration }}</td>
+				</tr>
+			</tbody>
+		</table>				
+	</div>
+	<div id="statistika" class="col-sm-5  ">
+		<table class="table table-bordered">
+		<caption><h3>Anotations</h3></caption>
+			<thead>
+			  <tr>
+				<th ng-click="naziv()">
+					<a href="" ng-click="order('title')">Tekst</a>
+					<span  ng-show="predicate === 'title'"></span>
+				</th>
+				<th>
+					<a href="" ng-click="order('author')">Trajanje anotacije</a>
+					<span  ng-show="predicate === 'author'"></span>
+				</th>
+				<th>
+					<a href="" ng-click="order('duration')">Broj tagova</a>
+					<span  ng-show="predicate === 'duration'"></span>
+				</th>
+			</thead>
+			<tbody>
+				<tr ng-click="getStatistics(dataT)" ng-repeat="dataT in tableData | orderBy:predicate:reverse " >
+					<td>{{dataT.title}}</td>
+					<td>{{dataT.author}}</td>
+					<td>{{dataT.duration }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

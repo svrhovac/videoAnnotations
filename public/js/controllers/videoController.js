@@ -1,5 +1,4 @@
 
-
 spa.controller("videoController", function($scope, $location, $http, $routeParams, videoService){
 
 	$scope.showListStatus = false;
@@ -7,6 +6,7 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 	$scope.idVideo = $routeParams.id;
 
 	$scope.vidList = videoService.getVidList();
+	$scope.allAnnotations = [];
 	$scope.liveAnno = [];
 	$scope.showLiveAnno = false;
 	
@@ -31,25 +31,40 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 	$scope.videoDomObj = document.getElementById("videoDOM");
 	$scope.videoDomObj.ontimeupdate = function() {$scope.checkAnno()};
 
-	$scope.tags = [{"_id":"55a77acb8a9463a1b4f84f8d","name":"Learning"},
-					{"_id":"55a77aee8a9463a1b4f84f8e","name":"Music"},
-					{"_id":"55a7b270f5fe9d10b6f3b75d","name":"Sport"},
-					{"_id":"55a8e544dbad751131fbd5c5","name":"Nature"},
-					{"_id":"55a8e577dbad751131fbd5c6","name":"Technology"},
-					{"_id":"55a8e616dbad751131fbd5c7","name":"Movie"},
-					{"_id":"55a8e616dbad751131fbd5c8","name":"Programming"},
-					{"_id":"55a8e616dbad751131fbd5c9","name":"Arts"},
-					{"_id":"55ace46dcd9698fb3ba4d133","name":"History"},
-					{"_id":"55ae538477c223308fb3052f","name":"Popular"},
-					{"_id":"55ae538b77c223308fb30530","name":"Live"},
-					{"_id":"55ae539577c223308fb30531","name":"News"},
-					{"_id":"55ae543b77c223308fb30532","name":"Software"},
-					{"_id":"55ae544977c223308fb30533","name":"Hardware"}];
+	//$scope.loadAnnotation(videoService.getCAnno());
+
+	videoService.loadTags().success(function(data){
+		$scope.tags = data;
+	});
 
 	//console.log($scope.video.path);
 
 	$scope.showList = function(x){
 		$scope.showListStatus = x;
+	};
+
+	$scope.loadAllAnnotations = function(){
+		for(i = 0; i<$scope.vidList.length; i++){
+			for(j=0; j<$scope.vidList[i].annotations.length; j++){
+				$scope.allAnnotations.push($scope.vidList[i].annotations[j]);
+			}
+		}
+	};
+
+	$scope.goToVidAnno = function(a){
+		var x;
+		for(i=0; i<$scope.vidList.length; i++){
+			for(j=0; j<$scope.vidList[i].annotations.length; j++){
+				if($scope.vidList[i].annotations[j].id == a.id){
+					videoService.setCurrAnno($scope.vidList[i].annotations[j].id);
+					x = $scope.vidList[i]._id;
+					console.log($scope.vidList[i].title);
+				}
+			}
+		}
+		console.log(x);
+		$location.path("/video/" + x);
+		//console.log("izvrseno je ok");
 	};
 
 	$scope.cloneAnno = function(orig){
@@ -384,6 +399,17 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
    		else{
    			document.getElementById("vid-view").style.background = "#FFADAD";
    			document.getElementById("anno-view").style.background = "#e65454";
+   		}
+   };
+
+   $scope.changeBackground2 = function(x){
+   		if(x){
+   			document.getElementById("all-anno-view").style.background = "#ffadad";
+   			document.getElementById("all-vid-view").style.background = "#e65454";
+   		}
+   		else{
+   			document.getElementById("all-vid-view").style.background = "#FFADAD";
+   			document.getElementById("all-anno-view").style.background = "#e65454";
    		}
    };
 });

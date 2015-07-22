@@ -1,277 +1,13 @@
 spa.service("videoService", ['$http', function($http){
 
 	this.vidList;
+  this.currentAnno;
 	idTrenutnog = 0; //MILAN
+  this.tags;
 
-
-	this.vidList=[
-{
- "_id":"55a50e8f8a9533a1b4f84f88",
- "title":"Video is cool",
- "description":"dont Learn all about your future",
- "duration":12345,
- "author":"John Neko",
- "path":"videocontent/video0.mp4",
- "annotations":[
-    {
-     "id":"11a7a50cf5fe9d10b6f3b75b",
-     "text":"Text",
-     "dateCreated":"2014-12-02T23:00:00.000Z",
-     "startTime":4,"endTime":6,
-     "tags":[
-             "55a77acb8a9463a1b4f84f8d","55a8e616dbad751131fbd5c8","55a8e616dbad751131fbd5c9"
-      ]
-    } ,
-
-    {
-     "id":"35a8b493852f4a2809482514",
-     "text":"asdad",
-     "dateCreated":"2015-07-17T07:53:55.137Z",
-     "startTime":5,
-     "endTime":7,
-     "tags":[
-          "55a8e544dbad751131fbd5c5","55a77acb8a9463a1b4f84f8d"
-      ]
-   },
-   {
-     "id":"55a8b493852f4a2809482514",
-     "text":"assarggdad",
-     "dateCreated":"2015-07-17T07:53:55.137Z",
-     "startTime":5,
-     "endTime":9,
-     "tags":[
-          "55a8e616dbad751131fbd5c9","55a8e616dbad751131fbd5c8"
-      ]
-   }
- ]
-},
-
-{
- "_id":"55a11e8f8a3463a1b4f84f88",
- "title":"Video abo learning",
- "description":"Lear all about your future",
- "duration":12345,
- "author":"John Ko",
- "path":"videocontent/video1.mp4",
- "annotations":[
-    {
-     "id":"51a7a50cf5fe9d10b6f3b75b",
-     "text":"Text something",
-     "dateCreated":"2014-11-02T23:00:00.000Z",
-     "startTime":3,"endTime":10,
-     "tags":[
-             "55a8e544dbad751131fbd5c5"
-      ]
-    } ,
-
-    {
-     "id":"52a8b493852f4a2809482514",
-     "text":"another example",
-     "dateCreated":"2015-07-17T07:53:55.137Z",
-     "startTime":"12",
-     "endTime":"15",
-     "tags":[
-       "1"
-      ]
-   },
-   {
-     "id":"53a8b493852f4a2809482514",
-     "text":"asdad",
-     "dateCreated":"2015-07-17T07:53:55.137Z",
-     "startTime":"6",
-     "endTime":"11",
-     "tags":[
-       "1"
-      ]
-   }
- ]
-},
-
-{
- "_id":"55a50e8f8a9233a1b4f84f88",
- "title":"Video about learning",
- "description":"Learn all about your future",
- "duration":12345,
- "author":"John Doe",
- "path":"videocontent/video2.mp4",
- "annotations":[
-    {
-     "id":"55a7a50cf5fe9d10b6f3b75b",
-     "text":"Text drugi",
-     "dateCreated":"2014-12-02T23:00:00.000Z",
-     "startTime":55550,"endTime":90000,
-     "tags":[
-             "3"
-      ]
-    } ,
-
-    {
-     "id":"55a8b493852f4a2809482514",
-     "text":"asdad",
-     "dateCreated":"2015-07-17T07:53:55.137Z",
-     "startTime":20,
-     "endTime":"22",
-     "tags":[
-       "0"
-      ]
-   }
- ]
-},
-
-{
- "_id":"55a20e8f8a9463a1b4f84f88",
- "title":"Video about learning",
- "description":"Learn all about your future",
- "duration":12345,
- "author":"John Doe",
- "path":"videocontent/video3.mp4",
- "annotations":[
-    {
-     "id":"55a7a50cf5fe9d10b6f3b75b",
-     "text":"Text neki",
-     "dateCreated":"2014-12-02T23:00:00.000Z",
-     "startTime":55545,"endTime":90000,
-     "tags":[
-             "3"
-      ]
-    } ,
-
-    {
-     "id":"55a8b493852f4a2809482514",
-     "text":"asdad",
-     "dateCreated":"2015-07-17T07:53:55.137Z",
-     "startTime":10,
-     "endTime":"13",
-     "tags":[
-       "2"
-      ]
-   }
- ]
-},
-{
- "_id":"55a50e8f8a9533a1b4f84f88",
- "title":"Video is cool",
- "description":"dont Learn all about your future",
- "duration":12345,
- "author":"John Neko",
- "path":"videocontent/video0.mp4",
- "annotations":[
-    {
-     "id":"55a7a50cf5fe9d10b6f3b75b",
-     "text":"Text",
-     "dateCreated":"2014-12-02T23:00:00.000Z",
-     "startTime":55555,"endTime":100000,
-     "tags":[
-             "0"
-      ]
-    } ,
-
-    {
-     "id":"55a8b493852f4a2809482514",
-     "text":"asdad",
-     "dateCreated":"2015-07-17T07:53:55.137Z",
-     "startTime":46,
-     "endTime":"56",
-     "tags":[
-          "0"
-      ]
-   }
- ]
-},
-
-{
- "_id":"55a11e8f8a3463a1b4f84f88",
- "title":"Video abo learning",
- "description":"Lear all about your future",
- "duration":12345,
- "author":"John Ko",
- "path":"videocontent/video1.mp4",
- "annotations":[
-    {
-     "id":"51a7a50cf5fe9d10b6f3b75b",
-     "text":"Text something",
-     "dateCreated":"2014-11-02T23:00:00.000Z",
-     "startTime":55225,"endTime":55235,
-     "tags":[
-             "2"
-      ]
-    } ,
-
-    {
-     "id":"52a8b493852f4a2809482514",
-     "text":"asdad",
-     "dateCreated":"2015-07-17T07:53:55.137Z",
-     "startTime":"46",
-     "endTime":"56",
-     "tags":[
-       "1"
-      ]
-   }
- ]
-},
-
-{
- "_id":"55a50e8f8a9233a1b4f84f88",
- "title":"Video about learning",
- "description":"Learn all about your future",
- "duration":12345,
- "author":"John Doe",
- "path":"videocontent/video2.mp4",
- "annotations":[
-    {
-     "id":"55a7a50cf5fe9d10b6f3b75b",
-     "text":"Text drugi",
-     "dateCreated":"2014-12-02T23:00:00.000Z",
-     "startTime":55550,"endTime":90000,
-     "tags":[
-             "3"
-      ]
-    } ,
-
-    {
-     "id":"55a8b493852f4a2809482514",
-     "text":"asdad",
-     "dateCreated":"2015-07-17T07:53:55.137Z",
-     "startTime":20,
-     "endTime":"22",
-     "tags":[
-       "0"
-      ]
-   }
- ]
-},
-
-{
- "_id":"55a20e8f8a9463a1b4f84f88",
- "title":"Video about learning",
- "description":"Learn all about your future",
- "duration":12345,
- "author":"John Doe",
- "path":"videocontent/video3.mp4",
- "annotations":[
-    {
-     "id":"55a7a50cf5fe9d10b6f3b75b",
-     "text":"Text neki",
-     "dateCreated":"2014-12-02T23:00:00.000Z",
-     "startTime":55545,"endTime":90000,
-     "tags":[
-             "3"
-      ]
-    } ,
-
-    {
-     "id":"55a8b493852f4a2809482514",
-     "text":"asdad",
-     "dateCreated":"2015-07-17T07:53:55.137Z",
-     "startTime":10,
-     "endTime":"13",
-     "tags":[
-       "2"
-      ]
-   }
- ]
-}
-];
+  this.getCAnno = function(){
+    return this.currentAnno;
+  };
 
     this.getVideos = function(){
 	     return $http.get("/videos").success(function(data){
@@ -307,10 +43,23 @@ spa.service("videoService", ['$http', function($http){
 		}*/
 	
     };
+
+    this.setCurrAnno = function(a){
+      this.currentAnno = a;
+    };
 	
 	this.getVidList = function(){
 		return this.vidList;
 	};
+
+  this.loadTags = function(){
+    return $http.get("/tags").success(function(data){
+           return this.tags = data;
+       }).
+        error(function(data){
+         console.log("greska!!!");
+          });
+  };
 
     this.sendNewAnnoToServer = function(anno,vidID){ //MILAN za stnimanje nove
       var pom;
