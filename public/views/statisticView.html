@@ -1,0 +1,40 @@
+<div class="row">
+	<div style="border-style: solid; border:10px" id="listaVidea" class="col-sm-9 ">
+		<table class="table table-bordered">
+			<thead>
+			  <tr>
+				<th>Naziv videa</th>
+				<th>Autor</th>
+				<th>Trajanje</th>
+				<th>Broj pregleda</th>
+				<th>Datum zadnjeg gledanja</th>
+				<th>Broj anotacija</th>
+			  </tr>
+			</thead>
+			<tbody>
+				<tr ng-click="getStatistics($index)" ng-repeat="sVid in sVideos" >
+					<td>{{sVid.title}}</td>
+					<td>{{sVid.author}}</td>
+					<td>{{sVid.duration }}</td>
+					<td>{{videosStat[$index].countView}}</td>
+					<td>{{videosStat[$index].lastViewDate | date:'dd-MM-yyyy'}}</td>
+					<td>{{videosStat[$index].numberOfAnnotation}}</td>	
+				</tr>
+			</tbody>
+		</table>
+		
+		<!--<div  class="btn btn-default col-xs-12" ng-click="getStatistics(sVid)">
+			<h3 style="overflow:hidden"> {{sVid.title}}</h3>
+			<p> {{sVid.author}} </p>
+			<p> {{sVid.duration}} </p>
+		</div> -->	
+	</div>
+	<div id="statistika" class="col-sm-3  ">
+		
+		<h4>Broj pregleda: {{stat.countView}}</h4>
+		<h4>Datum zadnjeg gledanja: {{stat.lastViewDate | date:'dd-MM-yyyy'}}</h4>
+		<h4>Broj anotacija: {{stat.numberOfAnnotation}}</h4>
+		<h2>Ukupan broj pregleda: {{totalViews}}</h2>
+	</div>
+</div>
+

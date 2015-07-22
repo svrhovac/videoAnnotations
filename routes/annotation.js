@@ -10,6 +10,7 @@ router.param("annotationId", commonParams.annotationIdParam);
 
 router.post('/annotation/:videoId/add', function(req, res, next){
   var video = req.video;
+  req.checkBody('text','Annotation text is mandatory').notEmpty();
   req.checkBody('startTime','Start time must be greater or equals to 0').notEmpty().isInt({min: 0, max: video.duration});
   var error = req.validationErrors();
   if (error) {
@@ -19,20 +20,14 @@ router.post('/annotation/:videoId/add', function(req, res, next){
   req.checkBody('endTime','Start time must be less than end time').notEmpty().isInt({min: startTime+1, max: video.duration});
 
   var tagsArrayHolder = {};
-  req.checkBody('tags', 'Tags must be array').isArrayPlusParse(tagsArrayHolder);
+  req.checkBody('tags', 'Tags must be ObjectId array').isParsableObjectIdArray(tagsArrayHolder);
   var error = req.validationErrors();
 
   if (error) {
     return next(error);
   }
 
-  var tags = tagsArrayHolder.result;
-
-  var tagsArray = [];
-  for( var i = 0; i < tags.length; i++ ){
-    var id = db.ObjectId(tags[i]);
-    tagsArray.push(id);
-  }
+  var tagsArray = tagsArrayHolder.result;
 
   var text = req.body.text;
   var endTime = parseInt(req.body.endTime);
@@ -65,7 +60,6 @@ router.post('/annotation/:videoId/add', function(req, res, next){
 });
 
 router.put('/annotation/:videoId/edit/:annotationId', function(req, res, next){
-  console.log(JSON.stringify(req.body));
   var video = req.video;
   var ann = req.annotation;
   var updt = {};
@@ -96,19 +90,15 @@ router.put('/annotation/:videoId/edit/:annotationId', function(req, res, next){
   /* validate tags if exists */
   if (req.body.tags !== void 0) {
     var tagsArrayHolder = {};
-    req.checkBody('tags', 'Tags must be array').isArrayPlusParse(tagsArrayHolder);
+    req.checkBody('tags', 'Tags must be ObjectId array').isParsableObjectIdArray(tagsArrayHolder);
     var error = req.validationErrors();
 
     if (error) {
       return next(error);
     }
 
-    var tags = tagsArrayHolder.result;
-    var tagsArray = [];
-    for( var i = 0; i < tags.length; i++ ){
-      var id = db.ObjectId(tags[i]);
-      tagsArray.push(id);
-    }
+    var tagsArray = tagsArrayHolder.result;
+
     updt['annotations.$.tags'] = tagsArray;
   }
 
@@ -118,14 +108,12 @@ router.put('/annotation/:videoId/edit/:annotationId', function(req, res, next){
 
   updt['annotations.$.dateModified'] = new Date();
 
-  console.log(JSON.stringify(updt));
-
   db.video.findAndModify({
     query: {
-      '_id' : db.ObjectId(video._id),
+      _id : video._id,
       annotations: {
         $elemMatch : {
-          id: db.ObjectId(ann.id)
+          id: ann.id
         }
       }
     },
@@ -155,7 +143,6 @@ router.delete('/annotation/:videoIdNoLoad/remove/:annotationIdNoLoad', function(
   {
     $pull : { annotations : { id : annoId } }
   }, function(err, data){
-    return res.json(data);
     if(err){
       res.sendStatus(500);
     } else {

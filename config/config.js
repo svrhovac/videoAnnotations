@@ -10,6 +10,9 @@ module.exports = {
       owners: __dirname + "/../routes/owners",
       commonParams: __dirname + "/../routes/commonParams",
       annotation: __dirname + "/../routes/annotation"
+    },
+    utils : {
+      customValidators : __dirname + "/../utils/customValidators"
     }
 
   }

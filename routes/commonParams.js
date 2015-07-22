@@ -13,7 +13,7 @@ var videoIdParam = function(req, res, next, id){
 
 var annotationIdParam = function(req, res, next, id){
     var aId = db.ObjectId(id);
-    db.video.findOne({_id: db.ObjectId(req.params.videoId), annotations: {$elemMatch: {id : aId} }}, function(err, va){
+    db.video.findOne({_id: db.ObjectId(req.params.videoId) } , { annotations: {$elemMatch: {id : aId} }}, function(err, va){
       if(err) return next(err);
       if(!va) return next(new Error('Can not find annotation'));
       req.annotation = va.annotations[0];
