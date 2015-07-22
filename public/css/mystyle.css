@@ -182,12 +182,13 @@ padding:10px 0;}
 background-color:#DADADA;}
 
 .annolive{
-display:block;
 border: 1px solid red;
-min-width:100px; 
-height:auto;
 background: rgba(204, 204, 204, 0.3);
-text-align:left; 
-float:left;
+overflow:hidden;
+width:100%;
 }
-
+ 
+.wordbr{
+word-wrap: break-word;
+width:100%;
+}

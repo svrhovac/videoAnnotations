@@ -3,9 +3,9 @@
     	<div class="col-sm-8">
 
     		<div style="z-index:10000000; position:absolute">
-				<div class="col-xs-6 col-lg-3" ng-repeat="anno in liveAnno">
-                    <div class="annolive">
-                         {{anno.text}}
+				<div ng-repeat="anno in liveAnno">
+                    <div class="annolive col-xs-12">
+                         <p>{{anno.text | limitTo:30}} </p>
                     </div>
                 </div>
 			</div>
@@ -83,7 +83,7 @@
 				        	<div class="btn btn-default btn-block" ng-click="loadAnnotation(anno)">
 				            	
 								<h4>Ann Time<!--Automaticly ann time--></h4>
-				                <p>{{anno.text}}<!--Part of annotion description text--></p>
+				                <p>{{anno.text | limitTo:10}}<!--Part of annotion description text--></p>
 				                <button id="edit-anno" ng-click="editAnnotation(anno)">
 							<p class="glyphicon glyphicon-pencil"></p>
 							
@@ -118,7 +118,7 @@
 
 
 
-				    <div class="ng-hide" ng-show="showListStatus">
+				    <div>
 										<div class="col-xs-12"> <ul id="tags">
 <!-- OVDJE JE LISTA TAGOVA SA CEKBOXOM -->
 								
@@ -145,7 +145,7 @@
 				        	<div class="btn btn-default btn-block" ng-click="goToVidAnno(anno)">
 
 				            	<h4>Ann Time<!--Automaticly ann time--></h4>
-				                <p>{{anno.text}}<!--Part of annotion description text--></p>
+				                <p>{{anno.text | limitTo:20}}<!--Part of annotion description text--></p>
 				                <button id="edit-anno" ng-click="editAnnotation(anno)">
 							<p class="glyphicon glyphicon-pencil"></p>
 							
@@ -162,8 +162,8 @@
 						<div class="btn btn-default btn-block">
 							<a href="#/video/{{myVideo._id}}">
 							<div>
-							  <h3>{{myVideo.title}}</h3>
-							  <p>{{myVideo.author}}</p>
+							  <h3>{{myVideo.title | limitTo:15}}...</h3>
+								  <p>{{myVideo.author}}</p>
 							  <p>{{myVideo.duration}} </p>
 							  </div>
 							</a>
