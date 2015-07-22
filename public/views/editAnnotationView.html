@@ -1,121 +1,32 @@
-<div class="container">
-
-    <div class="row row-offcanvas row-offcanvas-right">
-
-        <div class="col-xs-12 col-sm-12">
-            
-            <div class="row" >
-                <div id="vid" class="col-xs-9 col-xs-12" >
-	                <video ng-src="{{video.path}}" controls="controls" style="width:100%"></video>
-	 
-                    <div class=" col-xs-7" style="font-size:40px; padding:0">
-                        {{video.title}}
-                    </div>
-					
-                    <button style="float:right; margin-top:5px; border-radius:0px" type="button" class="btn btn-default col-xs-1" ng-click="nextVideo()">next</button>
-                    <div style="float:right; width:25px; height:1px"></div>
-                    <button style="float:right; margin-top:5px; border-radius:0px " type="button" class="btn btn-default col-xs-1 " ng-click="prevVideo()">prev</button>
-
-                    <br>
-                    <div class="col-xs-9">
-                        <p> {{video.author}} </p>
-                    </div>
-                    <div class="col-xs-9">
-                        
-
-
-                        <p><div class="row row-offcanvas row-offcanvas-right">
-                            <div class="col-xs-12 col-sm-12">
+<div class="row row-offcanvas row-offcanvas-right">
+    <div class="col-xs-12 col-sm-12">
                                 <p class="pull-right visible-xs">
                                     <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
                                 </p>
                                 <div class="row" >  
-                                    <div class="col-xs-9 col-sm-9" style="padding:10px; border:solid; border-color:#F8F8F8; ">        
+                                    <div class="col-xs-9 col-sm-9">        
                                         <div id="vid" class="col-xs-5 col-sm-5">
                                             <div >
                                        
-                                             <textarea style="min-width:300px; min-height:300px" placeholder="Edit your annotations here" 
+                                             <textarea style="min-width:300px; min-height:300px;" placeholder="Edit your annotations here" 
                                                         ng-module="text"></textarea>                
                                             </div>
                                             <input type="text" placeholder="Enter annotation duration" ng-model = "text">
                                             <div ng-model="dateCreated"> datum </div>
-                                                <button style="margin:20px; border-radius:0px" type="button" class="btn btn-default col-xs-2" ng-click="saveAnnotation(text, tag[], )" >Save</button>
-                                                <button style="margin:20px; border-radius:0px" type="button" class="btn btn-default col-xs-2">Delete</button>
+                                                <button type="button" class="btn btn-default col-xs-2" ng-click="saveAnnotation(text, tag[], )" >Save</button>
+                                                <button type="button" class="btn btn-default col-xs-2">Delete</button>
                                     
                                         </div>
                                         <div class="col-xs-4 col-sm-4" id="sidebar"
                                                 style="display:block;" >
                                                    
                                             <div>
-                                                <button style="margin:10px; border-radius:0px;" type="button" ng-repeat="tag in currentAnnotations.tags">{{tag}}</button>
+                                                <button type="button" ng-repeat="tag in currentAnnotations.tags">{{tag}}</button>
                                             </div>
                             <!-- 0vdje se zavrsava DIV u koji se unsoi angularjs -->
                                         </div>
                                     </div>
                                     <div class="col-xs-3 col-sm-3"></div>
                                     </div><!--/.sidebar-offcanvas--> 
-                            </div><!--/.col-xs-12.col-sm-9-->
-                        </div><!--/row--></p>
-
-
-
-
-                    </div>
-                </div>
-                
-                <div class="col-xs-12 col-sm-3 sidebar-offcanvas" id="sidebar"
-                    style="overflow-y: scroll; height:800px; display:block; border:solid;
-                    background-color:#F8F8F8 ; border-color:#F8F8F8">
-                    <button ng-click="showList(true)">anno view</button><!--za kopntrolu view liste-->
-				    <button ng-click="showList(false)">vid view</button>
-						
-                    <div  class="list-group ng-hide" ng-show="showListStatus">
-                        
-                        <div class="newAnn" style="display:block; border-color:#C4C5C4; background-color:#C4C5C4; margin:5px;">
-    			             <a href="#" style="text-decoration:none; color: #111111">
-                             <div class="btn btn-default" style=" width:100%; border-radius: 0px; background-color:#E0E0E0; border:0px">
-                                    <h3 style="text-decoration: none; text-align:center ">Add New</h3>
-    			             </div></a>
-                         </div>
-							
-                        <!-- 0vdje pocinje paragraf u koji se unsoi angularjs zza listu-->
-						<div class="col-sm-12" ng-repeat="myVideo in vidList">
-    						<div class="editAnn" style="overflow-y: scroll; display:block; border: 1px solid;
-                                background-color:#ffffff; border-color:#F8F8F8; margin:5px" >
-                                <a href="#/video/{{video._id}}/editAnnotation/{{2}}" style="text-decoration:none; color: #111111" >
-                                    <div class="btn btn-default" style="margin-bottom:30px;
-                                        width:100%; border: 1px; text-decoration: none; text-align:center">
-                                        <h4>Ann Time<!--Automaticly ann time--></h4>
-    				                    <p>Description...<!--Part of annotion description text--></p>
-                                        <div class="tags" style="margin-bottom:30px; width:100%; float:center" >
-    				                    <!--Couple tags-->
-                            				<button style="border:none; background-color:#FFFFB4">Tag1</button>					  
-                            				<button style="border:none; background-color:#CECEFF">Tag2</button>					 
-                            				<button style="border:none; background-color:#FFB4B4">Tag3</button>
-    									</div>
-    			                     </div></a>
-    			            </div>
-						</div>
-
-                    </div>
-					
-
-					<div  class="list-group ng-hide" ng-show="!showListStatus">
-                        <!-- 0vdje pocinje paragraf u koji se unsoi angularjs zza listu-->
-
-						<div class="col-sm-12" ng-repeat="myVideo in vidList">
-							<a href="#/video/{{myVideo._id}}"><div class="btn btn-default" style="margin-bottom:30px; width:100%">
-							  <h3>{{myVideo.title}}</h3>
-							  <p>{{myVideo.author}}</p>
-							  <p>{{myVideo.duration}} </p>
-							</div></a>
-						</div>
-
-                    </div>
-                            
-                </div><!--/.sidebar-offcanvas-->
-            </div><!--/row-->
-        </div><!--/.col-xs-12.col-sm-9-->
-    </div><!--/row-->
-    <hr>
-</div><!--/.container-->
+    </div><!--/.col-xs-12.col-sm-9-->
+</div><!--/row-->

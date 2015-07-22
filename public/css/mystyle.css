@@ -1,21 +1,17 @@
 body {
-	background-color: #111;
+	background-color: white;
 }
 
 .inline-block li {
 	display: inline-block;
 }
 
-.nav-color {
+.nav-custom {
 	background-color: black;
 }
 
-nav {
-	text-align: center;
-}
-
 nav img {
-	margin: 0 auto 0 auto;
+	
 	height: 50px;
 	width: 80px;
 }
@@ -28,12 +24,12 @@ nav img {
 footer {
 	width: 100%;
 	height: auto;
-	margin: -10px 0 0 0;
 	text-align: center;
 	background-color: black;
-	position: fixed;
+	position: relative;
 	bottom: 0;
 	left: 0;
+	margin-top:50px;
 
 }
 
@@ -44,7 +40,6 @@ footer img {
 
 video {
 	background-color: black;
-	background-image: url(images/bgss.jpg);
 	min-width: 100%;
 	min-height: 100%;
 	margin: 0px;
@@ -58,46 +53,34 @@ video {
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
-	color: white;
-}
-
-.contentz {
-
-	padding-top: 80px;
-	min-height: 100%;
-	z-index: 1000;
-	color: white;
-	text-align: left;
-	padding: 50px;
-}
-
-.col-sm-12 {
-	margin-top: 5%;
-	padding: 5% 10%;
-}
-
-.col-sm-4 {
-	padding: 2%;
-
-}
-
-.col-sm-4 ul {
-	list-style:none;
+	color: red;
 }
 
 .shadowz {
 	padding: 5px 0; 
-	background-color: rgba(255, 255, 255, 0.07);
+	background-color: rgba(25, 255, 255, 0.07);
+}
+
+.shadowz ul {
+	list-style:none;
 }
 
 .shadowz a {
-	color: white;
+	color: black;
 }
 
 .shadowz a:hover {
-	color: #90CC21;
+	color: red;
+}
+
+.shadowz {
+	margin-top: 20px;
 }
 
 .glyphicon {
 	font-size: 20px;
 }
+
+.florigth {
+float:left;}
+
