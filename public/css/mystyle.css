@@ -1,12 +1,12 @@
 body {
-	background-color: black;
+	background-color: white;
 }
 
 .inline-block li {
 	display: inline-block;
 }
 
-.nav-color {
+.nav-custom {
 	background-color: black;
 }
 
@@ -56,18 +56,9 @@ video {
 	color: red;
 }
 
-.contentz {
-
-	padding-top: 80px;
-	min-height: 100%;
-	z-index: 1000;
-	color: orange;
-	text-align: left;
-}
-
 .shadowz {
 	padding: 5px 0; 
-	background-color: rgba(255, 255, 255, 0.07);
+	background-color: rgba(25, 255, 255, 0.07);
 }
 
 .shadowz ul {
@@ -75,11 +66,11 @@ video {
 }
 
 .shadowz a {
-	color: red;
+	color: black;
 }
 
 .shadowz a:hover {
-	color: gray;
+	color: red;
 }
 
 .shadowz {

@@ -38,21 +38,24 @@
 						</div>
 				</div>
 				</div> <!-- kraj dvaneske -->
-				<div class="col-sm-12 col-xs-12" style="background-color:green;"> 
-				<div class="col-xs-6">
+				<div class="col-sm-12 col-xs-12" style="background-color:#D1D0CE;"> 
+				
+				<div class="col-xs-12 col-lg-12">
+				<div class="col-xs-3 col-lg-3">
 				        <button class="btn btn-default btn-block" id="anno-view" ng-click="showListStatus=true; changeBackground(true)">Annotations</button>
 				    </div>
-				    <div class="col-xs-6">
+				    <div class="col-xs-3 col-lg-3">
 				        <button class="btn btn-default btn-block" id="vid-view"   ng-click="showListStatus=false;showAnno=false; changeBackground(false)">Description</button>
 				    </div>
-
-
+                    
+						</div>
 
 
 				    <div class="ng-hide" ng-show="showListStatus">
-				    	<div class="col-xs-12" ng-repeat="anno in video.annotations">
+				    	<div class="col-xs-6 col-lg-6" ng-repeat="anno in video.annotations">
 				        	<div class="btn btn-default btn-block" ng-click="loadAnnotation(anno)">
-				            	<h4>Ann Time<!--Automaticly ann time--></h4>
+				            	
+								<h4>Ann Time<!--Automaticly ann time--></h4>
 				                <p>{{anno.text}}<!--Part of annotion description text--></p>
 				                <button id="edit-anno" ng-click="editAnnotation(anno)">
 							<p class="glyphicon glyphicon-pencil"></p>
@@ -61,7 +64,8 @@
 				        	<button id="delete-annotation" ng-click="deleteAnnotation(anno)">
 				        		<p class=" glyphicon glyphicon-remove"></p>
 				        	</button>
-				        	</div>	
+				      
+							</div>
 				    	</div>
 				    </div>
 				    <div  class="ng-hide " ng-show="!showListStatus">
