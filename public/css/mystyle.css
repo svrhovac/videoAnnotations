@@ -180,3 +180,14 @@ padding:10px 0;}
 
 .bggg {
 background-color:#DADADA;}
+
+.annolive{
+display:block;
+border: 1px solid red;
+min-width:100px; 
+height:auto;
+background: rgba(204, 204, 204, 0.3);
+text-align:left; 
+float:left;
+}
+
