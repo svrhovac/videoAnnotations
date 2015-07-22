@@ -3,6 +3,8 @@ spa.service("videoService", ['$http', function($http){
 	this.vidList;
   this.currentAnno;
 	idTrenutnog = 0; //MILAN
+  this.tags;
+
   this.getCAnno = function(){
     return this.currentAnno;
   };
@@ -49,6 +51,15 @@ spa.service("videoService", ['$http', function($http){
 	this.getVidList = function(){
 		return this.vidList;
 	};
+
+  this.loadTags = function(){
+    return $http.get("/tags").success(function(data){
+           return this.tags = data;
+       }).
+        error(function(data){
+         console.log("greska!!!");
+          });
+  };
 
     this.sendNewAnnoToServer = function(anno,vidID){ //MILAN za stnimanje nove
       var pom;

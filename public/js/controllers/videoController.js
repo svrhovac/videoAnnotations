@@ -30,23 +30,12 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 
 	$scope.videoDomObj = document.getElementById("videoDOM");
 	$scope.videoDomObj.ontimeupdate = function() {$scope.checkAnno()};
-	
+
 	//$scope.loadAnnotation(videoService.getCAnno());
 
-	$scope.tags = [{"_id":"55a77acb8a9463a1b4f84f8d","name":"Learning"},
-					{"_id":"55a77aee8a9463a1b4f84f8e","name":"Music"},
-					{"_id":"55a7b270f5fe9d10b6f3b75d","name":"Sport"},
-					{"_id":"55a8e544dbad751131fbd5c5","name":"Nature"},
-					{"_id":"55a8e577dbad751131fbd5c6","name":"Technology"},
-					{"_id":"55a8e616dbad751131fbd5c7","name":"Movie"},
-					{"_id":"55a8e616dbad751131fbd5c8","name":"Programming"},
-					{"_id":"55a8e616dbad751131fbd5c9","name":"Arts"},
-					{"_id":"55ace46dcd9698fb3ba4d133","name":"History"},
-					{"_id":"55ae538477c223308fb3052f","name":"Popular"},
-					{"_id":"55ae538b77c223308fb30530","name":"Live"},
-					{"_id":"55ae539577c223308fb30531","name":"News"},
-					{"_id":"55ae543b77c223308fb30532","name":"Software"},
-					{"_id":"55ae544977c223308fb30533","name":"Hardware"}];//povuci od servera
+	videoService.loadTags().success(function(data){
+		$scope.tags = data;
+	});
 
 	//console.log($scope.video.path);
 
@@ -410,6 +399,17 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
    		else{
    			document.getElementById("vid-view").style.background = "#FFADAD";
    			document.getElementById("anno-view").style.background = "#e65454";
+   		}
+   };
+
+   $scope.changeBackground2 = function(x){
+   		if(x){
+   			document.getElementById("all-anno-view").style.background = "#ffadad";
+   			document.getElementById("all-vid-view").style.background = "#e65454";
+   		}
+   		else{
+   			document.getElementById("all-vid-view").style.background = "#FFADAD";
+   			document.getElementById("all-anno-view").style.background = "#e65454";
    		}
    };
 });
