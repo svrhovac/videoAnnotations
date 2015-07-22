@@ -1,4 +1,4 @@
-var db = require(mainConfig.paths.db.mongodb);
+var db = require("mongojs");
 
 var myexports = {};
 
