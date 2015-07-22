@@ -1,4 +1,4 @@
-spa.controller("searchCtrl", function($scope, $routeParams, videoService, searchService){
+spa.controller("sineUpCtrl", function($scope, $routeParams, videoService, searchService){
 	
 	
 	

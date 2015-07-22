@@ -21,6 +21,10 @@ $routeProvider.
         templateUrl: 'views/searchView.html',
         controller: 'searchCtrl'
     }).
+	when('/sineup',{
+        templateUrl: 'views/sineUpView.html',
+        controller: 'sineUpCtrl'
+    }).
     otherwise({
         redirectTo: '/'
     });
