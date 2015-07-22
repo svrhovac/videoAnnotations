@@ -17,6 +17,10 @@ $routeProvider.
         templateUrl: 'views/statisticView.html',
         controller: 'statisticController'
     }).
+	when('/search',{
+        templateUrl: 'views/searchView.html',
+        controller: 'searchCtrl'
+    }).
     otherwise({
         redirectTo: '/'
     });
