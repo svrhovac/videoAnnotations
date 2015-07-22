@@ -16,6 +16,8 @@ var annotationRoutes = require(mainConfig.paths.routes.annotation);
 
 var indexRoutes = require(mainConfig.paths.routes.index);
 
+var customValidators = require(mainConfig.paths.utils.customValidators);
+
 
 
 var app = express();
@@ -32,22 +34,7 @@ app.use(expressValidator({
     isArray: function(value) {
         return Array.isArray(value);
     },
-    isArrayPlusParse : function(value, resultHolder) {
-      if( value.constructor === Array ) {
-        resultHolder.result = value;
-        return true;
-      }
-
-      try {
-        var arr = JSON.parse(value);
-        if(arr.constructor === Array){
-          resultHolder.result = arr;
-          return true;
-        }
-      } catch(err) {
-        return false;
-      }
-    }
+    isParsableObjectIdArray : customValidators.isParsableObjectIdArrayValidatorConvertor
  },
  customSanitizers: {
    toArray: function(value) {

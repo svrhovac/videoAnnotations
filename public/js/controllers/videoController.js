@@ -38,7 +38,13 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 					{"_id":"55a8e577dbad751131fbd5c6","name":"Technology"},
 					{"_id":"55a8e616dbad751131fbd5c7","name":"Movie"},
 					{"_id":"55a8e616dbad751131fbd5c8","name":"Programming"},
-					{"_id":"55a8e616dbad751131fbd5c9","name":"Arts"}];
+					{"_id":"55a8e616dbad751131fbd5c9","name":"Arts"},
+					{"_id":"55ace46dcd9698fb3ba4d133","name":"History"},
+					{"_id":"55ae538477c223308fb3052f","name":"Popular"},
+					{"_id":"55ae538b77c223308fb30530","name":"Live"},
+					{"_id":"55ae539577c223308fb30531","name":"News"},
+					{"_id":"55ae543b77c223308fb30532","name":"Software"},
+					{"_id":"55ae544977c223308fb30533","name":"Hardware"}];
 
 	//console.log($scope.video.path);
 
