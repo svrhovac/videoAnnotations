@@ -1,6 +1,8 @@
-spa.controller("mainController", function($scope, $routeParams, videoService){
+spa.controller("mainController", function($scope, $location, $routeParams, videoService){
 	
 	//$scope.vidList = videoService.getVideos();
+
+	videoService.setCurrAnno({"startTime":0});
 
 	videoService.getVideos().success(function(data){
 		$scope.vidList = data;

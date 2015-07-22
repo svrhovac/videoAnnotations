@@ -1,5 +1,4 @@
 
-
 spa.controller("videoController", function($scope, $location, $http, $routeParams, videoService){
 
 	$scope.showListStatus = false;
@@ -7,6 +6,7 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 	$scope.idVideo = $routeParams.id;
 
 	$scope.vidList = videoService.getVidList();
+	$scope.allAnnotations = [];
 	$scope.liveAnno = [];
 	$scope.showLiveAnno = false;
 	
@@ -30,6 +30,8 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 
 	$scope.videoDomObj = document.getElementById("videoDOM");
 	$scope.videoDomObj.ontimeupdate = function() {$scope.checkAnno()};
+	
+	//$scope.loadAnnotation(videoService.getCAnno());
 
 	$scope.tags = [{"_id":"55a77acb8a9463a1b4f84f8d","name":"Learning"},
 					{"_id":"55a77aee8a9463a1b4f84f8e","name":"Music"},
@@ -44,12 +46,36 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 					{"_id":"55ae538b77c223308fb30530","name":"Live"},
 					{"_id":"55ae539577c223308fb30531","name":"News"},
 					{"_id":"55ae543b77c223308fb30532","name":"Software"},
-					{"_id":"55ae544977c223308fb30533","name":"Hardware"}];
+					{"_id":"55ae544977c223308fb30533","name":"Hardware"}];//povuci od servera
 
 	//console.log($scope.video.path);
 
 	$scope.showList = function(x){
 		$scope.showListStatus = x;
+	};
+
+	$scope.loadAllAnnotations = function(){
+		for(i = 0; i<$scope.vidList.length; i++){
+			for(j=0; j<$scope.vidList[i].annotations.length; j++){
+				$scope.allAnnotations.push($scope.vidList[i].annotations[j]);
+			}
+		}
+	};
+
+	$scope.goToVidAnno = function(a){
+		var x;
+		for(i=0; i<$scope.vidList.length; i++){
+			for(j=0; j<$scope.vidList[i].annotations.length; j++){
+				if($scope.vidList[i].annotations[j].id == a.id){
+					videoService.setCurrAnno($scope.vidList[i].annotations[j].id);
+					x = $scope.vidList[i]._id;
+					console.log($scope.vidList[i].title);
+				}
+			}
+		}
+		console.log(x);
+		$location.path("/video/" + x);
+		//console.log("izvrseno je ok");
 	};
 
 	$scope.cloneAnno = function(orig){
