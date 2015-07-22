@@ -1,8 +1,8 @@
 spa.service("statisticService", ['$http', function($http){
  
-	this.getStat = function(id){
-	     return $http.get("/owners/"+id).success(function(data){
-					return data;
+	this.getStat = function(video,callback){
+	     $http.get("/owners/"+video._id).success(function(data){
+					callback(data, video);
 				}).
 				error(function(data){
 					console.log("greska!!!");
