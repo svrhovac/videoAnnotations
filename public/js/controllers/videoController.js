@@ -37,6 +37,10 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 		$scope.tags = data;
 	});
 
+	for(i=0; i<$scope.boxValue; i++){
+		$scope.tags.boxValue = false;
+	}
+
 	//console.log($scope.video.path);
 
 	$scope.showList = function(x){
