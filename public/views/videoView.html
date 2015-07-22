@@ -123,9 +123,20 @@
 <!-- OVDJE JE LISTA TAGOVA SA CEKBOXOM -->
 								
 								<form role="form">
-								<div class="checkbox">
-								<label  ng-repeat="t in tags"><input type="checkbox" value="">{{t.name}}</label> 
-								</div>
+									<div class="checkbox">
+									<span ng-repeat="t in tags">
+										<label ng-if="!t.boxValue">
+											
+											<input type="checkbox" />
+												{{t.name}}
+										</label>
+
+										<label ng-if="t.boxValue">
+											<input ng-if="t.boxValue" type="checkbox" checked />
+												{{t.name}}
+										</label>
+									</span>
+									</div>
 								</form><!-- OVDJE JE LISTA TAGOVA SA CEKBOXOM -->
 				</div>
 
