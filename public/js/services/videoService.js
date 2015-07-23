@@ -11,7 +11,7 @@ spa.service("videoService", ['$http', function($http){
 		   }).
 		    error(function(data){
 			   console.log("greska!!!");
-		      });
+		   });
 		//console.log(this.vidList)
 		//return this.vidList;
 

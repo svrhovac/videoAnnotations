@@ -1,9 +1,30 @@
-<from ng-if="showSignUp">
-	<input id="email-input-s" type="email" placeholder="e-mail" ng-model="email"></input> <br />
-	<input id="pass-input-s" type="password" placeholder="password" ng-model="pass"></input> <br />
-	<input id="pass-input-confirm-s" type="password" placeholder="confirm password" ng-model="passConfirm"></input> <br />
-	<button ng-click="signUp(email,pass,passConfirm)">Sign up</button>
-</from>
-<div ng-if="!showSignUp">
-	<p>Confirmation e-mail has been sent to you. Please verify your e-mail address.</p>
-</div ng-if
+
+<div ng-show="{{isFromEU}}">
+We use cookies to offer you the best experience onlin.
+ By continuing to use our website, you agree to the use of 
+ cookies. If you would like to know more about cookies and how to manage 
+ them please view our privacy and cookie policy.
+ </div>
+<form name="myForm">
+	<!--User name:<input id="name"   type="text"  ng-model="user.name"></input> <br />-->
+	Email:
+      <input type="email" name="input" ng-model="user.email" required><br />
+    
+	<!--Gender: <input id="genderM" type="radio" ng-model="user.gender" value="male" />male
+			<input id="genderF" type="radio" ng-model="user.gender" value="female" />female<br />-->
+	Password:<input id="password"  type="password"  ng-model="user.pass"></input> <br />
+	Re-enter password:<input id="rePassword"  type="password"  ng-model="user.passConfirm"></input> <br />
+	<button ng-click="signUp()">Sign up</button><br />
+	<span  style="color:red" ng-show="error">Content in the marked boxes is invalid. Fix it!</span>
+	<span  style="color:red" ng-show="error">{{errText}}</span>
+	<div style="color:red" role="alert">
+      <span class="error" ng-show="myForm.input.$error.required">
+        Email required!</span>
+      <span style="color:red" class="error" ng-show="myForm.input.$error.email">
+        Email not valid email!</span>
+    </div>
+	
+</form>
+
+
+

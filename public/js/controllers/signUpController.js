@@ -1,19 +1,24 @@
-spa.controller("signUpController", function($scope){
+spa.controller("signUpController", function($scope,signUpService){
+	
+	$scope.isFromEU = false;
 	
 	
-	$scope.showSignUp = true;
+		signUpService.fromEU().success(function(data){
+		$scope.isFromEU = data;
+		});
+	
+	
+	$scope.error = false;
 
-	$scope.signUp = function(email, pass, passConfirm){
-		if(pass != passConfirm){
-			document.getElementById("pass-input-s").value = "";
-			document.getElementById("pass-input-confirm-s").value = "";
-			document.getElementById("pass-input-s").placeholder = "password did not match";
-			document.getElementById("pass-input-confirm-s").placeholder = "password did not match";
+
+	$scope.signUp = function(){
+		if($scope.user.pass != $scope.user.passConfirm || $scope.user.pass.length < 8){
+			$scope.error = true;
+			document.getElementById("password").style.borderColor="red";
+			document.getElementById("rePassword").style.borderColor="red";
+			$scope.errText = "Password is too short or passwords mismatch."
 			return;
-		}
-		//posalj serveru podatke
-		$scope.showSignUp = false;
-		loginService.setLoginStatus(false);
-		$timeout(function(){$location.path("/");}, 4000);
+		} 
+
 	};	
-});
+}); 

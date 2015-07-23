@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var sessionCheckers = require.main.require('./utils/sessionCheckers');
 
 var db = require(mainConfig.paths.db.mongodb);
 var commonParams = require(mainConfig.paths.routes.commonParams);
@@ -35,7 +36,7 @@ router.get('/videos', function(req, res){
 });
 
 
-router.get('/videos/:videoId', function(req, res){
+router.get('/videos/:videoId', sessionCheckers.increaseUsersWatchedVideos, function(req, res){
     //countView and lastViewDate updated every time we get a request for the specific video
     db.video.update({_id : db.ObjectId(req.params.videoId)},{$inc : {countView : 1},$set: { lastViewDate : new Date()}});
     res.json(req.video);
@@ -79,7 +80,7 @@ var excludeRegexChars = function(str) {
   return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "");
 };
 
-router.get('/searchvideos/', function(req, res){
+router.get('/searchvideos', function(req, res){
 
   var skip = 0;
   var limit = 50;

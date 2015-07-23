@@ -21,10 +21,9 @@
     <![endif]-->
   </head>
   <body ng-app="app" ng-controller="mainController">
-  <div class="row">
-  
-	<nav class="navbar navbar-inverse" role="navigation">
-      <!-- Brand and toggle get grouped for better mobile display -->
+
+	<!--<nav class="navbar navbar-inverse" role="navigation">
+       Brand and toggle get grouped for better mobile display 
       <div class="navbar-header">
       <a href="#/"><img src="images/logofinal.png"></a>
         <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
@@ -35,7 +34,38 @@
         </button>
         <a class="navbar-brand" href="#">
            
-        </a>
+        </a>-->
+
+  <div class="row"><!-- Start of ROW -->
+        <!-- Fixed navbar -->
+    <nav class="navbar navbar-default nav-custom">
+      <div class="container">
+        <a href="#/"><img src="images/logo.png"></a>
+        <!-- <ul class="nav navbar-nav inline-block">
+          <li><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul> -->
+				<form class="navbar-form navbar-right" role="search">
+					<div class="ng-hide" ng-show="!login">
+						 <input id="email-input" type="email" placeholder="e-mail" ng-model="email" />
+						 <input id="pass-input" type="password" placeholder="password" ng-model="pass" />
+						 <a ng-click="signIn(email,pass)"><div>Sign in</div></a>
+						<a href="#/signup"><div>Sign up</div></a>
+					</div>
+					<div class="ng-hide" ng-show="login" style="color:white">
+					  {{user}}
+					  <a>Sign out</a>
+					</div>
+					<div class="form-group">
+						<input ng-keydown="$event.keyCode == 13 && search()"  ng-keyup="$event.keyCode == 13 && ser()" type="text" class="form-control" placeholder="Search" ng-model="searchText" />
+					</div>
+					<a href="#/search">
+						<button type="button" ng-click="search()" class="btn btn-default">Search</button>
+					</a>
+				</form>
+			
+
       </div>
     
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -107,7 +137,6 @@
 	<script src="js/controllers/statisticController.js"></script>
   <script src="js/filters/filterByTags.js"></script>
   <script src="js/controllers/signUpController.js"></script>
-
   <script src="js/libs/cookies/cookies.js">
 	
 	

@@ -1,73 +1,24 @@
 <div class="row">
 	<div class="col-sm-12">
-		<div class="col-sm-4" ng-repeat="vid in vidList">
+		<div class="col-sm-4" ng-repeat="r in rez">
+			<a href="#/video/{{r._id}}">
 			<div class="shadowz">
 				<ul> 
 					<li>
-						<a href="#/video/{{vid._id}}"> <h3> {{vid.title}}</h3> </a>
-						<a href="#/video/{{vid._id}}"> <p> {{vid.author}} </p> </a>   
-						<a href="#/video/{{vid._id}}"> <p> {{vid.duration}} </p> </a>
+						<h3> {{r.title}}
+							<i ng-show={{r.videoMatches}} class=" glyphicon glyphicon-play"></i>
+							<i ng-show={{r.annotationMatches}} class="glyphicon glyphicon-comment"></i>
+						</h3> 
+						 <p> {{r.author}} </p>   
+						 <p> {{r.duration}} </p> 
 					</li>
-					<li><a href="#/video/{{vid._id}}"><span class="glyphicon glyphicon-comment"></span></a> 
-						<a href="#/video/{{vid._id}}"><span class="glyphicon glyphicon-play" style="float:right; padding-right:20px;"></span></a> 
+					<li>
+						<span class="glyphicon glyphicon-comment"></span> 
+						<span class="glyphicon glyphicon-play" style="float:right; padding-right:20px;"></span>
 					</li>
 				</ul>
 			</div>
+			</a> 
 		</div>
 	</div>
-	<!--<div style="border-style: solid; border:10px" id="listaVidea" class="col-sm-5 ">
-	
-		<table class="table table-bordered">
-		<caption><h3>Videos</h3></caption>
-			<thead>
-			  <tr>
-				<th ng-click="naziv()">
-					<a href="" ng-click="order('title')">Naziv videa</a>
-					<span  ng-show="predicate === 'title'"></span>
-				</th>
-				<th>
-					<a href="" ng-click="order('author')">Autor</a>
-					<span  ng-show="predicate === 'author'"></span>
-				</th>
-				<th>
-					<a href="" ng-click="order('duration')">Trajanje</a>
-					<span  ng-show="predicate === 'duration'"></span>
-				</th>
-			</thead>
-			<tbody>
-				<tr ng-click="getStatistics(dataT)" ng-repeat="dataT in tableData | orderBy:predicate:reverse " >
-					<td>{{dataT.title}}</td>
-					<td>{{dataT.author}}</td>
-					<td>{{dataT.duration }}</td>
-				</tr>
-			</tbody>
-		</table>				
-	</div>
-	<div id="statistika" class="col-sm-5  ">
-		<table class="table table-bordered">
-		<caption><h3>Anotations</h3></caption>
-			<thead>
-			  <tr>
-				<th ng-click="naziv()">
-					<a href="" ng-click="order('title')">Tekst</a>
-					<span  ng-show="predicate === 'title'"></span>
-				</th>
-				<th>
-					<a href="" ng-click="order('author')">Trajanje anotacije</a>
-					<span  ng-show="predicate === 'author'"></span>
-				</th>
-				<th>
-					<a href="" ng-click="order('duration')">Broj tagova</a>
-					<span  ng-show="predicate === 'duration'"></span>
-				</th>
-			</thead>
-			<tbody>
-				<tr ng-click="getStatistics(dataT)" ng-repeat="dataT in tableData | orderBy:predicate:reverse " >
-					<td>{{dataT.title}}</td>
-					<td>{{dataT.author}}</td>
-					<td>{{dataT.duration }}</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>-->
 </div>
