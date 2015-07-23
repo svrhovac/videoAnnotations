@@ -307,13 +307,13 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 		else{
 			videoService.sendAnnotationToServer(newAnnotation, $scope.video._id);
 			//call server saljem newAnnotation i video._id
-			for(i=0; i<$scope.vidList.length; i++){//jako zahtjevna operacija a nije neophodna, live update anotacije
+			/*for(i=0; i<$scope.vidList.length; i++){//jako zahtjevna operacija a nije neophodna, live update anotacije
 				for(j=0; j<$scope.vidList[i].annotations.length; j++){
 					if($scope.vidList[i].annotations[j].id == newAnnotation.id){
 						$scope.vidList[i].annotations[j] = newAnnotation;
 					}
 				}
-			}
+			}*/
 		}																		
 
 		$scope.showAnno = false;
