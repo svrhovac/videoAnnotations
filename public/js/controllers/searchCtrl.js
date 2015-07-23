@@ -1,7 +1,9 @@
 spa.controller("searchCtrl", function($scope, $routeParams, videoService, searchService){
 	
-	
-	
+	//console.log($scope.$parent.searchText);
+	$scope.$parent.search = function(){
+		console.log($scope.$parent.searchText);
+	}
 	/*//$scope.videosStat = [];
 	$scope.tableData = [];
 	$scope.totalViews = 0;

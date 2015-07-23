@@ -180,3 +180,15 @@ padding:10px 0;}
 
 .bggg {
 background-color:#DADADA;}
+
+.annolive{
+border: 1px solid red;
+background: rgba(204, 204, 204, 0.3);
+overflow:hidden;
+width:100%;
+}
+ 
+.wordbr{
+word-wrap: break-word;
+width:100%;
+}
