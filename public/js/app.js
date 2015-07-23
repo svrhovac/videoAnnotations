@@ -22,7 +22,7 @@ $routeProvider.
     }).
 	when('/signup', {
         templateUrl: 'views/signUpView.html',
-        controller: 'loginController'
+        controller: 'signUpController'
     }).
     otherwise({
         redirectTo: '/'
