@@ -1,9 +1,9 @@
-<from ng-if="showSignUp">
-	<input id="email-input-s" type="email" placeholder="e-mail" ng-model="email"></input> <br />
-	<input id="pass-input-s" type="password" placeholder="password" ng-model="pass"></input> <br />
-	<input id="pass-input-confirm-s" type="password" placeholder="confirm password" ng-model="passConfirm"></input> <br />
-	<button ng-click="signUp(email,pass,passConfirm)">Sign up</button>
+<from ng-show="showSignUp" ng-submit="signUp()">
+	<input id="email-input-s" type="email" placeholder="e-mail" ng-model="user.email" required> <br />
+	<input id="pass-input-s" type="password" placeholder="password" ng-model="user.pass" required> <br />
+	<input id="pass-input-confirm-s" type="password" placeholder="confirm password" ng-model="passConfirm" required ng-valid="user.pass==userConfirm"> <br />
+	<input type="submit" ng-valid="user.email.$valid && user.pass.$valid && passConfirm.$valid"/>
 </from>
 <div ng-if="!showSignUp">
 	<p>Confirmation e-mail has been sent to you. Please verify your e-mail address.</p>
-</div ng-if
+</div>

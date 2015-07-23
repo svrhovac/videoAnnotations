@@ -3,9 +3,6 @@ spa.filter("filterByTags", function(){
         if(typeof ts === 'undefined'){
             return a;
         }
-        console.log("krece filter");
-        console.log(a);
-        console.log(ts);
         for(i=0;i<ts.length; i++){//provjerava da li je bar jedan checkBox selektovan
             if(ts[i].boxValue == true)
                 break;
@@ -44,7 +41,6 @@ spa.filter("filterByTags", function(){
                 }
             }
         }
-        console.log(filtered);
         return filtered;
     };
 });
