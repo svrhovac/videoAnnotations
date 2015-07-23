@@ -3,22 +3,40 @@
 		<table class="table table-bordered">
 			<thead>
 			  <tr>
-				<th>Naziv videa</th>
-				<th>Autor</th>
-				<th>Trajanje</th>
-				<th>Broj pregleda</th>
-				<th>Datum zadnjeg gledanja</th>
-				<th>Broj anotacija</th>
+				<th ng-click="naziv()">
+					<a href="" ng-click="order('title')">Naziv videa</a>
+					<span  ng-show="predicate === 'title'"></span>
+				</th>
+				<th>
+					<a href="" ng-click="order('author')">Autor</a>
+					<span  ng-show="predicate === 'author'"></span>
+				</th>
+				<th>
+					<a href="" ng-click="order('duration')">Trajanje</a>
+					<span  ng-show="predicate === 'duration'"></span>
+				</th>
+				<th>
+					<a href="" ng-click="order('countView')">Broj pregleda</a>
+					<span  ng-show="predicate === 'countView'"></span>
+				</th>
+				<th>
+					<a href="" ng-click="order('lastViewDate')">Datum zadnjeg gledanja</a>
+					<span  ng-show="predicate === 'lastViewDate'"></span>
+				</th>
+				<th>
+					<a href="" ng-click="order('numberOfAnnotation')">Broj anotacija</a>
+					<span  ng-show="predicate === 'numberOfAnnotation'"></span>
+				</th>
 			  </tr>
 			</thead>
 			<tbody>
-				<tr ng-click="getStatistics($index)" ng-repeat="sVid in sVideos" >
-					<td>{{sVid.title}}</td>
-					<td>{{sVid.author}}</td>
-					<td>{{sVid.duration }}</td>
-					<td>{{videosStat[$index].countView}}</td>
-					<td>{{videosStat[$index].lastViewDate | date:'dd-MM-yyyy'}}</td>
-					<td>{{videosStat[$index].numberOfAnnotation}}</td>	
+				<tr ng-click="getStatistics(dataT)" ng-repeat="dataT in tableData | orderBy:predicate:reverse " >
+					<td>{{dataT.title}}</td>
+					<td>{{dataT.author}}</td>
+					<td>{{dataT.duration }}</td>
+					<td>{{dataT.countView}}</td>
+					<td>{{dataT.lastViewDate | date:'dd-MM-yyyy'}}</td>
+					<td>{{dataT.numberOfAnnotation}}</td>	
 				</tr>
 			</tbody>
 		</table>
@@ -30,11 +48,11 @@
 		</div> -->	
 	</div>
 	<div id="statistika" class="col-sm-3  ">
-		
+		<h4>Naziv videa: {{stat.title}}</h4>
 		<h4>Broj pregleda: {{stat.countView}}</h4>
 		<h4>Datum zadnjeg gledanja: {{stat.lastViewDate | date:'dd-MM-yyyy'}}</h4>
 		<h4>Broj anotacija: {{stat.numberOfAnnotation}}</h4>
-		<h2>Ukupan broj pregleda: {{totalViews}}</h2>
+		<h3>Ukupan broj pregleda: {{totalViews}}</h3>
 	</div>
 </div>
 

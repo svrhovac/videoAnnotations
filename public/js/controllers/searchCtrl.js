@@ -1,5 +1,11 @@
-spa.controller("statisticController", function($scope, $routeParams, videoService, statisticService){
-	//$scope.videosStat = [];
+spa.controller("searchCtrl", function($scope, $routeParams, videoService, searchService){
+	
+	
+	$scope.$parent.search = function(){
+		console.log($scope.$parent.searchText);
+		
+	}
+	/*//$scope.videosStat = [];
 	$scope.tableData = [];
 	$scope.totalViews = 0;
 	//$scope.i = 0;
@@ -31,13 +37,5 @@ spa.controller("statisticController", function($scope, $routeParams, videoServic
 	$scope.getStatistics = function(statId){
 		$scope.stat = statId;
 	};
-	
-	//Sortiranje
-	$scope.predicate = 'title';
-	$scope.reverse = true;
-	$scope.order = function(predicate) {
-		$scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
-		$scope.predicate = predicate;
-	};
-	
+	*/	
 });
