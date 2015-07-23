@@ -8,17 +8,17 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
-var videoRoutes = require(mainConfig.paths.routes.videos);
+var session = require('express-session');
 
+var videoRoutes = require(mainConfig.paths.routes.videos);
 var tagRoutes = require(mainConfig.paths.routes.tags);
 var ownerRoutes = require(mainConfig.paths.routes.owners);
 var annotationRoutes = require(mainConfig.paths.routes.annotation);
 var indexRoutes = require(mainConfig.paths.routes.index);
 var userConsentRoutes = require(mainConfig.paths.routes.userConsent);
-
-var customValidators = require(mainConfig.paths.utils.customValidators);
 var userRoutes = require(mainConfig.paths.routes.users);
 
+var customValidators = require(mainConfig.paths.utils.customValidators);
 
 
 var app = express();
@@ -30,6 +30,9 @@ var app = express();
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(session({ secret: 'SECRET', cookie: { secure: true, maxAge: 60000 }}))
+
 app.use(expressValidator({
  customValidators: {
     isArray: function(value) {

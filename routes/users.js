@@ -147,9 +147,8 @@ router.post('/login', function(req,res,next){
       }else if(user.active === true && passwordHash.verify(password,user.password)){
         jsonMsg.status = "success";
         jsonMsg.message = "User successfully logged in";
-        //insert cookies and shit
-  
 
+        req.session.authUser = {email : user.email, _id : user._id};
 
         res.json(jsonMsg);
       }else{
