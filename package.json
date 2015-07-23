@@ -11,10 +11,13 @@
     "debug": "~2.2.0",
     "ejs": "~2.3.2",
     "express": "~4.13.0",
+    "express-session": "^1.11.3",
     "express-validator": "^2.13.0",
     "harmony-collections": "^0.3.8",
     "mongojs": "^1.0.2",
     "morgan": "~1.6.1",
+    "nodemailer": "~0.7.1",
+    "password-hash-and-salt": "^0.1.2",
     "serve-favicon": "~2.3.0"
   }
 }

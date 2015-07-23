@@ -10,6 +10,7 @@ spa.controller("signUpController", function($scope,signUpService){
 	
 	$scope.error = false;
 
+
 	$scope.signUp = function(){
 		if($scope.user.pass != $scope.user.passConfirm || $scope.user.pass.length < 8){
 			$scope.error = true;
@@ -18,5 +19,6 @@ spa.controller("signUpController", function($scope,signUpService){
 			$scope.errText = "Password is too short or passwords mismatch."
 			return;
 		} 
+
 	};	
-});
+}); 

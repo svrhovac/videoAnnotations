@@ -179,7 +179,12 @@ background-color:#DADADA;
 padding:10px 0;}
 
 .bggg {
-background-color:#DADADA;}
+background-color:white;
+border-bottom:5px solid #F75D59;}
+
+.backg {
+background-color: #E5E4E2;
+}
 
 .annolive{
 border: 1px solid red;
@@ -192,3 +197,13 @@ width:100%;
 word-wrap: break-word;
 width:100%;
 }
+.btn-xcolor {
+background-color:#F75D59;
+}
+
+.btn {
+border-radius:0;}
+
+.edit-window{
+background-color: #E5E4E2;
+margin:10px 0;}

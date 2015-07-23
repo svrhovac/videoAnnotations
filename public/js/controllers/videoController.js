@@ -24,6 +24,7 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 		$scope.video = data;
 	});
 
+
 	videoService.loadTags().success(function(data){
 		$scope.tags = data;
 		for(i=0; i<$scope.tags.length; i++){
@@ -65,7 +66,6 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 			return;
 		for(i = 0; i<$scope.vidList.length; i++){
 			for(j=0; j<$scope.vidList[i].annotations.length; j++){
-				//for(k=0; k<$scope.allAnnotations)//#############################################################################################################
 				$scope.allAnnotations.push($scope.vidList[i].annotations[j]);
 			}
 		}
@@ -83,7 +83,6 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 			}
 		}
 		$location.path("/video/" + x);
-		//console.log("izvrseno je ok");
 	};
 
 	$scope.cloneAnno = function(orig){
@@ -183,6 +182,13 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 				if($scope.video.annotations[i].id == annoID)
 					newAnnotation = $scope.video.annotations[i];//odje mora da je problem ################################################################################
 			}
+			for(i=0; i<$scope.vidList.length; i++){
+				for(j=0; j<$scope.vidList[i].annotations.length; j++){
+					if($scope.vidList[i].annotations[j].id == annoID){
+						newAnnotation = $scope.vidList[i].annotations[j];
+					}
+				}
+			}
 		}
 		strStart = document.getElementById("time-start").value;
 		strEnd = document.getElementById("time-end").value;
@@ -269,9 +275,10 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 		}
 
 		if(annoID < 0){
-			videoService.sendNewAnnoToServer(newAnnotation, $scope.video._id).success(function(data){
-				//call server saljem newAnnotation i video._id
-				$scope.video.annotations.push(data);
+				videoService.sendNewAnnoToServer(newAnnotation, $scope.video._id).success(function(data){
+					//call server saljem newAnnotation i video._id
+					//$scope.video.annotations.push(data);
+					$scope.allAnnotations.push(data);
 			});
 		}
 		else{
@@ -291,17 +298,32 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 
 	$scope.deleteAnnotation = function(a){
 		var x = 0;
-		for(i=0; i<$scope.video.annotations.length; i++){
-			if($scope.video.annotations[i].id == a.id){
-				x = i;
-				break;
+		console.log("odlicno!!!!!!");
+		all:
+		for(i=0; i<$scope.vidList.length; i++){
+			for(j=0; j<$scope.vidList[i].annotations.length; j++){
+				console.log("i: "+i+" j: "+j);
+				console.log($scope.vidList[i]);
+				console.log(a.id);
+				if($scope.vidList[i].annotations[j].id == a.id){
+					console.log("#######################################");
+					console.log($scope.vidList[i].annotations[j].id);
+					console.log(a.id);
+					console.log("#######################################");
+					$scope.vidList[i].annotations.splice(j,1);
+					videoService.deleteAnnoFromServer(a,$scope.vidList[i]._id);
+					break all;
+				}
 			}
 		}
+		console.log("odlicno kraj!!!!!!");
 
-		videoService.deleteAnnoFromServer(a,$scope.video._id);
+		//videoService.deleteAnnoFromServer(a,$scope.video._id);
 		//ako je success od servera onda
+
 		$scope.video.annotations.splice(x,1);
 		//ako nije ispisi gresku
+
 	};
 
 	$scope.loadAnnotation = function(a){
@@ -320,14 +342,11 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 				}
 				x=-1;
 				for(j=0; j<$scope.liveAnno.length; j++){
-					console.log("poredi: "+$scope.liveAnno[j].id+" sa "+$scope.video.annotations[i].id);
 					if($scope.liveAnno[j].id == $scope.video.annotations[i].id){
 						x = j;
-						console.log("jednaki su pa je x: "+x);
 						break;
 					}
 					else if(j == $scope.liveAnno.length-1){
-						console.log("nije pronasao u liveAnno");
 						x = -1;
 						break;
 					}
@@ -398,23 +417,23 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 
    $scope.changeBackground = function(x){
    		if(x){
-   			document.getElementById("anno-view").style.background = "#ffadad";
-   			document.getElementById("vid-view").style.background = "#e65454";
+   			document.getElementById("anno-view").style.background = "#F75D59";
+   			document.getElementById("vid-view").style.background = "#E5E4E2";
    		}
    		else{
-   			document.getElementById("vid-view").style.background = "#FFADAD";
-   			document.getElementById("anno-view").style.background = "#e65454";
+   			document.getElementById("vid-view").style.background = "#F75D59";
+   			document.getElementById("anno-view").style.background = "#E5E4E2";
    		}
    };
 
    $scope.changeBackground2 = function(x){
    		if(x){
-   			document.getElementById("all-anno-view").style.background = "#ffadad";
-   			document.getElementById("all-vid-view").style.background = "#e65454";
+   			document.getElementById("all-anno-view").style.background = "#F75D59";
+   			document.getElementById("all-vid-view").style.background = "#E5E4E2";
    		}
    		else{
-   			document.getElementById("all-vid-view").style.background = "#FFADAD";
-   			document.getElementById("all-anno-view").style.background = "#e65454";
+   			document.getElementById("all-vid-view").style.background = "#F75D59";
+   			document.getElementById("all-anno-view").style.background = "#E5E4E2";
    		}
    };
 });
