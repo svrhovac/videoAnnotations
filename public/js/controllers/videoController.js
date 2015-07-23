@@ -454,23 +454,23 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 
    $scope.changeBackground = function(x){
    		if(x){
-   			document.getElementById("anno-view").style.background = "#ffadad";
-   			document.getElementById("vid-view").style.background = "#e65454";
+   			document.getElementById("anno-view").style.background = "#F75D59";
+   			document.getElementById("vid-view").style.background = "#E5E4E2";
    		}
    		else{
-   			document.getElementById("vid-view").style.background = "#FFADAD";
-   			document.getElementById("anno-view").style.background = "#e65454";
+   			document.getElementById("vid-view").style.background = "#F75D59";
+   			document.getElementById("anno-view").style.background = "#E5E4E2";
    		}
    };
 
    $scope.changeBackground2 = function(x){
    		if(x){
-   			document.getElementById("all-anno-view").style.background = "#ffadad";
-   			document.getElementById("all-vid-view").style.background = "#e65454";
+   			document.getElementById("all-anno-view").style.background = "#F75D59";
+   			document.getElementById("all-vid-view").style.background = "#E5E4E2";
    		}
    		else{
-   			document.getElementById("all-vid-view").style.background = "#FFADAD";
-   			document.getElementById("all-anno-view").style.background = "#e65454";
+   			document.getElementById("all-vid-view").style.background = "#F75D59";
+   			document.getElementById("all-anno-view").style.background = "#E5E4E2";
    		}
    };
 });
