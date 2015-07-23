@@ -7,6 +7,9 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Video Annotations</title>
 
+    <script src="js/libs/jquery/jquery.js"></script>
+    <script src="js/libs/cookies/jquery.cookiesdirective.js"></script>
+
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/mystyle.css">
@@ -29,25 +32,30 @@
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul> -->
-					<form class="navbar-form navbar-right" role="search">
-					<button type="submit" class="btn btn-default">SineIn</button>
-					<a href="#/sineup">
-						<button type="button" class="btn btn-default">SineUp</button>
-					</a>
-			  <div class="form-group">
-				<input ng-model="searchText" type="text" class="form-control" placeholder="Search">
-			  </div>
-			  <a href="#/search">
-				<button ng-click="search()" type="button" class="btn btn-default">Search</button>
-			  </a>
-			</form>
+				<form class="navbar-form navbar-right" role="search">
+				    <div class="ng-hide" ng-show="!login">
+              <input id="email-input" type="email" placeholder="e-mail" ng-model="email" />
+              <input id="pass-input" type="password" placeholder="password" ng-model="pass" />
+              <a ng-click="signIn(email,pass)"><div>Sign in</div></a>
+				      <a href="#/signup"><div>Sign up</div></a>
+            </div>
+            <div class="ng-hide" ng-show="login" style="color:white">
+              {{user}}
+              <a>Sign out</a>
+            </div>
+			      <div class="form-group">
+				      <input type="text" class="form-control" placeholder="Search" ng-model="searchText" />
+			      </div>
+				  <a href="#/search">
+			      <button type="button" ng-click="search()" class="btn btn-default">Search</button>
+				  </a>
+			  </form>
 			
 								
       </div>
     </nav> <!-- end of nav -->
 	
-	
-    <div class="container" id="main-window"   ng-view>  
+    <div class="container" id="main-window" ng-view>  
 	
 	</div>
 	
@@ -63,13 +71,15 @@
 	<script src="js/services/videoService.js"></script>
 	<script src="js/services/statisticService.js"></script>
 	<script src="js/services/searchService.js"></script>
-	<script src="js/services/sineUpService.js"></script>
+	<script src="js/services/signUpService.js"></script>
     <script src="js/controllers/searchCtrl.js"></script>
-	<script src="js/controllers/sineUpCtrl.js"></script>
-    <script src="js/controllers/mainController.js"></script>
     <script src="js/controllers/mainController.js"></script>
 	<script src="js/controllers/videoController.js"></script>
 	<script src="js/controllers/statisticController.js"></script>
+  <script src="js/filters/filterByTags.js"></script>
+  <script src="js/controllers/signUpController.js"></script>
+
+  <script src="js/libs/cookies/cookies.js">
 	
 	
 	
