@@ -65,18 +65,8 @@
 				<div class="col-sm-12 col-xs-12 bggg"> 
 				
 				<div class="col-xs-12 col-lg-12">
-<<<<<<< HEAD
 				
 				    <div class="col-xs-6 col-lg-3">
-=======
-				<div class="col-xs-3 col-lg-3">
-				        <button class="btn btn-default btn-block" id="anno-view" style="background-color:#e65454" ng-click="showDescription=true; changeBackground(true)">Annotations</button>
-
-				    </div>
-				    <div class="col-xs-3 col-lg-3">
->>>>>>> d84d5530e89364ad44fbc165d58dcede32f2b137
-
-
 				        <button class="btn btn-default btn-block" id="vid-view" style="background-color:#ffadad" ng-click="showDescription=false;showAnno=false; changeBackground(false)">Description</button>
 
 				    </div>
@@ -90,14 +80,10 @@
 				    <div class="ng-hide" ng-show="showDescription">
 				    	<div class="col-xs-12 col-lg-6 col-md-6 col-sm-6" ng-repeat="anno in video.annotations">
 				        	<div class="btn btn-default btn-block" ng-click="loadAnnotation(anno)">
-				            	
-<<<<<<< HEAD
-								<h4>Ann Time<!--Automaticly ann time--></h4>
-				                <p>{{anno.text | limitTo:15}}<!--Part of annotion description text--></p>
-=======
-								<h4>{{anno.text}}<!--Automaticly ann time--></h4>
+
+								<h4>{{anno.text | limitTo:15}}<!--Automaticly ann time--></h4>
 				                <p>{{formatTime(anno.startTime)}}<!--Part of annotion description text--></p>
->>>>>>> d84d5530e89364ad44fbc165d58dcede32f2b137
+
 				                <button id="edit-anno" ng-click="editAnnotation(anno)">
 							<p class="glyphicon glyphicon-pencil"></p>
 							
@@ -123,18 +109,13 @@
 	  	<div class="col-sm-4" style="background-color:#DADADA">
 	  		<div class="col-sm-12">	
 				    <div class="col-xs-6">
-<<<<<<< HEAD
+
 				        <button class="btn btn-warning btn-block" id="all-vid-view"   ng-click="showListStatus=false;showAnno=false; changeBackground2(true)">Videos</button>
 				    </div>
 				    <div class="col-xs-6">
 						
 				        <button class="btn btn-danger btn-block"  id="all-anno-view" ng-click="showListStatus=true; loadAllAnnotations();changeBackground2(false)" >All My Ann</button>
-=======
-				        <button class="btn btn-default btn-block" id="all-anno-view" style="background-color:#e65454" ng-click="showListStatus=true; loadAllAnnotations(); consoleTags();changeBackground2(true)">All My Annotations</button>
-				    </div>
-				    <div class="col-xs-6">
-				        <button class="btn btn-warning btn-block" id="all-vid-view" style="background-color:#ffadad" ng-click="showListStatus=false;showAnno=false; consoleTags();changeBackground2(false)">Videos</button>
->>>>>>> d84d5530e89364ad44fbc165d58dcede32f2b137
+
 				    </div>
 
 
@@ -155,8 +136,6 @@
 								</span>
 							</div>
 						</form>
-
-<<<<<<< HEAD
 				   
 										
 
@@ -182,10 +161,8 @@
 								</form>
 								</ul><!-- OVDJE JE LISTA TAGOVA SA CEKBOXOM -->
 				</div>
-				    	<div class="col-xs-12" ng-repeat="anno in allAnnotations">
-=======
-				    	<div class="col-xs-12" ng-repeat="anno in allAnnotations | filterByTags:tags">
->>>>>>> d84d5530e89364ad44fbc165d58dcede32f2b137
+				    	<div class="col-xs-12" ng-repeat="anno in allAnnotations | filterByTags:tags">>
+
 				        	<div class="btn btn-default btn-block" ng-click="goToVidAnno(anno)">
 
 				            	<h4>{{anno.text}}<!--Automaticly ann time--></h4>
