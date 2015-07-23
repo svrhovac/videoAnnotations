@@ -5,7 +5,8 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 	$scope.idVideo = $routeParams.id;
 	console.log($routeParams.id)
 
-	$scope.vidList = videoService.getVidList();
+	//$scope.vidList = videoService.getVidList();
+	console.log($scope.vidList);
 	$scope.tags = [];
 	$scope.allAnnotations = [];
 	$scope.liveAnno = [];
