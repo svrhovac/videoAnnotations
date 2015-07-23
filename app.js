@@ -2,6 +2,7 @@ var mconfig = require('./config/config');
 global.mainConfig = mconfig;
 
 var express = require('express');
+var nodemailer = require('nodemailer');
 var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -17,6 +18,7 @@ var annotationRoutes = require(mainConfig.paths.routes.annotation);
 var indexRoutes = require(mainConfig.paths.routes.index);
 
 var customValidators = require(mainConfig.paths.utils.customValidators);
+var userRoutes = require(mainConfig.paths.routes.users);
 
 
 
@@ -84,6 +86,7 @@ app.use(videoRoutes);
 app.use(tagRoutes);
 app.use(ownerRoutes);
 app.use(indexRoutes);
+app.use(userRoutes);
 
 
 

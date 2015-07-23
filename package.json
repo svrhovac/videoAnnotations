@@ -14,6 +14,8 @@
     "express-validator": "^2.13.0",
     "mongojs": "^1.0.2",
     "morgan": "~1.6.1",
+    "nodemailer": "~0.7.1",
+    "password-hash-and-salt": "^0.1.2",
     "serve-favicon": "~2.3.0"
   }
 }
