@@ -1,4 +1,4 @@
-spa.controller("mainController", function($scope, $location, $routeParams, $http, videoService, loginService){
+spa.controller("mainController", function($scope, $location, $routeParams, $http, videoService){
 	
 	$scope.items = [
     'The first choice!',
@@ -22,8 +22,8 @@ spa.controller("mainController", function($scope, $location, $routeParams, $http
 	
 	
 	//$scope.vidList = videoService.getVideos();
-	$scope.user = loginService.getUser();
-	$scope.login = loginService.getLoginStatus();
+	//$scope.user = loginService.getUser();
+	//$scope.login = loginService.getLoginStatus();
 
 	videoService.getVideos().success(function(data){
 		$scope.vidList = data;
@@ -31,7 +31,10 @@ spa.controller("mainController", function($scope, $location, $routeParams, $http
 	error(function(data){
 		console.log("Connection with server interrupted!!!");
 	});
-
+	$scope.ser = function (){//MILAN SEARCH
+		$location.path('/search');
+		//console.log("enter radi");
+	}
 	$scope.signIn = function(email, pass){
 		/*loginService.checkUser(email, pass).success(function(data){
 			if(!data.email){

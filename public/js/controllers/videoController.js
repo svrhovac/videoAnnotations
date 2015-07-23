@@ -3,10 +3,9 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 	$scope.showListStatus = false;
     $scope.showAnno = false;
 	$scope.idVideo = $routeParams.id;
-	console.log($routeParams.id)
+
 
 	//$scope.vidList = videoService.getVidList();
-	console.log($scope.vidList);
 	$scope.tags = [];
 	$scope.allAnnotations = [];
 	$scope.liveAnno = [];
@@ -18,14 +17,11 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 
 	videoService.getVideos().success(function(data){
 		$scope.vidList = data;
-		console.log("lsita videa");
-		console.log($scope.vidList);
 	});
 	//$scope.video = videoService.getVideoProperty($scope.idVideo);
 
 	videoService.getVideoProperty($scope.idVideo).success(function(data){
 		$scope.video = data;
-		console.log($scope.video);
 	});
 
 	videoService.loadTags().success(function(data){
@@ -39,8 +35,6 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 	
 
 	$scope.videoDomObj = document.getElementById("videoDOM");
-	console.log($scope.videoDomObj.currentTime);
-	console.log($routeParams.anno_time);
 	all:
 	for(i=0;i<$scope.vidList.length;i++){
 		for(j=0;j<$scope.vidList[i].annotations.length;j++){
@@ -84,12 +78,10 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 				if($scope.vidList[i].annotations[j].id == a.id){
 					videoService.setCurrAnno($scope.vidList[i].annotations[j].id);
 					x = $scope.vidList[i]._id;
-					console.log("=============================================");
-					console.log($scope.vidList[i].annotations[j].text);
+
 				}
 			}
 		}
-		console.log(x);
 		$location.path("/video/" + x);
 		//console.log("izvrseno je ok");
 	};
@@ -121,7 +113,6 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 			$scope.tags[i].val = true;
 			document.getElementsByClassName("tag-list")[i].style.background = "#00fe3e";
 		}
-		console.log($scope.tags);
 	}
 
 	var annoID;
@@ -135,25 +126,18 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 		var tagList = document.getElementsByClassName("tag-list");
 		for(i=0; i<$scope.tags.length; i++){
 			for(j=0; j<anno.tags.length; j++){
-				console.log("i: "+i+" j: "+j);
-				console.log(anno.tags[j]);
-				console.log($scope.tags[i]._id);
 				if(anno.tags[j] == $scope.tags[i]._id){
-					console.log("zeleno");
-					console.log(tagList[i]);
 					tagList[i].style.background = "#00fe3e";
 					$scope.tags[i].val=true;
 					break;
 				}
 				else if(j==anno.tags.length-1){
-					console.log("crveno");
 					tagList[i].style.background = "#e65454";
 					$scope.tags[i].val=false;
 				}
 			}
 		}
 
-		console.log(tagList);
 	};
 
 	$scope.createNewAnnotation = function(){
@@ -173,12 +157,6 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 			tagList[i].style.background = "#e65454";
 			$scope.tags[i].val = false;
 		}
-	};
-
-	$scope.consoleTags = function(){
-		console.log("**************************");
-		console.log($scope.tags);
-		console.log("**************************");
 	};
 
 	$scope.formatTime = function(t){
@@ -202,12 +180,10 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 		}
 		else{
 			for(i=0; i<$scope.video.annotations.length; i++){
-				console.log("i: "+i+$scope.video.annotations[i].id+"==="+annoID);
 				if($scope.video.annotations[i].id == annoID)
 					newAnnotation = $scope.video.annotations[i];//odje mora da je problem ################################################################################
 			}
 		}
-		console.log("valid: "+valid);
 		strStart = document.getElementById("time-start").value;
 		strEnd = document.getElementById("time-end").value;
 
@@ -229,13 +205,10 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 		timeFormat3 = /[0-9][0-9]?/;
 		finalStartTime = 0;
 		finalEndTime = 0;
-		console.log(strStart.search(timeFormat) +" "+strStart.search(timeFormat2) +" "+strStart.search(timeFormat3));
 		strArr = [];
-		console.log("valid: "+valid);
 		if(strStart.search(timeFormat)==0 ||
 			strStart.search(timeFormat2)==0 ||
 			strStart.search(timeFormat3)==0){
-			console.log("prvi ispunjava uslove");
 			strStart = strStart.replace(/\s/,":");
 			strArr = strStart.split(":");
 			for(i=strArr.length-1, mod=1, finalStartTime=0; i>=0; mod*=60, i--){
@@ -251,7 +224,6 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 					valid = false;
 				}
 				finalStartTime += x * mod;
-				console.log("i,mod,finalST: "+i+", "+mod+" "+finalStartTime);
 			}
 		}
 		else{
@@ -259,7 +231,6 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 			document.getElementById("time-start").placeholder = "invalid!";
 			valid = false;
 		}
-		console.log("valid: "+valid);
 		if(strEnd.search(timeFormat)==0 ||
 			strStart.search(timeFormat2)==0 ||
 			strStart.search(timeFormat3)==0){
@@ -285,7 +256,6 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 			document.getElementById("time-end").placeholder = "invalid!";
 			valid = false;
 		}
-		console.log("valid "+valid);
 		if(valid == false)
 			return;
 		newAnnotation.startTime = finalStartTime;
@@ -317,19 +287,12 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 		}																		
 
 		$scope.showAnno = false;
-		console.log(newAnnotation);
 	};
 
 	$scope.deleteAnnotation = function(a){
 		var x = 0;
-		console.log("del anno");
 		for(i=0; i<$scope.video.annotations.length; i++){
-			console.log("i: "+i);
-			console.log("poredi "+$scope.video.annotations[i].id+" sa "+a.id);
 			if($scope.video.annotations[i].id == a.id){
-				console.log("pronasao ano na poz: "+i);
-				console.log($scope.video.annotations);
-				console.log(a);
 				x = i;
 				break;
 			}
@@ -337,11 +300,7 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 
 		videoService.deleteAnnoFromServer(a,$scope.video._id);
 		//ako je success od servera onda
-		console.log("prije splice");
-		console.log($scope.video.annotations);
 		$scope.video.annotations.splice(x,1);
-		console.log("poslije splice");
-		console.log($scope.video.annotations);
 		//ako nije ispisi gresku
 	};
 
@@ -354,10 +313,7 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 		$timeout(function(){
 			var t = $scope.videoDomObj.currentTime;
 			var x;
-			console.log("tick: " + t);
 			for(i=0; i<$scope.video.annotations.length; i++){
-				console.log("start-----------length: "+$scope.liveAnno.length)
-				console.log("i: " + i + " x: " + x);
 				if(removed){
 					i--;
 					removed=false;
@@ -378,33 +334,21 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 				}
 				//x = $scope.liveAnno.indexOf($scope.video.annotations[i]);
 				if(t >= $scope.video.annotations[i].startTime){
-					console.log("    postoji anno cije pocetno vrijeme iza");
 					if(t < $scope.video.annotations[i].endTime){
-						console.log("        postoji anno cije krajnje vrijeme ispred");
 						if(x < 0){
-							console.log("            taj anno trenutno nije live");
-
 							$scope.liveAnno.push($scope.video.annotations[i]);
 							$scope.$apply();
-
-							console.log($scope.liveAnno);
-							console.log($scope.video.annotations[i]);
 						}
 					}
 					else if(x > 0 || x==0){
-						console.log("izbacuje element");
-						console.log($scope.liveAnno);
-						console.log($scope.liveAnno[x]);
 						$scope.liveAnno.splice(x,1);
 						$scope.$apply();
-						console.log($scope.liveAnno);
 						if(i==0)
 							removed = true;
 						else
 							i--;
 					}
 				}
-				console.log("end-------------");
 			}
 		}, 1000);
 	};
