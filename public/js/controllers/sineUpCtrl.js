@@ -1,38 +1,39 @@
-spa.controller("sineUpCtrl", function($scope, $routeParams, videoService, searchService){
-	
-	
-	
-	/*//$scope.videosStat = [];
-	$scope.tableData = [];
-	$scope.totalViews = 0;
-	//$scope.i = 0;
-	
-	videoService.getVideos().success(function(videoData){
-		//$scope.sVideos = videoData;
-		for (var i = 0; i< videoData.length; i++){
-			
-			statisticService.getStat(videoData[i],function(anoData, video){
-				$scope.totalViews += anoData.countView;
-				var obj = {
-					"title":video.title,
-					"author":video.author,
-					"duration":video.duration,
-					"countView":anoData.countView,
-					"lastViewDate":anoData.lastViewDate, 
-					"numberOfAnnotation":anoData.numberOfAnnotation
-				}
-				$scope.tableData.push(obj);
-				
-			});
-		}
-	}).
-	error(function(data){
-		console.log("Connection with server interrupted!!!");
-	});
+spa.controller("sineUpCtrl", function($scope, $routeParams, videoService, sineUpService){
+	$scope.master = {};
 
-	//TODO ne prikazuje odgovarajuci
-	$scope.getStatistics = function(statId){
-		$scope.stat = statId;
-	};
-	*/	
+      $scope.update = function(user) {
+        $scope.master = angular.copy(user);
+      };
+
+      $scope.reset = function() {
+        $scope.user = angular.copy($scope.master);
+      };
+
+      $scope.reset();
+	/*	
+	$scope.test = function(){
+		var text = element(by.binding('email.text'));
+		var valid = element(by.binding('myForm.input.$valid'));
+		var input = element(by.model('email.text'));
+
+		it('should initialize to model', function() {
+		  expect(text.getText()).toContain('me@example.com');
+		  expect(valid.getText()).toContain('true');
+		});
+
+		it('should be invalid if empty', function() {
+		  input.clear();
+		  input.sendKeys('');
+		  expect(text.getText()).toEqual('text =');
+		  expect(valid.getText()).toContain('false');
+		});
+
+		it('should be invalid if not email', function() {
+		  input.clear();
+		  input.sendKeys('xxx');
+
+		  expect(valid.getText()).toContain('false');
+		});
+	}
+	*/
 });
