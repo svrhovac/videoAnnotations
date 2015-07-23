@@ -1,10 +1,19 @@
 <div class="container-fluid">
   	<div class="row">
     	<div class="col-sm-8">
+
+    		<div style="z-index:10000000; position:absolute">
+				<div ng-repeat="anno in liveAnno">
+                    <div class="annolive col-xs-12">
+                         <p>{{anno.text | limitTo:30}} </p>
+                    </div>
+                </div>
+			</div>
+
 	    	<video id="videoDOM" ng-src="{{video.path}}" controls="controls" style="width:100%"></video>	
-				<div class="col-sm-12 col-xs-12"> 
+				
 				<div class="col-sm-8 col-xs-8"> 
-	    			<div style="font-weight: bold;"> {{video.title}} </div>
+	    			<div style="font-size: 20px; margin-bottom:5px;"> {{video.title}} </div>
 					
 					<!-- <div> {{video.author}} </div> 
 					<div class="video-description ng-hide" ng-show="!showAnno">
@@ -13,47 +22,66 @@
 					</div> -->
 	   		 	</div>
 	   			<div class="col-sm-4 col-xs-4">
-    				<button class = "btnadd" id="add-annotation" type="button"  ng-click="createNewAnnotation()">
-						<div class="glyphicon glyphicon-plus">
-						</div>
-					</button>
-					<button  id="prev" type="button"  class="glyphicon glyphicon-chevron-left btnnav" ng-click="prevVideo()">
-					</button>
-					<button  id="next" type="button" class="glyphicon glyphicon-chevron-right btnnav" ng-click="nextVideo()">
-					</button>
-				 </div> 
-	    		<div id="anno-edit" class="ng-hide" ng-show="showAnno">
-					<textarea id="anno-edit-left" maxlength="300"></textarea>
-					<div id="anno-edit-right">
+					<div style="float:right">
+						<a><div class="glyphicon glyphicon-plus" id="add-annotation" ng-click="createNewAnnotation()">
+						</div></a>
+				
+					<a><div id="prev" class="glyphicon glyphicon-chevron-left" ng-click="prevVideo()">
+					</div></a>
+					<a><div  id="next" class="glyphicon glyphicon-chevron-right" ng-click="nextVideo()">
+					</div></a>
+				 </div>
+				</div>
+				
+				<div class="col-sm-12 col-xs-12"> 
+								 
+	    		<div id="anno-edit" class="ng-hide col-lg-12 col-sm-12 edit-window" ng-show="showAnno">
+						<div class="col-lg-6 col-sm-6">
+						<!--<textarea id="anno-edit-left" cols="40" rows="10" maxlength="50"></textarea>-->
+						<div class="form-group">
+							<textarea  id="anno-edit-left" class="form-control" rows="5" id="comment" placeholder="Enter your annotation here..."></textarea>
+							</div>
+					
+						<div id="anno-edit-right">
 						<div id="time-input">
-							<input id="time-start" type="text" > &nbsp; Duration:</input>
-							<input id="time-end" type="text">to:</input>
+						<!--<input type="range" min="0" max="15" value="3" step="1" onchange="rangevalue.value=value" />
+						<output id="rangevalue">selektovani broj sekudni </output>-->
+							<input id="time-start" type="text" /> &nbsp; Duration:
+							<input id="time-end" type="text" />to:
+							</div>
 						</div>
+						</div>
+						<div class="col-lg-6 col-sm-6">
+						
 							<ul id="tags">
 								<li ng-repeat="t in tags">
-									<button class="tag-list" ng-click="switchTag($index)">{{t.name}}</button>
+									<button class="tag-list btn btn-default" ng-click="switchTag($index)">{{t.name}}</button>
 								</li>
 							</ul>
-							<input id="edit-anno-buttons" type="submit" value="Save" ng-click="saveAnnotation()"></input>
+							<input style="float:right" class="btn btn-default" id="edit-anno-buttons" type="submit" value="Save" ng-click="saveAnnotation()" />
 						</div>
 				</div>
 				</div> <!-- kraj dvaneske -->
-				<div class="col-sm-12 col-xs-12" style="background-color:green;"> 
-				<div class="col-xs-6">
-				        <button class="btn btn-default btn-block" id="anno-view" ng-click="showListStatus=true; changeBackground(true)">Annotations</button>
-				    </div>
-				    <div class="col-xs-6">
-				        <button class="btn btn-default btn-block" id="vid-view"   ng-click="showListStatus=false;showAnno=false; changeBackground(false)">Description</button>
-				    </div>
+				<div class="col-sm-12 col-xs-12"> 
+				
+				<div class="col-xs-12 col-lg-12 bggg">
+				
+				<div class="col-xs-6 col-lg-3">
+				<button class="btn btn-block btn-xcolor" id="vid-view" ng-click="showDescription=false;showAnno=false; changeBackground(false)">Description</button></div>
+				<div class="col-xs-6 col-lg-3">
+				<button class="btn btn-block" id="anno-view" ng-click="showDescription=true; changeBackground(true)">Annotations</button></div>
+				</div>
+				<div class="col-xs-12 col-lg-12 backg">
+						
 
 
-
-
-				    <div class="ng-hide" ng-show="showListStatus">
-				    	<div class="col-xs-12" ng-repeat="anno in video.annotations">
+				    <div class="ng-hide" ng-show="showDescription">
+				    	<div class="col-xs-12 col-lg-6 col-md-6 col-sm-6 backg" style="margin-top:10px" ng-repeat="anno in video.annotations">
 				        	<div class="btn btn-default btn-block" ng-click="loadAnnotation(anno)">
-				            	<h4>Ann Time<!--Automaticly ann time--></h4>
-				                <p>{{anno.text}}<!--Part of annotion description text--></p>
+
+								<h4>{{anno.text | limitTo:15}}<!--Automaticly ann time--></h4>
+				                <p>{{formatTime(anno.startTime)}}<!--Part of annotion description text--></p>
+
 				                <button id="edit-anno" ng-click="editAnnotation(anno)">
 							<p class="glyphicon glyphicon-pencil"></p>
 							
@@ -61,37 +89,65 @@
 				        	<button id="delete-annotation" ng-click="deleteAnnotation(anno)">
 				        		<p class=" glyphicon glyphicon-remove"></p>
 				        	</button>
-				        	</div>	
+				      
+							</div>
 				    	</div>
 				    </div>
-				    <div  class="ng-hide " ng-show="!showListStatus">
+				    <div  class="ng-hide" ng-show="!showDescription">
 				        <!-- 0vdje pocinje paragraf u koji se unsoi angularjs zza listu-->
-							<div class="col-xs-12 video-description ng-hide" ng-show="!showAnno">
+							<div class="col-xs-12 backg ng-hide" ng-show="!showAnno">
+							<br>
 								<p> autor: {{video.author}} </p> 
 								<p> description: {{video.description}} </p>
 							  </div>
 							
 				    </div>	
 				</div>
+				</div>
 				
 	    </div>
 	  	<div class="col-sm-4">
-	  		<div class="col-sm-12 all-zero">	
+	  		<div class="col-sm-12">	
 				    <div class="col-xs-6">
-				        <button class="btn btn-default btn-block" id="anno-view" ng-click="showListStatus=true; changeBackground(true)">All My Annotations</button>
+	
+				        <button class="btn btn-block btn-xcolor" id="all-vid-view"   ng-click="showListStatus=false;showAnno=false; changeBackground2(true)">Videos</button>
 				    </div>
 				    <div class="col-xs-6">
-				        <button class="btn btn-default btn-block" id="vid-view"   ng-click="showListStatus=false;showAnno=false; changeBackground(false)">Videos</button>
+						
+				        <button class="btn btn-block"  id="all-anno-view" ng-click="showListStatus=true; loadAllAnnotations();changeBackground2(false)" >All My Ann</button>
+
 				    </div>
 
-
-
-
+<!-- OVDJE JE LISTA TAGOVA SA CEKBOXOM LEBRON -->
 				    <div class="ng-hide" ng-show="showListStatus">
-				    	<div class="col-xs-12" ng-repeat="anno in video.annotations">
-				        	<div class="btn btn-default btn-block" ng-click="loadAnnotation(anno)">
-				            	<h4>Ann Time<!--Automaticly ann time--></h4>
-				                <p>{{anno.text}}<!--Part of annotion description text--></p>
+				    	<form role="form">
+							<div class="checkbox">
+								<span ng-repeat="t in tags">
+									<label ng-if="!t.boxValue">
+										
+										<input type="checkbox" ng-click="switchValue(t)" />
+											{{t.name}}
+									</label>
+
+									<label ng-if="t.boxValue">
+										<input ng-if="t.boxValue" type="checkbox" ng-click="switchValue(t)" checked />
+											{{t.name}}
+									</label>
+								</span>
+							</div>
+						</form>
+						</div>
+				   <!-- OVDJE JE LISTA TAGOVA SA CEKBOXOM LEBRON -->
+	
+					</div>
+				
+				
+				    	<div class="col-xs-12" ng-repeat="anno in allAnnotations | filterByTags:tags">
+
+				        	<div class="btn btn-default btn-block" ng-click="goToVidAnno(anno)">
+
+				            	<h4>{{anno.text}}<!--Automaticly ann time--></h4>
+				                <p>{{anno.startTime}}<!--Part of annotion description text--></p>
 				                <button id="edit-anno" ng-click="editAnnotation(anno)">
 							<p class="glyphicon glyphicon-pencil"></p>
 							
@@ -101,21 +157,21 @@
 				        	</button>
 				        	</div>	
 				    	</div>
-				    </div>
+		
 				    <div  class="ng-hide " ng-show="!showListStatus">
 				        <!-- 0vdje pocinje paragraf u koji se unsoi angularjs zza listu-->
 						<div class="col-xs-12" ng-repeat="myVideo in vidList">
 						<div class="btn btn-default btn-block">
 							<a href="#/video/{{myVideo._id}}">
 							<div>
-							  <h3>{{myVideo.title}}</h3>
-							  <p>{{myVideo.author}}</p>
+							  <h3>{{myVideo.title | limitTo:15}}...</h3>
+								  <p>{{myVideo.author}}</p>
 							  <p>{{myVideo.duration}} </p>
 							  </div>
 							</a>
 						</div>
 						</div>
 				    </div>	
-				  </div>		
+				 	
   	</div>
 </div>

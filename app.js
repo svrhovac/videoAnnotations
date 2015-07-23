@@ -12,10 +12,9 @@ var videoRoutes = require(mainConfig.paths.routes.videos);
 
 var tagRoutes = require(mainConfig.paths.routes.tags);
 var ownerRoutes = require(mainConfig.paths.routes.owners);
-
 var annotationRoutes = require(mainConfig.paths.routes.annotation);
-
 var indexRoutes = require(mainConfig.paths.routes.index);
+var userConsentRoutes = require(mainConfig.paths.routes.userConsent);
 
 var customValidators = require(mainConfig.paths.utils.customValidators);
 var userRoutes = require(mainConfig.paths.routes.users);
@@ -81,12 +80,12 @@ app.use(function(req, res, next) {
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(annotationRoutes);
-
 app.use(videoRoutes);
 app.use(tagRoutes);
 app.use(ownerRoutes);
 app.use(indexRoutes);
 app.use(userRoutes);
+app.use(userConsentRoutes);
 
 
 
