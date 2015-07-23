@@ -1,19 +1,16 @@
 spa.controller("signUpController", function($scope){
 	
 	
-	$scope.showSignUp = true;
+	$scope.error = true;
 
-	$scope.signUp = function(email, pass, passConfirm){
-		if(pass != passConfirm){
-			document.getElementById("pass-input-s").value = "";
-			document.getElementById("pass-input-confirm-s").value = "";
-			document.getElementById("pass-input-s").placeholder = "password did not match";
-			document.getElementById("pass-input-confirm-s").placeholder = "password did not match";
+	$scope.signUp = function(){
+		if($scope.user.pass != $scope.user.passConfirm){
+			console.log($('[ng-model="pass"]'));
 			return;
 		}
 		//posalj serveru podatke
-		$scope.showSignUp = false;
-		loginService.setLoginStatus(false);
-		$timeout(function(){$location.path("/");}, 4000);
+		
+		
+		//$timeout(function(){$location.path("/");}, 4000);
 	};	
 });

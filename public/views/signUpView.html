@@ -1,9 +1,10 @@
-<from ng-if="showSignUp">
-	<input id="email-input-s" type="email" placeholder="e-mail" ng-model="email"></input> <br />
-	<input id="pass-input-s" type="password" placeholder="password" ng-model="pass"></input> <br />
-	<input id="pass-input-confirm-s" type="password" placeholder="confirm password" ng-model="passConfirm"></input> <br />
-	<button ng-click="signUp(email,pass,passConfirm)">Sign up</button>
+<from>
+	User name:<input  type="text"  ng-model="user.name"></input> <br />
+	Email:<input  type="email"  ng-model="user.email"></input> <br />
+	Gender: <input type="radio" ng-model="user.gender" value="male" />male
+			<input type="radio" ng-model="user.gender" value="female" />female<br />
+	Password:<input  type="password"  ng-model="user.pass"></input> <br />
+	Re-enter password:<input  type="password"  ng-model="user.passConfirm"></input> <br />
+	<button ng-click="signUp()">Sign up</button><br />
+	<span style="color:red" ng-show="error">Content in the marked boxes is invalid. Fix it!</span>
 </from>
-<div ng-if="!showSignUp">
-	<p>Confirmation e-mail has been sent to you. Please verify your e-mail address.</p>
-</div ng-if
