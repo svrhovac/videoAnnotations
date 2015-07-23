@@ -115,11 +115,11 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 	$scope.switchTag = function(i){
 		if($scope.tags[i].val){
 			$scope.tags[i].val = false;
-			document.getElementsByClassName("tag-list")[i].style.background = "#e65454";
+			document.getElementsByClassName("tag-list")[i].style.background = "#B6B6B4";
 		}
 		else{
 			$scope.tags[i].val = true;
-			document.getElementsByClassName("tag-list")[i].style.background = "#00fe3e";
+			document.getElementsByClassName("tag-list")[i].style.background = "#F75D59";
 		}
 		console.log($scope.tags);
 	}
@@ -141,13 +141,13 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 				if(anno.tags[j] == $scope.tags[i]._id){
 					console.log("zeleno");
 					console.log(tagList[i]);
-					tagList[i].style.background = "#00fe3e";
+					tagList[i].style.background = "#F75D59";
 					$scope.tags[i].val=true;
 					break;
 				}
 				else if(j==anno.tags.length-1){
 					console.log("crveno");
-					tagList[i].style.background = "#e65454";
+					tagList[i].style.background = "#B6B6B4";
 					$scope.tags[i].val=false;
 				}
 			}
@@ -170,7 +170,7 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 
 		var tagList = document.getElementsByClassName("tag-list");
 		for(i=0; i<$scope.tags.length; i++){
-			tagList[i].style.background = "#e65454";
+			tagList[i].style.background = "#B6B6B4";
 			$scope.tags[i].val = false;
 		}
 	};
