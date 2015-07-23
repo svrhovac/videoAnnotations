@@ -11,10 +11,9 @@ var videoRoutes = require(mainConfig.paths.routes.videos);
 
 var tagRoutes = require(mainConfig.paths.routes.tags);
 var ownerRoutes = require(mainConfig.paths.routes.owners);
-
 var annotationRoutes = require(mainConfig.paths.routes.annotation);
-
 var indexRoutes = require(mainConfig.paths.routes.index);
+var userConsentRoutes = require(mainConfig.paths.routes.userConsent);
 
 var customValidators = require(mainConfig.paths.utils.customValidators);
 
@@ -84,7 +83,7 @@ app.use(videoRoutes);
 app.use(tagRoutes);
 app.use(ownerRoutes);
 app.use(indexRoutes);
-
+app.use(userConsentRoutes);
 
 
 // catch 404 and forward to error handler

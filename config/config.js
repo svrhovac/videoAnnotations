@@ -9,7 +9,8 @@ module.exports = {
       tags: __dirname + "/../routes/tags",
       owners: __dirname + "/../routes/owners",
       commonParams: __dirname + "/../routes/commonParams",
-      annotation: __dirname + "/../routes/annotation"
+      annotation: __dirname + "/../routes/annotation",
+      userConsent: __dirname + "/../routes/userConsent"
     },
     utils : {
       customValidators : __dirname + "/../utils/customValidators"

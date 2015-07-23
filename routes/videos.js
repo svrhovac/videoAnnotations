@@ -79,7 +79,7 @@ var excludeRegexChars = function(str) {
   return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "");
 };
 
-router.get('/searchvideos/', function(req, res){
+router.get('/searchvideos', function(req, res){
 
   var skip = 0;
   var limit = 50;
