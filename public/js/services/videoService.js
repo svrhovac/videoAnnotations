@@ -1,16 +1,12 @@
 spa.service("videoService", ['$http', function($http){
 
 	this.vidList;
-  this.currentAnno;
 	idTrenutnog = 0; //MILAN
-  this.tags;
-
-  this.getCAnno = function(){
-    return this.currentAnno;
-  };
+  	this.tags;
 
     this.getVideos = function(){
 	     return $http.get("/videos").success(function(data){
+          console.log("lista"+data);
 			     return this.vidList = data;
 		   }).
 		    error(function(data){
@@ -71,8 +67,9 @@ spa.service("videoService", ['$http', function($http){
 		  data:JSON.stringify(postBody),
 		  headers: {'Content-Type': 'application/json'}
 	  })*/
-    $http.post('/annotation/'+ vidID +'/add', postBody).
+    return $http.post('/annotation/'+ vidID +'/add', postBody).
 		success(function(data, status, headers, config) {
+			return data;
 			//anno.id = data.id; //neznam da li se prosledjuje parametar fji preko pokazivaca
 			// this callback will be called asynchronously
 			// when the response is available

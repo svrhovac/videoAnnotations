@@ -1,7 +1,6 @@
 
-
 var spa=angular.module("app", ["ngRoute"]);
-            
+
 spa.config(['$routeProvider',
 function($routeProvider) {
 $routeProvider.
@@ -13,17 +12,17 @@ $routeProvider.
         templateUrl: 'views/videoView.html',
         controller: 'videoController'
     }).
-	when('/statistic',{
+	when('/statistic', {
         templateUrl: 'views/statisticView.html',
         controller: 'statisticController'
     }).
-	when('/search',{
+	when('/search', {
         templateUrl: 'views/searchView.html',
         controller: 'searchCtrl'
     }).
-	when('/sineup',{
-        templateUrl: 'views/sineUpView.html',
-        controller: 'sineUpCtrl'
+	when('/signup', {
+        templateUrl: 'views/signUpView.html',
+        controller: 'loginController'
     }).
     otherwise({
         redirectTo: '/'
