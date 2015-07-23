@@ -1,5 +1,22 @@
 <div class="row">
-	<div style="border-style: solid; border:10px" id="listaVidea" class="col-sm-5 ">
+	<div class="col-sm-12">
+		<div class="col-sm-4" ng-repeat="vid in vidList">
+			<div class="shadowz">
+				<ul> 
+					<li>
+						<a href="#/video/{{vid._id}}"> <h3> {{vid.title}}</h3> </a>
+						<a href="#/video/{{vid._id}}"> <p> {{vid.author}} </p> </a>   
+						<a href="#/video/{{vid._id}}"> <p> {{vid.duration}} </p> </a>
+					</li>
+					<li><a href="#/video/{{vid._id}}"><span class="glyphicon glyphicon-comment"></span></a> 
+						<a href="#/video/{{vid._id}}"><span class="glyphicon glyphicon-play" style="float:right; padding-right:20px;"></span></a> 
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!--<div style="border-style: solid; border:10px" id="listaVidea" class="col-sm-5 ">
+	
 		<table class="table table-bordered">
 		<caption><h3>Videos</h3></caption>
 			<thead>
@@ -52,5 +69,5 @@
 				</tr>
 			</tbody>
 		</table>
-	</div>
+	</div>-->
 </div>
