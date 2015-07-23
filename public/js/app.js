@@ -1,9 +1,7 @@
+var spa=angular.module("app", ["ngRoute", "ui.bootstrap"]);
+            
+spa.config(['$routeProvider',function($routeProvider) {$routeProvider.
 
-var spa=angular.module("app", ["ngRoute"]);
-
-spa.config(['$routeProvider',
-function($routeProvider) {
-$routeProvider.
     when('/', {
         templateUrl: 'views/mainView.html',
         controller: 'mainController'
