@@ -1,5 +1,5 @@
 spa.controller("sineUpCtrl", function($scope, $routeParams, videoService, sineUpService){
-	$scope.master = {};
+	
 
       $scope.update = function(user) {
         $scope.master = angular.copy(user);
