@@ -149,7 +149,9 @@ router.post('/login', function(req,res,next){
         jsonMsg.message = "User successfully logged in";
 
         req.session.authUser = {email : user.email, _id : user._id};
-
+        console.log(req.session.authUser);
+        //insert a date of visit in user collection
+        db.user.update({email : email},{$push: {dateOfLogin: new Date()}});
         res.json(jsonMsg);
       }else{
         jsonMsg.status = "error";
@@ -160,5 +162,29 @@ router.post('/login', function(req,res,next){
   });
 });
 
+router.post('/logout', function(req,res,next){
+  // var email = req.body.email;
+  // req.checkBody('email','Email is mandatory').isEmail();
+  //
+  // var error = req.validationErrors();
+  // if (error) {
+  //   return next(error);
+  // }
+  //
+
+  var jsonMsg = {};
+  console.log(req.session.authUser);
+  db.user.update({email : req.session.authUser.email},{$push: {dateOfLogout: new Date()}},function(err, result){
+    if(err){
+      jsonMsg.status = "error";
+      jsonMsg.message = "Unable to update date in database";
+      res.json(jsonMsg);
+    }else if(result.nModified===1){
+      jsonMsg.status = "success";
+      jsonMsg.message = "Logout successful";
+      res.json(jsonMsg);
+    }
+  });
+});
 
 module.exports = router;
