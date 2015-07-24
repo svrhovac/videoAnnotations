@@ -77,10 +77,6 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 		$scope.showListStatus = x;
 	};
 
-	$scope.calculateRange = function(r){
-		return ($scope.video.durration*r)/100;
-	}
-
 	$scope.changefType = function(f){
 		$scope.fType = f;
 	};
