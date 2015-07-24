@@ -10,6 +10,8 @@ var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
 var session = require('express-session');
 
+var randomUtils = require.main.require('./utils/randomUtils');
+
 var videoRoutes = require(mainConfig.paths.routes.videos);
 var tagRoutes = require(mainConfig.paths.routes.tags);
 var ownerRoutes = require(mainConfig.paths.routes.owners);
@@ -31,7 +33,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(session({ secret: 'SECRET', cookie: { secure: true, maxAge: 60000 }}))
+app.use(session({ secret: randomUtils.randomString(32, '#Aa'), resave: false, saveUninitialized: false, cookie: { secure: true, maxAge: 60000 }}))
 
 app.use(expressValidator({
  customValidators: {
