@@ -152,6 +152,11 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 		for(i=0; i<$scope.tags.length; i++){
 			for(j=0; j<anno.tags.length; j++){
 				if(anno.tags[j] == $scope.tags[i]._id){
+<<<<<<< HEAD
+=======
+					console.log("zeleno");
+					console.log(tagList[i]);
+>>>>>>> 2f8dfa32ceb80dfe88b5f9f45f6a535b89287000
 					tagList[i].style.background = "#F75D59";
 
 					$scope.tags[i].val=true;
@@ -159,6 +164,10 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 				}
 				else if(j==anno.tags.length-1){
 
+<<<<<<< HEAD
+=======
+					console.log("crveno");
+>>>>>>> 2f8dfa32ceb80dfe88b5f9f45f6a535b89287000
 					tagList[i].style.background = "#B6B6B4";
 
 					$scope.tags[i].val=false;
