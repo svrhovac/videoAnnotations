@@ -18,7 +18,7 @@ var isUserConsentRequired = function(remoteAddress, callback) {
 router.get('/userconsentrequired', function(req, res){
   var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 
-  router.isUserConsentRequired(ip, function(err, isit){
+  isUserConsentRequired(ip, function(err, isit){
     if (isit) {
       res.send(true);
     } else {

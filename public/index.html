@@ -38,6 +38,7 @@
 
   <div class="row"><!-- Start of ROW -->
         <!-- Fixed navbar -->
+
 		
 	<nav class="navbar navbar-inverse col-md-12" role="navigation">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -64,7 +65,7 @@
 			</div>
 			</div>
 			<a class="col-md-4 col-xs-4" href="#/search">
-				<button type="button" ng-click="search()" class="btn btn-default">Search</button>
+				<button type="button" ng-click="search()" class="btn btn-default btn-xcolor">Go</button>
 			</a>
 		</form>
 		
@@ -78,11 +79,13 @@
 			  <a>Sign out</a>
 			  
 			</li>
+			<form class="navbar-form navbar-right col-md-4">
 			
-			<li><input style="margin-top:11px;" ng-show="!login" id="email-input" type="email" placeholder="e-mail" ng-model="email" /> </li>
-			<li><input style="margin-top:11px;" ng-show="!login" id="pass-input" type="password" placeholder="password" ng-model="pass" /> </li>
-			<li> <a ng-click="signIn(email,pass)"> Sign in </a>  <!--ispraviti --></li>
-
+			<input style="padding:5px" class="form-group" ng-show="!login" id="email-input" type="email" placeholder="e-mail" ng-model="email" /> 
+			<input style="padding:5px" class="form-group" ng-show="!login" id="pass-input" type="password" placeholder="password" ng-model="pass" /> 
+			 <button class="btn btn-default btn-xcolor"> <div ng-click="signIn(email,pass)"> Sign in </div>  <!--ispraviti --> </button>
+		
+			</form>
 			
 		</ul>
 
@@ -98,7 +101,18 @@
 	</div>
 	
 	<footer> 
-	<img src="images/footer.jpg">
+	<div class="col-xs-12">
+	
+		<div class="col-xs-4" style="color:white; margin-top:15px;">
+			&copy;EDIT 2015
+		</div>
+		<div class="col-xs-4"  style="text-align:center">
+			<img src="images/footer.jpg">
+		</div>
+		<div class="col-xs-4">
+		
+		</div>
+	</div>
 	</footer>
 </div> <!--row end -->
 	<script src="js/libs/angular/angular.js"></script>

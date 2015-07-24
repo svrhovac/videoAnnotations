@@ -11,12 +11,18 @@ spa.service("signUpService", ['$http', function($http){
 		});
     };
 
+    this.logOut = function(){
+    	return $http.post("/logout").success(function(data){return data;});
+    };
+
     this.signIn = function(e,p){
     	var postBody = {"email":e,"password":p};
     	return $http.post("/login",postBody).success(function(data){
-			return data;
+			return data.message;
 		}).error(function(data){
-			return data;
+			if(data[0]=="Email is mandatory")
+				return data[0];
+			return data.message;
 		});
     };
 
