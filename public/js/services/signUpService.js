@@ -14,11 +14,11 @@ spa.service("signUpService", ['$http', function($http){
 	  var postBody = {"email":user.email,"password":user.pass}
     console.log(postBody);
     return $http.post('/register', postBody).
-		success(function(data, status, headers, config) {
+		success(function(data) {
 			return data;	
 		}).
-		error(function(data, status, headers, config) {
-			
+		error(function(data) {
+			return data;
 			});
     };
 	

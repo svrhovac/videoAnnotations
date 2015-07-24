@@ -1,7 +1,7 @@
 spa.controller("signUpController", function($scope,signUpService){
 	
 	$scope.isFromEU = false;
-	$scope.message = "";
+	//$scope.respons.message = "";
 	
 	
 		signUpService.fromEU().success(function(data){
@@ -26,8 +26,10 @@ spa.controller("signUpController", function($scope,signUpService){
 		//gotova validacija
 		
 		signUpService.registerNewUser($scope.user).success(function(data){
-				$scope.message = data;
-				console.log(data);
+			$scope.respons = data;
+		}).
+		error(function(data) {
+			$scope.respons = data;
 		});
 		
 
