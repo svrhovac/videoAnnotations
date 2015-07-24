@@ -34,11 +34,13 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 				}
 			}
 		}
+		console.log($scope.vidList);
 	});
 	//$scope.video = videoService.getVideoProperty($scope.idVideo);
 
 	videoService.getVideoProperty($scope.idVideo).success(function(data){
 		$scope.videoPath = data.path;
+		console.log(data.path);
 	});
 
 
