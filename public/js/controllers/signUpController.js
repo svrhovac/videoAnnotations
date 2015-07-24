@@ -27,6 +27,7 @@ spa.controller("signUpController", function($scope,signUpService){
 		
 		signUpService.registerNewUser($scope.user).success(function(data){
 			$scope.respons = data;
+			signUpService.loginStatus(true);
 		}).
 		error(function(data) {
 			$scope.respons = data;
