@@ -1,32 +1,68 @@
 
-<div ng-show="{{isFromEU}}">
-We use cookies to offer you the best experience onlin.
- By continuing to use our website, you agree to the use of 
- cookies. If you would like to know more about cookies and how to manage 
- them please view our privacy and cookie policy.
- </div>
-<form name="myForm" ng-show = "!respons.status">
+<div class="row">
+    <div class="col-xs-12 col-lg-12"  >
+	<div class="col-xs-6 col-lg-6">
+	<h2>Sign Up</h2>
+	
+        <div style="border-top: 5px solid #F75D59; padding-top: 25px;">  
+<div style="text-align:right;margin-bottom:5px;">		
+		<span  style="color:#F75D59;" ng-show="error">Invalid content. </span>
+	<span  style="color:#F75D59;" ng-show="error">{{errText}}</span>
+	<div  role="alert">
+      <span  class="error" ng-show="myForm.input.$error.required">
+        Email required</span>
+      <span  style="color:#F75D59;" class="error" ng-show="myForm.input.$error.email">
+        Email is not valid </span>
+    </div>
+</div>
+	 <form name="myForm" >
+
 	<!--User name:<input id="name"   type="text"  ng-model="user.name"></input> <br />-->
-	Email:
-      <input type="email" name="input" ng-model="user.email" required><br />
-    
+	<p style="font-size:16px; margin-bottom:10px">Email:
+      <input class="col-xs-6 col-lg-6" style= "float:right; border-radius: 0px; border-style: none; border: 1px solid rgb(204, 204, 204);"type="email" name="input" ng-model="user.email" required><br />
+    </p>
 	<!--Gender: <input id="genderM" type="radio" ng-model="user.gender" value="male" />male
 			<input id="genderF" type="radio" ng-model="user.gender" value="female" />female<br />-->
-	Password:<input id="password"  type="password"  ng-model="user.pass" required></input> <br />
-	Re-enter password:<input id="rePassword"  type="password"  ng-model="user.passConfirm" required></input> <br />
-	<button  ng-click="signUp()">Sign up</button><br />
-	<span  style="color:red" ng-show="error">Content in the marked boxes is invalid. Fix it!</span>
-	<span  style="color:red" ng-show="error">{{errText}}</span>
-	<div style="color:red" role="alert">
-      <span class="error" ng-show="myForm.input.$error.required">
-        Email required!</span>
-      <span style="color:red" class="error" ng-show="myForm.input.$error.email">
-        Email not valid email!</span>
-    </div>
+
+			
+	<p style="font-size:16px; margin-bottom:10px">	
+	Password:
+	<input ng-minlength = "8" class="col-xs-6 col-lg-6" style= "float:right; border-radius: 0px; border-style: none; border: 1px solid rgb(204, 204, 204);" id="password"  type="password"  ng-model="user.pass"></input> <br />
+	</p>
+	
+	<p style="font-size:16px; margin-bottom:10px">
+	Re-enter password:
+	<input ng-minlength= "8" class="col-xs-6 col-lg-6" style= "float:right; border-radius: 0px; border-style: none; border: 1px solid rgb(204, 204, 204);" id="rePassword"  type="password"  ng-model="user.passConfirm"></input> <br />
+	</p>
+	<div class="row">
+	<div class="col-xs-9 col-lg-9">
+		</div>
+		<div class="col-xs-3 col-lg-3">
+			<button class=" btn btn-block btn-xcolor" ng-click="signUp()"> Sign up</button>
+		</div>
+		
+	</div>
+	<br />
+
 	
 </form>
-<span ng-show ="respons.status" > Registartion is successful. You must confirm your email.</span>
-<span  > {{respons.message}}</span>
-
-
+</div>
+	 
+    </div>
+    <div class="col-xs-6 col-lg-6" ng-show="{{isFromEU}}">
+	 <h2>Cookies</h2>
+	 <div style="border-top: 5px solid #F75D59; padding-top: 25px;">
+	 <p >
+	 We use cookies to offer you the best experience online.
+	 By continuing to use our website, you agree to the use of 
+	 cookies. If you would like to know more about cookies and how to manage 
+	 them please view our privacy and cookie policy.
+	</p>
+	</div>
+	</div>
+	</div>
+	
+	</div>
+	
+	<!--{{isFromEU}} -->
 
