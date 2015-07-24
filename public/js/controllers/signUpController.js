@@ -32,7 +32,5 @@ spa.controller("signUpController", function($scope,signUpService){
 		error(function(data) {
 			$scope.respons = data;
 		});
-		
-
 	};	
 }); 

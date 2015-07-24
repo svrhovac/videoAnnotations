@@ -54,11 +54,11 @@
 						<a href="#/signup"><div>Sign up</div></a>
 					</div>
           <div class="ng-hide" ng-show="error">
-            <textarea value="{{serverResponse}}"></textarea>
+            <textarea value="{{serverResponse}}" style="color:white"></textarea>
           </div>
 					<div class="ng-hide" ng-show="login" style="color:white">
 					  {{user}}
-					  <a>Sign out</a>
+					  <a ng-click=signOut()>Sign out</a>
 					</div>
 					<div class="form-group">
 						<input ng-keydown="$event.keyCode == 13 && search()"  ng-keyup="$event.keyCode == 13 && ser()"
