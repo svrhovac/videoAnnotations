@@ -16,6 +16,7 @@ sessionCheckers.increaseUsersWatchedVideos = function(req, res, next) {
       next(err);
     });
   }
+  next(null);
 };
 
 

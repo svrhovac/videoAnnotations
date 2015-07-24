@@ -3,6 +3,7 @@ var router = express.Router();
 var nodemailer = require('nodemailer');
 var passwordHash = require('password-hash');
 var db = require(mainConfig.paths.db.mongodb);
+var geoLocation = require.main.require('./utils/geoLocation');
 
 var randomUtils = require.main.require('./utils/randomUtils');
 var randomString = randomUtils.randomString;
@@ -136,8 +137,16 @@ router.post('/login', function(req,res,next){
 
         req.session.authUser = {email : user.email, _id : user._id};
         //insert a date of visit in user collection
-        db.user.update({email : email},{$inc: {numberOfVisits: 1}, $push: {dateOfLogin: new Date()}});
+        var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+
+        geoLocation.getLocationData(ip, function(err, data){
+            var usersCountry = data.country_name || "";
+            var usersCity = data.city || data.time_zone.split("/")[1] || "";
+            db.user.update({email : email},{$set : { "country" : usersCountry, "city": usersCity }, $inc: {numberOfVisits: 1}, $push: {dateOfLogin: new Date()}});
+        });
+
         res.json(jsonMsg);
+
       }else{
         jsonMsg.status = false;
         jsonMsg.message = "User not found";
