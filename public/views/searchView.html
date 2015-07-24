@@ -5,21 +5,21 @@
 		<div class="col-sm-4" ng-repeat="r in rez" style="margin-bottom: 10px;">
 			<a href="#/video/{{r._id}}">
 			
-							<div ng-show={{r.videoMatches}} style="background: rgb(247, 93, 89) none repeat scroll 0% 0%;float:right; padding-left:20px;padding-right:20px;">Video</div>
+							<div ng-show={{r.videoMatches}} style="color:black; background: rgb(247, 93, 89) none repeat scroll 0% 0%;float:right; padding-left:20px;padding-right:20px;">Video</div>
 					
-							<div ng-show={{r.annotationMatches}} style="background: rgb(247, 93, 89) none repeat scroll 0% 0%;float:right;margin-left:5px;padding-left:20px; padding-right:20px;">Annotation</div>
+							<div ng-show={{r.annotationMatches}} style="color:black; background: rgb(247, 93, 89) none repeat scroll 0% 0%;float:right;margin-left:5px;padding-left:20px; padding-right:20px;">Annotation</div>
 						
-			<div class="shadowz">
+			<div class="shadowz" style="color:black;">
 				<ul> 
 					<li>
 						<h3> {{r.title}}
 						</h3> 
 						 <p> {{r.author}} </p>   
-						 <p> {{r.duration}} </p> 
+						 <p> {{formatTime(r.duration)}} </p> 
 					</li>
 					<li>
 						<span class="glyphicon glyphicon-play" ></span>
-						<span class="glyphicon glyphicon-comment" style="float:right; padding-right:20px;"></span>
+						<span class="glyphicon glyphicon-comment" style="float:right; padding-right:20px;">{{r.annotations.length}}</span>
 					</li>
 				</ul>
 			</div>

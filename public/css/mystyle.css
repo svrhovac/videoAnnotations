@@ -26,7 +26,6 @@ nav img {
 footer {
 	width: 100%;
 	height: auto;
-	text-align: center;
 	background-color: black;
 	position: fixed;
 	bottom: 0;
@@ -37,6 +36,7 @@ footer {
 footer img {
 	width: 250px;
 	height: 50px;
+	margin:0 auto;
 }
 
 video {
@@ -86,7 +86,7 @@ video {
 }
 
 .florigth {
-float:left;}
+float:right;}
 
 input[type=range] {
   -webkit-appearance: none;
@@ -192,7 +192,8 @@ background-color: #E5E4E2;
 
 .annolive{
 border: 1px solid red;
-background: rgba(204, 204, 204, 0.3);
+color:white;
+background-color:rgba(255,0,0,0.3);
 overflow:hidden;
 width:100%;
 }
@@ -212,3 +213,8 @@ border-radius:0;}
 background-color: #E5E4E2;
 margin:10px 0;}
 
+.blackcolor {
+margin:5px;}
+
+.blackcolor a {
+color:black}
