@@ -136,6 +136,7 @@ router.post('/login', function(req,res,next){
         jsonMsg.message = "User successfully logged in";
 
         req.session.authUser = {email : user.email, _id : user._id};
+        console.log(req.session);
         //insert a date of visit in user collection
         var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 
