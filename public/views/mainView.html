@@ -1,14 +1,15 @@
 <div class="container">
-	<div class="col-sm-12">
+<h1 style="padding-left:30px;">Annotation player</h1>
+	<div class="col-sm-12">	
 		<div class="col-sm-4" ng-repeat="vid in vidList">
 			<div class="shadowz">
 			<ul> 
 				<li>
 					<a href="#/video/{{vid._id}}"> <h3> {{vid.title}}</h3> </a>
 					<a href="#/video/{{vid._id}}"> <p> {{vid.author}} </p> </a>   
-					<a href="#/video/{{vid._id}}"> <p> {{vid.duration}} </p> </a>
+					<a href="#/video/{{vid._id}}"> <p> {{formatTime(vid.duration)}} </p> </a>
 				</li>
-				<li><a href="#/video/{{vid._id}}"><span class="glyphicon glyphicon-comment"></span></a> 
+				<li><a href="#/video/{{vid._id}}"><span class="glyphicon glyphicon-comment">{{vid.annotations.length}}</span></a> 
 				<a href="#/video/{{vid._id}}"><span class="glyphicon glyphicon-play" style="float:right; padding-right:20px;"></span></a> 
 				</li>
 			</ul>

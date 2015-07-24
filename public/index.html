@@ -40,7 +40,8 @@
           <!-- Fixed navbar -->
 
 
-          <nav class="navbar navbar-inverse col-md-12" role="navigation">
+
+<nav class="navbar navbar-inverse col-md-12" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header col-md-2">
               <a href="#/"><img src="images/logofinal.png"></a>
@@ -50,52 +51,69 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+      </div>
+    
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
+	
+	<form class="navbar-form navbar-right col-md-4">
+			
+			<div class="form-group col-md-8 col-xs-8"  role="search">
+			<div class="ng-hide" ng-show="!login&&!error">
+				<input ng-keydown="$event.keyCode == 13 && search()"  ng-keyup="$event.keyCode == 13 && ser()"
+				style="border-radius:0;" type="text" class="form-control" placeholder="Search" ng-model="searchText" />
+			</div>
+			</div>
+			<a class="col-md-4 col-xs-4" href="#/search">
+				<button type="button" ng-click="search()" class="btn btn-default btn-xcolor">Go</button>
+			</a>
+		</form>
+		
+		<ul class="nav navbar-nav navbar-left col-md-6" role="input">
+			<li class="ng-hide" ng-show="!login"> <a href="#/signup"><div>Sign up</div></a>  </li>
+			<div class="ng-hide" ng-show="error">
+            <textarea value="{{serverResponse}}"></textarea>
+          </div>
+			<li class="ng-hide" ng-show="login" style="color:white" ng-click="signOut()">
+			  {{user}}
+			  <a>Sign out</a>
+			  
+			</li>
+			<form class="navbar-form navbar-right col-md-4">
+			
+			<input style="padding:5px" class="form-group ng-hide" ng-show="!login" id="email-input" type="email" placeholder="e-mail" ng-model="email" /> 
+			<input style="padding:5px" class="form-group ng-hide" ng-show="!login" id="pass-input" type="password" placeholder="password" ng-model="pass" /> 
+			 <button class="btn btn-default btn-xcolor ng-hide" ng-show="!login"> <div ng-click="signIn(email,pass)"> Sign in </div>  <!--ispraviti --> </button>
+		
+			</form>
+			
+		</ul>
 
-        </div>
+      </div><!-- /.navbar-collapse -->
+    </nav>
+		
+    
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
-
-           <form class="navbar-form navbar-right col-md-4">
-
-             <div class="form-group col-md-8 col-xs-8"  role="search">
-             </div>
-             <a class="col-md-4 col-xs-4" href="#/search">
-                <button type="button" ng-click="search()" class="btn btn-default">Search</button>
-            </a>
-        </form>
-
-        <ul class="nav navbar-nav navbar-left col-md-6" role="input">
-          <li class="ng-hide" ng-show="!login">
-            <a href="#/signup"><div>Sign up</div></a>
-        </li>
-        <li class="ng-hide" ng-show="login" style="color:white">
-            {{email}}
-            <a ng-click="signOut()">Sign out</a>
-
-        </li>
-
-        <li><input class="ng-hide" style="margin-top:11px" ng-show="!login" id="email-input" type="email" placeholder="e-mail" ng-model="email" /> </li>
-        <li><input class="ng-hide" style="margin-top:11px" ng-show="!login" id="pass-input" type="password" placeholder="password" ng-model="pass" /> </li>
-        <li> <a class="ng-hide" ng-click="signIn(email,pass)" ng-show="!login"> Sign in </a>  <!--ispraviti --></li>
-
-
-    </ul>
-
-</div><!-- /.navbar-collapse -->
-</nav>
-
-
-
-
-
-<div class="container" ng-view>  
-
-</div>
-
-<footer> 
-   <img src="images/footer.jpg">
-</footer>
+	
+	
+    <div class="container" ng-view>  
+	
+	</div>
+	
+	<footer> 
+	<div class="col-xs-12">
+	
+		<div class="col-xs-4" style="color:white; margin-top:15px;">
+			&copy;EDIT 2015
+		</div>
+		<div class="col-xs-4"  style="text-align:center">
+			<img src="images/footer.jpg">
+		</div>
+		<div class="col-xs-4">
+		
+		</div>
+	</div>
+	</footer>
 </div> <!--row end -->
 <script src="js/libs/angular/angular.js"></script>
 <script src="js/libs/angular/angular-route.js"></script>
