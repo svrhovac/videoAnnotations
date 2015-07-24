@@ -40,7 +40,7 @@
 				
 				
 			<!-- ADD NEW ANNOTATIONS -->
-			<div id="anno-edit" class="ng-hide edit-window" ng-show="showAnno">
+			<div id="anno-edit" class="ng-hide edit-window" ng-show="showAnno" style="padding:10px">
 				<div class="row">
 					<div class="col-lg-6 col-sm-6">
 						<!--<textarea id="anno-edit-left" cols="40" rows="10" maxlength="50"></textarea>-->
@@ -91,17 +91,17 @@
 								<div class="ng-hide" ng-show="showDescription">
 									<div class="col-xs-12 col-lg-6 col-md-6 col-sm-6 backg" style="margin-top:10px" ng-repeat="anno in video.annotations">
 										<div class="btn btn-default btn-block" ng-click="loadAnnotation(anno)">
-
+											<div id="delete-annotation" ng-click="deleteAnnotation(anno)">
+												<p class="glyphicon glyphicon-remove florigth"></p>
+											</div>
 											<h4>{{anno.text | limitTo:15}}<!--Automaticly ann time--></h4>
 											<p>{{formatTime(anno.startTime)}}<!--Part of annotion description text--></p>
 
-											<button id="edit-anno" ng-click="editAnnotation(anno)">
+											<div id="edit-anno" ng-click="editAnnotation(anno)">
 										<p class="glyphicon glyphicon-pencil"></p>
 										
-										</button>
-										<button id="delete-annotation" ng-click="deleteAnnotation(anno)">
-											<p class=" glyphicon glyphicon-remove"></p>
-										</button>
+										</div>
+										
 								  
 										</div>
 									</div>
@@ -141,7 +141,7 @@
 			<!-- OVDJE JE LISTA TAGOVA SA CEKBOXOM LEBRON -->
 			<div class="ng-hide" ng-show="showListStatus">
 				<div class="row backg">
-					<div class="col-xs-12">
+					<div class="col-xs-12" style="padding:5px 50px">
 						<!-- TAGS FOR ANNOTATIONS-->
 						<div class="checkbox">
 							<span ng-repeat="t in tags">
@@ -171,17 +171,18 @@
 				<div class="row backg">
 					<div class="col-xs-12">
 						<!-- ANNOTATION LIST-->
-						<div class="col-xs-12" ng-repeat="anno in annoList | filterByTags:fType:tags">
+						<div class="col-xs-12 blackcolor" ng-repeat="anno in annoList | filterByTags:fType:tags">
 							<div class="btn btn-default btn-block" ng-click="goToVidAnno(anno)">
+								<div id="delete-annotation" ng-click="deleteAnnotation(anno)">
+									<p class=" glyphicon glyphicon-remove florigth"></p>
+								</div>
 								<h4>{{anno.text}}<!--Automaticly ann time--></h4>
 								<p>{{anno.startTime}}<!--Part of annotion description text--></p>
-								<button id="edit-anno" ng-click="editAnnotation(anno)">
+								<div id="edit-anno" ng-click="editAnnotation(anno)">
 								<p class="glyphicon glyphicon-pencil"></p>
 								
-								</button>
-								<button id="delete-annotation" ng-click="deleteAnnotation(anno)">
-									<p class=" glyphicon glyphicon-remove"></p>
-								</button>
+								</div>
+								
 							</div>	
 						</div>
 					</div>
@@ -193,12 +194,12 @@
 			<!-- VIDEO LIST-->
 			<div  class="ng-hide " ng-show="!showListStatus">
 				<div class="row backg">
-					<div class="col-xs-12">
+					<div class="col-xs-12 blackcolor">
 						<!-- 0vdje pocinje paragraf u koji se unsoi angularjs zza listu-->
-						<div class="col-xs-12" ng-repeat="myVideo in vidList">
+						<div class="col-xs-12 blackcolor" ng-repeat="myVideo in vidList">
 							<div class="btn btn-default btn-block">
 								<a href="#/video/{{myVideo._id}}">
-								<div>
+								<div class="blackcolor">
 								  <h3>{{myVideo.title | limitTo:15}}...</h3>
 									  <p>{{myVideo.author}}</p>
 								  <p>{{myVideo.duration}} </p>
