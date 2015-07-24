@@ -12,9 +12,9 @@ We use cookies to offer you the best experience onlin.
     
 	<!--Gender: <input id="genderM" type="radio" ng-model="user.gender" value="male" />male
 			<input id="genderF" type="radio" ng-model="user.gender" value="female" />female<br />-->
-	Password:<input id="password"  type="password"  ng-model="user.pass"></input> <br />
-	Re-enter password:<input id="rePassword"  type="password"  ng-model="user.passConfirm"></input> <br />
-	<button ng-click="signUp()">Sign up</button><br />
+	Password:<input id="password"  type="password"  ng-model="user.pass" required></input> <br />
+	Re-enter password:<input id="rePassword"  type="password"  ng-model="user.passConfirm" required></input> <br />
+	<button disabled="true"; ng-click="signUp()">Sign up</button><br />
 	<span  style="color:red" ng-show="error">Content in the marked boxes is invalid. Fix it!</span>
 	<span  style="color:red" ng-show="error">{{errText}}</span>
 	<div style="color:red" role="alert">
@@ -25,6 +25,7 @@ We use cookies to offer you the best experience onlin.
     </div>
 	
 </form>
+<span  > {{message}}</span>
 
 
 
