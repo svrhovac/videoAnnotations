@@ -58,6 +58,7 @@ video {
 }*/
 
 .shadowz {
+	width:100%;
 	padding: 5px 0; 
 	background-color: #E5E4E2;
 	border-top:5px solid #F75D59;
