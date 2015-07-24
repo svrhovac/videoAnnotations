@@ -3,6 +3,7 @@ var router = express.Router();
 
 var db = require(mainConfig.paths.db.mongodb);
 var commonParams = require("./commonParams");
+var sessionUtils = require.main.require('./utils/sessionUtils');
 
 
 router.param("videoId", commonParams.videoIdParam);
@@ -51,6 +52,11 @@ router.post('/annotation/:videoId/add', function(req, res, next){
       res.sendStatus(500);
     } else {
       if(data != null && data.nModified > 0) {
+        if (sessionUtils.isLogedIn(req)) {
+          db.user.update({_id: req.session.authUser._id}, {$inc : { numberOfAnnotations : 1}}, function(err){
+            if(err) next(err);
+          });
+        }
         res.send(value);
       } else {
         res.sendStatus(422); // Unprocessable Entity

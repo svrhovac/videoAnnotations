@@ -9,4 +9,17 @@ spa.service("signUpService", ['$http', function($http){
 		});
     };
 	
+	this.registerNewUser = function(user){ //MILAN za stnimanje nove
+      var pom;
+	  var postBody = {"email":user.email,"password":user.pass}
+    console.log(postBody);
+    return $http.post('/register', postBody).
+		success(function(data) {
+			return data;	
+		}).
+		error(function(data) {
+			return data;
+			});
+    };
+	
 }]);

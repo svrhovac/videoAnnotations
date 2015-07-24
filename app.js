@@ -33,7 +33,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(session({ secret: randomUtils.randomString(32, '#Aa'), resave: false, saveUninitialized: false, cookie: { secure: true, maxAge: 60000 }}))
+app.use(session({ secret: randomUtils.randomString(32, '#Aa'),
+                  resave: true, saveUninitialized: true,
+                  key: "express.sessionID",
+                  cookie: { secure: false, maxAge: 60000 }}))
 
 app.use(expressValidator({
  customValidators: {
