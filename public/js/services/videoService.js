@@ -6,11 +6,9 @@ spa.service("videoService", ['$http', function($http){
 
     this.getVideos = function(){
 	     return $http.get("/videos").success(function(data){
-          console.log("lista"+data);
 			     return this.vidList = data;
 		   }).
 		    error(function(data){
-			   console.log("greska!!!");
 		   });
 		//console.log(this.vidList)
 		//return this.vidList;
@@ -60,7 +58,6 @@ spa.service("videoService", ['$http', function($http){
     this.sendNewAnnoToServer = function(anno,vidID){ //MILAN za stnimanje nove
       var pom;
 	  var postBody = {"text":anno.text,"startTime":anno.startTime,"endTime":anno.endTime,"tags":anno.tags}
-    console.log(postBody);
 	  /*$http({
 		  method: 'POST',
 		  url:'/annotation/'+ vidID +'/add',
@@ -87,7 +84,6 @@ spa.service("videoService", ['$http', function($http){
 	  var postBody = {"text":anno.text,"startTime":anno.startTime,"endTime":anno.endTime,"tags":anno.tags}
 	  $http.put('http://localhost:3000/annotation/'+vidID+'/edit/'+anno.id, postBody)
 	  .success(function(data, status, headers, config) {
-			console.log(data);
 			// this callback will be called asynchronously
 			// when the response is available
 		}).error(function(data, status, headers, config) {
@@ -116,13 +112,11 @@ spa.service("videoService", ['$http', function($http){
     this.deleteAnnoFromServer = function(anno,vidID){
         $http.delete('http://localhost:3000/annotation/'+vidID+'/remove/'+anno.id)
         .success(function(data, status, headers, config) {
-        console.log(data);
       // this callback will be called asynchronously
       // when the response is available
     }).error(function(data, status, headers, config) {
       // called asynchronously if an error occurs
       // or server returns response with an error status.
-      console.log("neuspjesno otislo otislo!!!!!");
       });
     };
 }]);

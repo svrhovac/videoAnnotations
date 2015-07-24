@@ -14,7 +14,7 @@
 			<!-- VIDEO PLAYER-->
 			<div class="row">
 				<div class="col-xs-12">
-					<video id="videoDOM" ng-src="{{video.path}}" controls="controls" style="width:100%"></video>	
+					<video id="videoDOM" ng-src="{{videoPath}}" controls="controls" style="width:100%"></video>	
 				</div>
 			</div>
 			
@@ -45,15 +45,15 @@
 					<div class="col-lg-6 col-sm-6">
 						<!--<textarea id="anno-edit-left" cols="40" rows="10" maxlength="50"></textarea>-->
 							<div class="form-group">
-								<textarea id="anno-edit-left" class="form-control" rows="5" id="comment" placeholder="Enter your annotation here..."></textarea>
+								<textarea ng-model="annoInEdit.text" id="anno-edit-left" class="form-control" rows="5" id="comment" placeholder="{{placeholder.text}}"></textarea>
 							</div>
 					
 						<div id="anno-edit-right">
-						<div id="time-input">
-						<!--<input type="range" min="0" max="15" value="3" step="1" onchange="rangevalue.value=value" />
-						<output id="rangevalue">selektovani broj sekudni </output>-->
-							<input id="time-start" type="text" /> &nbsp; Duration:
-							<input id="time-end" type="text" />to:
+							<div id="time-input">
+								<!--<input type="range" min="0" max="100" value="50" step="1" onchange="rangevalue.value=calculateRange(value)" />
+								<output id="rangevalue">selektovani broj sekudni </output>-->
+								<input ng-model="annoInEdit.startTime" id="time-start" placeholder="{{placeholder.startTime}}" type="text" /> &nbsp; Duration:
+								<input ng-model="annoInEdit.endTime" id="time-end" placeholder="{{placeholder.endTime}}" type="text" />to:
 							</div>
 						</div>
 
@@ -133,7 +133,7 @@
 					<button class="btn btn-block btn-xcolor" id="all-vid-view"   ng-click="showListStatus=false;showAnno=false; changeBackground2(false)">Videos</button>
 				</div>
 				<div class="col-xs-6">
-					<button class="btn btn-block"  id="all-anno-view" ng-click="showListStatus=true; loadAllAnnotations();changeBackground2(true)" >All My Ann</button>
+					<button class="btn btn-block"  id="all-anno-view" ng-click="showListStatus=true;changeBackground2(true)" >All My Ann</button>
 				</div>
 			</div>
 			
@@ -145,7 +145,7 @@
 						<!-- TAGS FOR ANNOTATIONS-->
 						<div class="checkbox">
 							<span ng-repeat="t in tags">
-								<label ng-if="!t.boxValue">
+								<!--<label ng-if="!t.boxValue">
 									
 									<input type="checkbox" ng-click="switchValue(t)" />
 										{{t.name}}
@@ -154,8 +154,16 @@
 								<label ng-if="t.boxValue">
 									<input ng-if="t.boxValue" type="checkbox" ng-click="switchValue(t)" checked />
 										{{t.name}}
+								</label>-->
+								<label>
+									<input type="checkbox" ng-model="t.boxValue" />
+										{{t.name}}
 								</label>
 							</span>
+							<form>
+								<input type="radio" name="filterType" ng-click="changefType(!fType)" checked />AND
+								<input type="radio" name="filterType" ng-click="changefType(!fType)" />OR
+							</form>
 						</div>
 					</div>
 				</div>
@@ -163,7 +171,7 @@
 				<div class="row backg">
 					<div class="col-xs-12">
 						<!-- ANNOTATION LIST-->
-						<div class="col-xs-12" ng-repeat="anno in allAnnotations | filterByTags:tags">
+						<div class="col-xs-12" ng-repeat="anno in annoList | filterByTags:fType:tags">
 							<div class="btn btn-default btn-block" ng-click="goToVidAnno(anno)">
 								<h4>{{anno.text}}<!--Automaticly ann time--></h4>
 								<p>{{anno.startTime}}<!--Part of annotion description text--></p>
