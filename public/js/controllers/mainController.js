@@ -2,6 +2,8 @@ spa.controller("mainController", function($scope, $location, $routeParams, $time
 	
 	$scope.login = false;
 	$scope.error = false;
+	$scope.email;
+	$scope.pass;
 	$scope.serverResponse;
 
 	$scope.items = [
@@ -51,14 +53,36 @@ spa.controller("mainController", function($scope, $location, $routeParams, $time
 		$location.path('/search');
 		//console.log("enter radi");
 	}
+
+	$scope.signOut = function(){
+		$scope.login = false;
+		$scope.email = "";
+		$scope.pass = "";
+		signUpService.logOut().success(function(data){
+
+		}).
+		error(function(data){
+			console.log("error");
+		});
+	}
+
 	$scope.signIn = function(e, p){
 		signUpService.signIn(e,p).success(function(data){
 			$scope.serverResponse = data;
+			console.log("ulogovan");
+			console.log($scope.serverResponse);
 			error = true;
-			$timeout(function(){},3000);
-			error = false;
+			$scope.login=true;
+			signUpService.loginStatus(true);
+			//$timeout(function(){},3000);
+			//error = false;
 		}).error(function(data){
-			console.log("error in lonin");
+			$scope.serverResponse = data;
+			console.log($scope.serverResponse);
+			error = true;
+			$scope.login = true;
+			signUpService.loginStatus();
+
 		});
 		/*loginService.checkUser(email, pass).success(function(data){
 			if(!data.email){
@@ -73,7 +97,6 @@ spa.controller("mainController", function($scope, $location, $routeParams, $time
 				$location.path("/");
 			}
 		});*/
-		signUpService.loginStatus(true);
 	};
 
 	$scope.geoTest = function(){
