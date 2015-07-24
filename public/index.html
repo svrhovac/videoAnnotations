@@ -58,7 +58,8 @@
 					  <a>Sign out</a>
 					</div>
 					<div class="form-group">
-						<input ng-keydown="$event.keyCode == 13 && search()"  ng-keyup="$event.keyCode == 13 && ser()" type="text" class="form-control" placeholder="Search" ng-model="searchText" />
+						<input ng-keydown="$event.keyCode == 13 && search()"  ng-keyup="$event.keyCode == 13 && ser()"
+						style="border-radius:0;" type="text" class="form-control" placeholder="Search" ng-model="searchText" />
 					</div>
 					<a href="#/search">
 						<button type="button" ng-click="search()" class="btn btn-default">Search</button>
@@ -69,24 +70,7 @@
       </div>
     
       <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
-          
-          <form class="navbar-form navbar-right" role="search">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search" style="border-radius:0;">
-            </div>
-            <button type="submit" class="btn btn-default">Go</button>
-          </form>
-          <ul class="nav navbar-nav navbar-right">
-        
-            <li> <a href="#"> Sign in </a>  <!--ispraviti -->
-
-
-            </li>
-            <li> <a href="#/signup"><div>Sign up</div></a>
-              </div>               
-            </li>
-
+                    
             <!--Dropdown za sign in
             <li dropdown>
               <a href="#" dropdown-toggle auto-close="disabled">Sign in <b class="caret"></b></a>
