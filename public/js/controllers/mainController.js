@@ -20,6 +20,19 @@ spa.controller("mainController", function($scope, $location, $routeParams, $http
     $scope.status.isopen = !$scope.status.isopen;
   };
 	
+	$scope.formatTime = function(t){
+	    //var t = parseInt(t, 10); // don't forget the second param
+	    console.log(t);
+	    var hours   = Math.floor(t / 3600);
+	    var minutes = Math.floor((t - (hours * 3600)) / 60);
+	    var seconds = t - (hours * 3600) - (minutes * 60);
+	    //console.log(hours + " "+ minutes + " " + seconds);
+	    if (hours   < 10) {hours = "0"+hours}
+	    if (minutes < 10) {minutes = "0"+minutes}
+	    if (seconds < 10) {seconds = "0"+seconds}
+	    var time    = hours+":"+minutes+":"+seconds;
+	    return time;
+	};
 	
 	//$scope.vidList = videoService.getVideos();
 	//$scope.user = loginService.getUser();
