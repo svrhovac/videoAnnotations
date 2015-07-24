@@ -1,6 +1,7 @@
 spa.controller("signUpController", function($scope,signUpService){
 	
 	$scope.isFromEU = false;
+	//$scope.respons.message = "";
 	
 	
 		signUpService.fromEU().success(function(data){
@@ -10,8 +11,10 @@ spa.controller("signUpController", function($scope,signUpService){
 	
 	$scope.error = false;
 
-
+	//TODO postaviti automacku validaciju od angulara - kao za email
 	$scope.signUp = function(){
+		$scope.error = false;
+		$scope.errText = "";
 		if($scope.user.pass != $scope.user.passConfirm || $scope.user.pass.length < 8){
 			$scope.error = true;
 			document.getElementById("password").style.borderColor="red";
@@ -19,6 +22,17 @@ spa.controller("signUpController", function($scope,signUpService){
 			$scope.errText = "Password is too short or passwords mismatch."
 			return;
 		} 
+		if($scope.myForm.input.$error.email || $scope.myForm.input.$error.password ) return;
+		//gotova validacija
+		
+		signUpService.registerNewUser($scope.user).success(function(data){
+			$scope.respons = data;
+			signUpService.loginStatus(true);
+		}).
+		error(function(data) {
+			$scope.respons = data;
+		});
+		
 
 	};	
 }); 

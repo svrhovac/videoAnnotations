@@ -49,6 +49,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+
       </div>
     
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -57,8 +58,10 @@
 	<form class="navbar-form navbar-right col-md-4">
 			
 			<div class="form-group col-md-8 col-xs-8"  role="search">
+			<div class="ng-hide" ng-show="!login&&!error">
 				<input ng-keydown="$event.keyCode == 13 && search()"  ng-keyup="$event.keyCode == 13 && ser()"
 				style="border-radius:0;" type="text" class="form-control" placeholder="Search" ng-model="searchText" />
+			</div>
 			</div>
 			<a class="col-md-4 col-xs-4" href="#/search">
 				<button type="button" ng-click="search()" class="btn btn-default">Search</button>
@@ -67,7 +70,9 @@
 		
 		<ul class="nav navbar-nav navbar-left col-md-6" role="input">
 			<li> <a href="#/signup"><div>Sign up</div></a>  </li>
-			
+			<div class="ng-hide" ng-show="error">
+            <textarea value="{{serverResponse}}"></textarea>
+          </div>
 			<li class="ng-hide" ng-show="login" style="color:white">
 			  {{user}}
 			  <a>Sign out</a>

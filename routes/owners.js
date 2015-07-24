@@ -22,6 +22,13 @@ router.get('/owners/:videoId', function(req, res, next){
         });
      });
 
+router.get('/ownersstatistic', function(req, res, next){
+  db.user.find({},{_id: 0, securityCode: 0, password: 0, active: 0}, function(err, users){
+    if(err) return next(err);
+    if(!users) return next(new Error('Can not find users'));
+    res.json(users);
+  });
+});
 
 
 

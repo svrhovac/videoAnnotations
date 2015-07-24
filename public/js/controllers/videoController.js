@@ -34,11 +34,13 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 				}
 			}
 		}
+		console.log($scope.vidList);
 	});
 	//$scope.video = videoService.getVideoProperty($scope.idVideo);
 
 	videoService.getVideoProperty($scope.idVideo).success(function(data){
 		$scope.videoPath = data.path;
+		console.log(data.path);
 	});
 
 
@@ -74,10 +76,6 @@ spa.controller("videoController", function($scope, $location, $http, $routeParam
 	$scope.showList = function(x){
 		$scope.showListStatus = x;
 	};
-
-	$scope.calculateRange = function(r){
-		return ($scope.video.durration*r)/100;
-	}
 
 	$scope.changefType = function(f){
 		$scope.fType = f;
