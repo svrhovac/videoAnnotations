@@ -1,32 +1,18 @@
-<!-- <div class="container"> 
-    <video class="bgvid" id="video-bg" preload="auto" autoplay="" loop="loop" muted="muted">
-    <source src="images/vidbg.mp4">
-    </video>
-</div> -->
-
-
-
-
-  
-        <div class="col-sm-12">
-		<div class="container">
-            <div class="col-sm-4" ng-repeat="vid in vidList">
-                 <label><a href="#/video/{{vid._id}}">
-					 <div class="shadowz">
-						<ul> 
-							<li>
-								<h3> {{vid.title}}</h3>
-								<p> {{vid.author}} </p>  
-								 <p> {{vid.duration}} </p>
-							</li>
-							<li><span class="glyphicon glyphicon-comment"></span>
-							<span class="glyphicon glyphicon-play" style="float:right; padding-right:20px;"></span>
-							</li>
-						</ul>
-					</div>
-				</a></label>
-            </div>
-		</div>	
-        </div>
-
-
+<div class="container">
+	<div class="col-sm-12">
+		<div class="col-sm-4" ng-repeat="vid in vidList">
+			<div class="shadowz">
+			<ul> 
+				<li>
+					<a href="#/video/{{vid._id}}"> <h3> {{vid.title}}</h3> </a>
+					<a href="#/video/{{vid._id}}"> <p> {{vid.author}} </p> </a>   
+					<a href="#/video/{{vid._id}}"> <p> {{vid.duration}} </p> </a>
+				</li>
+				<li><a href="#/video/{{vid._id}}"><span class="glyphicon glyphicon-comment"></span></a> 
+				<a href="#/video/{{vid._id}}"><span class="glyphicon glyphicon-play" style="float:right; padding-right:20px;"></span></a> 
+				</li>
+			</ul>
+			</div>
+		</div>
+    </div>
+</div><!--/.container-->

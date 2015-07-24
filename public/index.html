@@ -38,63 +38,53 @@
 
   <div class="row"><!-- Start of ROW -->
         <!-- Fixed navbar -->
-    <nav class="navbar navbar-default nav-custom">
-      <div class="container">
-        <a href="#/"><img src="images/logo.png"></a>
-        <!-- <ul class="nav navbar-nav inline-block">
-          <li><a href="#">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul> -->
-				<form class="navbar-form navbar-right" role="search">
-					<div class="ng-hide" ng-show="!login">
-						 <input id="email-input" type="email" placeholder="e-mail" ng-model="email" />
-						 <input id="pass-input" type="password" placeholder="password" ng-model="pass" />
-						 <a ng-click="signIn(email,pass)"><div>Sign in</div></a>
-						<a href="#/signup"><div>Sign up</div></a>
-					</div>
-					<div class="ng-hide" ng-show="login" style="color:white">
-					  {{user}}
-					  <a>Sign out</a>
-					</div>
-					<div class="form-group">
-						<input ng-keydown="$event.keyCode == 13 && search()"  ng-keyup="$event.keyCode == 13 && ser()"
-						style="border-radius:0;" type="text" class="form-control" placeholder="Search" ng-model="searchText" />
-					</div>
-					<a href="#/search">
-						<button type="button" ng-click="search()" class="btn btn-default">Search</button>
-					</a>
-				</form>
-			
-
+		
+	<nav class="navbar navbar-inverse col-md-12" role="navigation">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header col-md-2">
+      <a href="#/"><img src="images/logofinal.png"></a>
+        <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
       </div>
     
       <!-- Collect the nav links, forms, and other content for toggling -->
-                    
-            <!--Dropdown za sign in
-            <li dropdown>
-              <a href="#" dropdown-toggle auto-close="disabled">Sign in <b class="caret"></b></a>
-              <ul class="dropdown-menu" auto-close="disabled">
-                <li>    <div class="form-group">
-                        <label>Email address:</label>
-                        <input id="email-input" type="email" placeholder="e-mail" ng-model="email" />
-                        </div>
-                </li>
-                <li>    <div class="form-group">
-                              <label for="exampleInputPassword1">Password</label>
-                              <input id="pass-input" type="password" placeholder="password" ng-model="pass" />
-                        </div>
-                </li>
-                <li> <button type="submit" class="btn btn-default">Sign in</button></li>
-              </ul>
-              <li><a href="#"><div class="ng-hide" ng-show="login">
-                  {{user}}
-                  <a>Sign out</a>
-                </div></a>
-            </li> -->
-          </ul>
-<!-- /.navbar-collapse -->
+      <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
+	
+	<form class="navbar-form navbar-right col-md-4">
+			
+			<div class="form-group col-md-8 col-xs-8"  role="search">
+				<input ng-keydown="$event.keyCode == 13 && search()"  ng-keyup="$event.keyCode == 13 && ser()"
+				style="border-radius:0;" type="text" class="form-control" placeholder="Search" ng-model="searchText" />
+			</div>
+			<a class="col-md-4 col-xs-4" href="#/search">
+				<button type="button" ng-click="search()" class="btn btn-default">Search</button>
+			</a>
+		</form>
+		
+		<ul class="nav navbar-nav navbar-left col-md-6" role="input">
+			<li> <a href="#/signup"><div>Sign up</div></a>  </li>
+			
+			<li class="ng-hide" ng-show="login" style="color:white">
+			  {{user}}
+			  <a>Sign out</a>
+			  
+			</li>
+			
+			<li><input style="margin-top:11px;" ng-show="!login" id="email-input" type="email" placeholder="e-mail" ng-model="email" /> </li>
+			<li><input style="margin-top:11px;" ng-show="!login" id="pass-input" type="password" placeholder="password" ng-model="pass" /> </li>
+			<li> <a ng-click="signIn(email,pass)"> Sign in </a>  <!--ispraviti --></li>
+
+			
+		</ul>
+
+      </div><!-- /.navbar-collapse -->
     </nav>
+		
+    
 
 	
 	
