@@ -68,20 +68,14 @@ spa.controller("mainController", function($scope, $location, $routeParams, $time
 
 	$scope.signIn = function(e, p){
 		signUpService.signIn(e,p).success(function(data){
-			$scope.serverResponse = data;
 			console.log("ulogovan");
 			console.log($scope.serverResponse);
-			error = true;
 			$scope.login=true;
 			signUpService.loginStatus(true);
-			//$timeout(function(){},3000);
-			//error = false;
 		}).error(function(data){
-			$scope.serverResponse = data;
 			console.log($scope.serverResponse);
-			error = true;
-			$scope.login = true;
-			signUpService.loginStatus();
+			$scope.login = false;
+			signUpService.loginStatus(false);
 
 		});
 		/*loginService.checkUser(email, pass).success(function(data){
