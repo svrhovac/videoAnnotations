@@ -10,6 +10,10 @@ spa.config(['$routeProvider',function($routeProvider) {$routeProvider.
         templateUrl: 'views/videoView.html',
         controller: 'videoController'
     }).
+    when('/video/:id/anno/:anno_id', {
+        templateUrl: 'views/videoView.html',
+        controller: 'videoController'
+    }).
 	when('/statistic', {
         templateUrl: 'views/statisticView.html',
         controller: 'statisticController'
