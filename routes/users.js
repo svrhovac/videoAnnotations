@@ -4,6 +4,9 @@ var nodemailer = require('nodemailer');
 var passwordHash = require('password-hash');
 var db = require(mainConfig.paths.db.mongodb);
 
+var randomUtils = require.main.require('./utils/randomUtils');
+var randomString = randomUtils.randomString;
+
 var smtpTransport = nodemailer.createTransport("SMTP",{
   service: "Gmail",
   auth: {
@@ -12,19 +15,6 @@ var smtpTransport = nodemailer.createTransport("SMTP",{
   }
 });
 
-
-
-//create random security code for user
-function randomString(length, chars) {
-  var mask = '';
-  if (chars.indexOf('a') > -1) mask += 'abcdefghijklmnopqrstuvwxyz';
-  if (chars.indexOf('A') > -1) mask += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  if (chars.indexOf('#') > -1) mask += '0123456789';
-  if (chars.indexOf('!') > -1) mask += '~`!@#$%^&*()_+-={}[]:";\'<>?,./|\\';
-  var result = '';
-  for (var i = length; i > 0; --i) result += mask[Math.round(Math.random() * (mask.length - 1))];
-  return result;
-}
 
 
 router.get('/register/users/verification/email/:uniqeID', function(req,res){

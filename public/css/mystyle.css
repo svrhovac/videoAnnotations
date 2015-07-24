@@ -15,6 +15,7 @@ nav img {
 	height: 50px;
 	width: 80px;
 	float:left;
+	margin-left:50px;
 }
 
 .navbar {
@@ -58,7 +59,8 @@ video {
 
 .shadowz {
 	padding: 5px 0; 
-	background-color: rgba(25, 255, 255, 0.07);
+	background-color: #E5E4E2;
+	border-top:5px solid #F75D59;
 }
 
 .shadowz ul {
@@ -70,7 +72,7 @@ video {
 }
 
 .shadowz a:hover {
-	color: red;
+	color: #F75D59;
 }
 
 .shadowz {
@@ -79,6 +81,7 @@ video {
 
 .glyphicon {
 	font-size: 20px;
+	color: black;
 }
 
 .florigth {
@@ -207,3 +210,4 @@ border-radius:0;}
 .edit-window{
 background-color: #E5E4E2;
 margin:10px 0;}
+
