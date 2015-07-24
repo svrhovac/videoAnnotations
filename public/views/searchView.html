@@ -1,20 +1,25 @@
 <div class="row">
 	<div class="col-sm-12">
-		<div class="col-sm-4" ng-repeat="r in rez">
+	<h1 style="margin-left: 13px;">Search results </h1>
+	<div class="ng-binding" style="font-size: 20px; margin-bottom: 30px; margin-left: 13px;"> Number of results : {{rez.length}}</div>
+		<div class="col-sm-4" ng-repeat="r in rez" style="margin-bottom: 10px;">
 			<a href="#/video/{{r._id}}">
+			
+							<div ng-show={{r.videoMatches}} style="background: rgb(247, 93, 89) none repeat scroll 0% 0%;float:right; padding-left:20px;padding-right:20px;">Video</div>
+					
+							<div ng-show={{r.annotationMatches}} style="background: rgb(247, 93, 89) none repeat scroll 0% 0%;float:right;margin-left:5px;padding-left:20px; padding-right:20px;">Annotation</div>
+						
 			<div class="shadowz">
 				<ul> 
 					<li>
 						<h3> {{r.title}}
-							<i ng-show={{r.videoMatches}} class=" glyphicon glyphicon-play"></i>
-							<i ng-show={{r.annotationMatches}} class="glyphicon glyphicon-comment"></i>
 						</h3> 
 						 <p> {{r.author}} </p>   
 						 <p> {{r.duration}} </p> 
 					</li>
 					<li>
-						<span class="glyphicon glyphicon-comment"></span> 
-						<span class="glyphicon glyphicon-play" style="float:right; padding-right:20px;"></span>
+						<span class="glyphicon glyphicon-play" ></span>
+						<span class="glyphicon glyphicon-comment" style="float:right; padding-right:20px;"></span>
 					</li>
 				</ul>
 			</div>
