@@ -192,7 +192,8 @@ background-color: #E5E4E2;
 
 .annolive{
 border: 1px solid red;
-background: rgba(204, 204, 204, 0.3);
+color:white;
+background-color:rgba(255,0,0,0.3);
 overflow:hidden;
 width:100%;
 }
@@ -203,7 +204,6 @@ width:100%;
 }
 .btn-xcolor {
 background-color:#F75D59;
-border:none;
 }
 
 .btn {
