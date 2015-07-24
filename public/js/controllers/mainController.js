@@ -1,5 +1,9 @@
-spa.controller("mainController", function($scope, $location, $routeParams, $http, videoService){
+spa.controller("mainController", function($scope, $location, $routeParams, $timeout, $http, videoService, signUpService){
 	
+	$scope.login = false;
+	$scope.error = false;
+	$scope.serverResponse;
+
 	$scope.items = [
     'The first choice!',
     'And another choice for you.',
@@ -22,7 +26,6 @@ spa.controller("mainController", function($scope, $location, $routeParams, $http
 	
 	$scope.formatTime = function(t){
 	    //var t = parseInt(t, 10); // don't forget the second param
-	    console.log(t);
 	    var hours   = Math.floor(t / 3600);
 	    var minutes = Math.floor((t - (hours * 3600)) / 60);
 	    var seconds = t - (hours * 3600) - (minutes * 60);
@@ -48,7 +51,15 @@ spa.controller("mainController", function($scope, $location, $routeParams, $http
 		$location.path('/search');
 		//console.log("enter radi");
 	}
-	$scope.signIn = function(email, pass){
+	$scope.signIn = function(e, p){
+		signUpService.signIn(e,p).success(function(data){
+			$scope.serverResponse = data;
+			error = true;
+			$timeout(function(){},3000);
+			error = false;
+		}).error(function(data){
+			console.log("error in lonin");
+		});
 		/*loginService.checkUser(email, pass).success(function(data){
 			if(!data.email){
 				document.getElementById("email-input").value = "";
@@ -62,11 +73,7 @@ spa.controller("mainController", function($scope, $location, $routeParams, $http
 				$location.path("/");
 			}
 		});*/
-		console.log(email+"  "+pass);
-		$scope.user = email;
-		$scope.login = true;
-		loginService.setUser(email);
-		loginService.setLoginStatus(true);
+		signUpService.loginStatus(true);
 	};
 
 	$scope.geoTest = function(){

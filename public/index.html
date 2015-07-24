@@ -47,12 +47,15 @@
           <li><a href="#contact">Contact</a></li>
         </ul> -->
 				<form class="navbar-form navbar-right" role="search">
-					<div class="ng-hide" ng-show="!login">
+					<div class="ng-hide" ng-show="!login&&!error">
 						 <input id="email-input" type="email" placeholder="e-mail" ng-model="email" />
 						 <input id="pass-input" type="password" placeholder="password" ng-model="pass" />
 						 <a ng-click="signIn(email,pass)"><div>Sign in</div></a>
 						<a href="#/signup"><div>Sign up</div></a>
 					</div>
+          <div class="ng-hide" ng-show="error">
+            <textarea value="{{serverResponse}}"></textarea>
+          </div>
 					<div class="ng-hide" ng-show="login" style="color:white">
 					  {{user}}
 					  <a>Sign out</a>
